@@ -52,25 +52,25 @@ namespace DB_Autoparts_NVA.Forms
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(339, 144);
+            this.panel1.Size = new System.Drawing.Size(291, 125);
             this.panel1.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPassword.Location = new System.Drawing.Point(126, 80);
+            this.txtPassword.Font = new System.Drawing.Font("Times New Roman", 15.75F);
+            this.txtPassword.Location = new System.Drawing.Point(108, 69);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(179, 32);
+            this.txtPassword.Size = new System.Drawing.Size(154, 32);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // txtPhone
             // 
-            this.txtPhone.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPhone.Location = new System.Drawing.Point(126, 23);
+            this.txtPhone.Font = new System.Drawing.Font("Times New Roman", 15.75F);
+            this.txtPhone.Location = new System.Drawing.Point(108, 20);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(179, 32);
+            this.txtPhone.Size = new System.Drawing.Size(154, 32);
             this.txtPhone.TabIndex = 2;
             this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyNumber_KeyPress);
@@ -78,8 +78,8 @@ namespace DB_Autoparts_NVA.Forms
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(11, 80);
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 18F);
+            this.label2.Location = new System.Drawing.Point(9, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 27);
             this.label2.TabIndex = 1;
@@ -88,8 +88,8 @@ namespace DB_Autoparts_NVA.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(10, 23);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F);
+            this.label1.Location = new System.Drawing.Point(9, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 27);
             this.label1.TabIndex = 0;
@@ -100,11 +100,11 @@ namespace DB_Autoparts_NVA.Forms
             this.butEnter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(180)))), ((int)(((byte)(255)))));
             this.butEnter.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.butEnter.Enabled = false;
-            this.butEnter.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.butEnter.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.butEnter.ForeColor = System.Drawing.Color.Black;
-            this.butEnter.Location = new System.Drawing.Point(12, 158);
+            this.butEnter.Location = new System.Drawing.Point(15, 137);
             this.butEnter.Name = "butEnter";
-            this.butEnter.Size = new System.Drawing.Size(99, 44);
+            this.butEnter.Size = new System.Drawing.Size(110, 38);
             this.butEnter.TabIndex = 1;
             this.butEnter.Text = "Войти";
             this.butEnter.UseVisualStyleBackColor = false;
@@ -113,13 +113,13 @@ namespace DB_Autoparts_NVA.Forms
             // 
             this.butCansel.BackColor = System.Drawing.Color.Silver;
             this.butCansel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.butCansel.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.butCansel.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.butCansel.ForeColor = System.Drawing.Color.Black;
-            this.butCansel.Location = new System.Drawing.Point(207, 158);
+            this.butCansel.Location = new System.Drawing.Point(169, 137);
             this.butCansel.Name = "butCansel";
-            this.butCansel.Size = new System.Drawing.Size(99, 44);
+            this.butCansel.Size = new System.Drawing.Size(110, 38);
             this.butCansel.TabIndex = 2;
-            this.butCansel.Text = "Войти";
+            this.butCansel.Text = "Отмена";
             this.butCansel.UseVisualStyleBackColor = false;
             // 
             // errorProviderPhone
@@ -128,9 +128,9 @@ namespace DB_Autoparts_NVA.Forms
             // 
             // EnterUserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 211);
+            this.ClientSize = new System.Drawing.Size(291, 183);
             this.Controls.Add(this.butCansel);
             this.Controls.Add(this.butEnter);
             this.Controls.Add(this.panel1);
