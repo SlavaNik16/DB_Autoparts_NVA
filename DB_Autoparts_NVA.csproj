@@ -271,6 +271,18 @@
     <Compile Include="Forms\AuthorizationForm.Designer.cs">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DBProductsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DBProductsForm.Designer.cs">
+      <DependentUpon>DBProductsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DBUsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DBUsersForm.Designer.cs">
+      <DependentUpon>DBUsersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EnterUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -295,6 +307,12 @@
     <Compile Include="Models\Users.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\DBProductsForm.resx">
+      <DependentUpon>DBProductsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DBUsersForm.resx">
+      <DependentUpon>DBUsersForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\EnterUserForm.resx">
       <DependentUpon>EnterUserForm.cs</DependentUpon>
     </EmbeddedResource>

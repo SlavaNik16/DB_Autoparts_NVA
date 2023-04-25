@@ -24,9 +24,5 @@ namespace DB_Autoparts_NVA.Models
         /// Количество
         /// </summary>
         public int count { get; set; }
-        /// <summary>
-        /// всего денег
-        /// </summary>
-        public int price { get; set; }
     }
 }

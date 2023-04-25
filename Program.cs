@@ -17,7 +17,7 @@ namespace DB_Autoparts_NVA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());//AuthorizationForm
+            Application.Run(new AuthorizationForm());//AuthorizationForm
         }
     }
 }

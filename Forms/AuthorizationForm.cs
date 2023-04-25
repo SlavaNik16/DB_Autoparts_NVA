@@ -60,7 +60,7 @@ namespace DB_Autoparts_NVA.Forms
                         MessageBox.Show("Пользователь не найден!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                    var mainForm = new MainForm();
+                    var mainForm = new MainForm(unic) ;
                     mainForm.Owner = this;
                     this.Hide();
                     mainForm.Show();
