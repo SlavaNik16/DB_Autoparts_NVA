@@ -2,6 +2,7 @@
 using DB_Autoparts_NVA.Forms;
 using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using ApplicationContext = DB_Autoparts_NVA.DB.ApplicationContext;
 namespace DB_Autoparts_NVA
@@ -18,15 +20,18 @@ namespace DB_Autoparts_NVA
     {
         public DbContextOptions<ApplicationContext> options;
         public string statusUser = "";
+        private bool cellFormat = false;
+        private List<String> listProducts = new List<string>();
         public MainForm()
         {
             InitializeComponent();
             options = DataBaseHelper.Option();
         }
-        public MainForm(Users users) : this() 
+        public MainForm(Users users) : this()
         {
-            statusUser = ReturnStatusUser(options, users);
-            if (statusUser == "User"){
+            statusUser = ReturnStatusUser(options, users); 
+            if (statusUser == "User")
+            {
                 menuBDUsers.Enabled = false;
                 menuDBAutoparts.Enabled = false;
                 toolEdit.Visible = false;
@@ -39,12 +44,12 @@ namespace DB_Autoparts_NVA
         }
 
         #region DBRequests
-        private static string ReturnStatusUser(DbContextOptions<ApplicationContext> options, Users users) 
+        private static string ReturnStatusUser(DbContextOptions<ApplicationContext> options, Users users)
         {
             using (var db = new ApplicationContext(options))
             {
-               var user = db.UserDB.FirstOrDefault(u => u.phone ==  users.phone);
-               return user.status;
+                var user = db.UserDB.FirstOrDefault(u => u.phone == users.phone);
+                return user.status;
             }
         }
         private static List<Users> ReadUser(DbContextOptions<ApplicationContext> options, Users user)
@@ -78,26 +83,35 @@ namespace DB_Autoparts_NVA
 
         private void dataGridProduct_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            var data = (Autoparts)dataGridProduct.Rows[e.RowIndex].DataBoundItem;
-            if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnIdProducts")
-            {
-                using (var db = new ApplicationContext(options))
-                {
 
-                    var product = db.ProductDB.FirstOrDefault(x=>x.id_product == data.product);
-                    if (product == null) return;
-                    e.Value = product.title;
-                }
-            }
-            if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnPrice")
+            if (!cellFormat)
             {
-                using (var db = new ApplicationContext(options))
+                var data = (Autoparts)dataGridProduct.Rows[e.RowIndex].DataBoundItem;
+                if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnIdProducts")
                 {
-                    var product = db.ProductDB.FirstOrDefault(x => x.id_product == data.product);
-                    if (product == null) return;
-                    e.Value = product.price * data.count;
+                    using (var db = new ApplicationContext(options))
+                    {
+                        var product = db.ProductDB.Find(data.product);
+                        e.Value = product.title;
+                    }
+                }
+
+                if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnPrice")
+                {
+                    using (var db = new ApplicationContext(options))
+                    {
+                        var product = db.ProductDB.Find(data.product);
+                        e.Value = product.price * data.count;
+                    }
+                  
+                    cellFormat = true;
                 }
             }
+        }
+       
+        private void dataGridProduct_SelectionChanged(object sender, EventArgs e)
+        {
+            cellFormat = false;
         }
     }
 }

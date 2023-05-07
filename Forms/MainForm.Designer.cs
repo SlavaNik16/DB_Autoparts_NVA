@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.фаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUpgradeStatus = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,16 +62,16 @@
             this.columnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridProduct = new System.Windows.Forms.DataGridView();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.CountUsersStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MoneyUserStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
-            this.AllMoneyStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.columnIdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnIdProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnIdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.CountUsersStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MoneyUserStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
+            this.AllMoneyStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -382,6 +384,52 @@
             this.dataGridProduct.Size = new System.Drawing.Size(406, 377);
             this.dataGridProduct.TabIndex = 3;
             this.dataGridProduct.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridProduct_CellFormatting);
+            this.dataGridProduct.SelectionChanged += new System.EventHandler(this.dataGridProduct_SelectionChanged);
+            // 
+            // columnIdProduct
+            // 
+            this.columnIdProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.columnIdProduct.DataPropertyName = "parts_id";
+            this.columnIdProduct.HeaderText = "Id";
+            this.columnIdProduct.Name = "columnIdProduct";
+            this.columnIdProduct.ReadOnly = true;
+            this.columnIdProduct.Width = 41;
+            // 
+            // columnIdProducts
+            // 
+            this.columnIdProducts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnIdProducts.DataPropertyName = "product";
+            this.columnIdProducts.HeaderText = "Продукт";
+            this.columnIdProducts.Name = "columnIdProducts";
+            this.columnIdProducts.ReadOnly = true;
+            // 
+            // columnPrice
+            // 
+            this.columnPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.NullValue = "0";
+            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle1;
+            this.columnPrice.HeaderText = "Цена";
+            this.columnPrice.Name = "columnPrice";
+            this.columnPrice.ReadOnly = true;
+            // 
+            // columnIdUser
+            // 
+            this.columnIdUser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.columnIdUser.DataPropertyName = "id_user";
+            this.columnIdUser.HeaderText = "Пользователь";
+            this.columnIdUser.Name = "columnIdUser";
+            this.columnIdUser.ReadOnly = true;
+            this.columnIdUser.Visible = false;
+            // 
+            // columnCount
+            // 
+            this.columnCount.DataPropertyName = "count";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.columnCount.DefaultCellStyle = dataGridViewCellStyle2;
+            this.columnCount.HeaderText = "Кол-во";
+            this.columnCount.Name = "columnCount";
+            this.columnCount.ReadOnly = true;
+            this.columnCount.Visible = false;
             // 
             // statusStrip1
             // 
@@ -425,48 +473,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1028, 408);
             this.panel1.TabIndex = 2;
-            // 
-            // columnIdProduct
-            // 
-            this.columnIdProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.columnIdProduct.DataPropertyName = "parts_id";
-            this.columnIdProduct.HeaderText = "Id";
-            this.columnIdProduct.Name = "columnIdProduct";
-            this.columnIdProduct.ReadOnly = true;
-            this.columnIdProduct.Width = 41;
-            // 
-            // columnIdProducts
-            // 
-            this.columnIdProducts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnIdProducts.DataPropertyName = "product";
-            this.columnIdProducts.HeaderText = "Продукт";
-            this.columnIdProducts.Name = "columnIdProducts";
-            this.columnIdProducts.ReadOnly = true;
-            // 
-            // columnPrice
-            // 
-            this.columnPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnPrice.HeaderText = "Цена";
-            this.columnPrice.Name = "columnPrice";
-            this.columnPrice.ReadOnly = true;
-            // 
-            // columnIdUser
-            // 
-            this.columnIdUser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.columnIdUser.DataPropertyName = "id_user";
-            this.columnIdUser.HeaderText = "Пользователь";
-            this.columnIdUser.Name = "columnIdUser";
-            this.columnIdUser.ReadOnly = true;
-            this.columnIdUser.Visible = false;
-            this.columnIdUser.Width = 105;
-            // 
-            // columnCount
-            // 
-            this.columnCount.DataPropertyName = "count";
-            this.columnCount.HeaderText = "Кол-во";
-            this.columnCount.Name = "columnCount";
-            this.columnCount.ReadOnly = true;
-            this.columnCount.Visible = false;
             // 
             // MainForm
             // 
