@@ -13,7 +13,6 @@ namespace DB_Autoparts_NVA.Models
         /// <summary>
         /// id ключа 
         /// </summary>
-        [Key]
         public int id { get; set; }
         /// <summary>
         /// специальный ключ
