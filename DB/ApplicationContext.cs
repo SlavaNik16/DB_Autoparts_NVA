@@ -26,18 +26,17 @@ namespace DB_Autoparts_NVA.DB
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
-            //Database.EnsureDeleted();
-            //Database.EnsureCreated();
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Users>().HasKey(x => x.user_id);
-            modelBuilder.Entity<Users>().ToTable("User");
+            modelBuilder.Entity<Users>().ToTable("Users");
             modelBuilder.Entity<Autoparts>().HasKey(x => x.parts_id);
-            modelBuilder.Entity<Autoparts>().ToTable("Autopart");
-            modelBuilder.Entity<Products>().HasKey(x => x.id_products);
-            modelBuilder.Entity<Products>().ToTable("Product");
+            modelBuilder.Entity<Autoparts>().ToTable("Autoparts");
+            modelBuilder.Entity<Products>().HasKey(x => x.id_product);
+            modelBuilder.Entity<Products>().ToTable("Products");
             modelBuilder.Entity<Keys>().HasKey(x => x.id);
             modelBuilder.Entity<Keys>().ToTable("Key");
 

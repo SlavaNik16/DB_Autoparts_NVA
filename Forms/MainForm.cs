@@ -21,7 +21,7 @@ namespace DB_Autoparts_NVA
         public MainForm()
         {
             InitializeComponent();
-            options = DataBaseHelper.Option();         
+            options = DataBaseHelper.Option();
         }
         public MainForm(Users users) : this() 
         {
@@ -84,19 +84,19 @@ namespace DB_Autoparts_NVA
                 using (var db = new ApplicationContext(options))
                 {
 
-                    var product = db.ProductDB.First(x => x.id_products == data.product);
-                    e.Value = product.title;
+                    var product = db.ProductDB.Where(x => x.id_product == data.product).ToList();
+                    if (product == null) return;
+                    e.Value = product[0].title;
                 }
-                var tr = 0;
             }
             if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnPrice")
             {
                 using (var db = new ApplicationContext(options))
                 {
-                    var product = db.ProductDB.FirstOrDefault(x => x.id_products == data.product);
-                    e.Value = product.price * data.count;
+                    var product = db.ProductDB.Where(x => x.id_product == data.product).ToList();
+                    if (product == null) return;
+                    e.Value = product[0].price * data.count;
                 }
-                var tr = 0;
             }
         }
     }

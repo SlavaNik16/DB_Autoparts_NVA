@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace DB_Autoparts_NVA.Models
         /// <summary>
         /// id продукта
         /// </summary>
-        public int id_products { get; set; }
+        public int id_product { get; set; }
 
         /// <summary>
         /// название
