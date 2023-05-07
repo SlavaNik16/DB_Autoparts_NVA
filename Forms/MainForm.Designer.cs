@@ -66,9 +66,9 @@
             this.AllMoneyStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.columnIdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnIdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnIdProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnIdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -370,9 +370,9 @@
             this.dataGridProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnIdProduct,
-            this.columnIdUser,
             this.columnIdProducts,
             this.columnPrice,
+            this.columnIdUser,
             this.columnCount});
             this.dataGridProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridProduct.Location = new System.Drawing.Point(619, 28);
@@ -435,16 +435,6 @@
             this.columnIdProduct.ReadOnly = true;
             this.columnIdProduct.Width = 41;
             // 
-            // columnIdUser
-            // 
-            this.columnIdUser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.columnIdUser.DataPropertyName = "id_user";
-            this.columnIdUser.HeaderText = "Пользователь";
-            this.columnIdUser.Name = "columnIdUser";
-            this.columnIdUser.ReadOnly = true;
-            this.columnIdUser.Visible = false;
-            this.columnIdUser.Width = 105;
-            // 
             // columnIdProducts
             // 
             this.columnIdProducts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -459,6 +449,16 @@
             this.columnPrice.HeaderText = "Цена";
             this.columnPrice.Name = "columnPrice";
             this.columnPrice.ReadOnly = true;
+            // 
+            // columnIdUser
+            // 
+            this.columnIdUser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.columnIdUser.DataPropertyName = "id_user";
+            this.columnIdUser.HeaderText = "Пользователь";
+            this.columnIdUser.Name = "columnIdUser";
+            this.columnIdUser.ReadOnly = true;
+            this.columnIdUser.Visible = false;
+            this.columnIdUser.Width = 105;
             // 
             // columnCount
             // 
@@ -541,9 +541,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnPassword;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnIdProduct;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnIdUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnIdProducts;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnIdUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnCount;
     }
 }

@@ -84,18 +84,18 @@ namespace DB_Autoparts_NVA
                 using (var db = new ApplicationContext(options))
                 {
 
-                    var product = db.ProductDB.Where(x => x.id_product == data.product).ToList();
+                    var product = db.ProductDB.FirstOrDefault(x=>x.id_product == data.product);
                     if (product == null) return;
-                    e.Value = product[0].title;
+                    e.Value = product.title;
                 }
             }
             if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnPrice")
             {
                 using (var db = new ApplicationContext(options))
                 {
-                    var product = db.ProductDB.Where(x => x.id_product == data.product).ToList();
+                    var product = db.ProductDB.FirstOrDefault(x => x.id_product == data.product);
                     if (product == null) return;
-                    e.Value = product[0].price * data.count;
+                    e.Value = product.price * data.count;
                 }
             }
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DB_Autoparts_NVA.Models
 {
-    public class Products
+    public class Product
     {
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace DB_Autoparts_NVA.Models
         /// <summary>
         /// деньги за 1 шт
         /// </summary>
-        public double price { get; set; }
+        public decimal price { get; set; }
 
     }
 }

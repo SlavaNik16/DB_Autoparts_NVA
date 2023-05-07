@@ -17,7 +17,7 @@ namespace DB_Autoparts_NVA.DB
         /// <summary>
         /// Набор сущностей класса Products
         /// </summary>
-        public DbSet<Products> ProductDB { get; set; }
+        public DbSet<Product> ProductDB { get; set; }
         /// <summary>
         /// Набор сущностей класса Keys
         /// </summary>
@@ -35,8 +35,8 @@ namespace DB_Autoparts_NVA.DB
             modelBuilder.Entity<Users>().ToTable("Users");
             modelBuilder.Entity<Autoparts>().HasKey(x => x.parts_id);
             modelBuilder.Entity<Autoparts>().ToTable("Autoparts");
-            modelBuilder.Entity<Products>().HasKey(x => x.id_product);
-            modelBuilder.Entity<Products>().ToTable("Products");
+            modelBuilder.Entity<Product>().HasKey(x => x.id_product);
+            modelBuilder.Entity<Product>().ToTable("Product");
             modelBuilder.Entity<Keys>().HasKey(x => x.id);
             modelBuilder.Entity<Keys>().ToTable("Key");
 

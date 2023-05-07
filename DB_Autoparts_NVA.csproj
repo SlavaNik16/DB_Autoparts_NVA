@@ -303,7 +303,7 @@
     </Compile>
     <Compile Include="Models\Autoparts.cs" />
     <Compile Include="Models\Keys.cs" />
-    <Compile Include="Models\Products.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
