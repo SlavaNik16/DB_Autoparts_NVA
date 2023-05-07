@@ -43,19 +43,13 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolEdit = new System.Windows.Forms.ToolStripButton();
             this.toolDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolSearchBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolAddProduct = new System.Windows.Forms.ToolStripButton();
             this.toolEditProduct = new System.Windows.Forms.ToolStripButton();
             this.toolDeleteProduct = new System.Windows.Forms.ToolStripButton();
             this.dataGridUsers = new System.Windows.Forms.DataGridView();
-            this.dataGridProduct = new System.Windows.Forms.DataGridView();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.CountUsersStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MoneyUserStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
-            this.AllMoneyStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.toolSearchBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.columnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnSurname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +59,12 @@
             this.columnPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridProduct = new System.Windows.Forms.DataGridView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.CountUsersStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MoneyUserStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
+            this.AllMoneyStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.columnIdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnIdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnIdProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -126,14 +126,14 @@
             // menuDBUsers
             // 
             this.menuDBUsers.Name = "menuDBUsers";
-            this.menuDBUsers.Size = new System.Drawing.Size(180, 22);
+            this.menuDBUsers.Size = new System.Drawing.Size(158, 22);
             this.menuDBUsers.Text = "Пользователей";
             this.menuDBUsers.Click += new System.EventHandler(this.menuDBUsers_Click);
             // 
             // menuDBAutoparts
             // 
             this.menuDBAutoparts.Name = "menuDBAutoparts";
-            this.menuDBAutoparts.Size = new System.Drawing.Size(180, 22);
+            this.menuDBAutoparts.Size = new System.Drawing.Size(158, 22);
             this.menuDBAutoparts.Text = "Автозапчастей";
             // 
             // помощьToolStripMenuItem
@@ -211,6 +211,18 @@
             this.toolDelete.Size = new System.Drawing.Size(71, 22);
             this.toolDelete.Text = "Удалить";
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(114, 22);
+            this.toolStripLabel1.Text = "Поиск по фамилии";
+            // 
+            // toolSearchBox
+            // 
+            this.toolSearchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolSearchBox.Name = "toolSearchBox";
+            this.toolSearchBox.Size = new System.Drawing.Size(150, 25);
+            // 
             // toolStrip2
             // 
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -275,82 +287,6 @@
             this.dataGridUsers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridUsers.Size = new System.Drawing.Size(610, 377);
             this.dataGridUsers.TabIndex = 2;
-            // 
-            // dataGridProduct
-            // 
-            this.dataGridProduct.AllowUserToAddRows = false;
-            this.dataGridProduct.AllowUserToDeleteRows = false;
-            this.dataGridProduct.AllowUserToResizeColumns = false;
-            this.dataGridProduct.AllowUserToResizeRows = false;
-            this.dataGridProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.columnIdProduct,
-            this.columnIdUser,
-            this.columnIdProducts,
-            this.columnPrice,
-            this.columnCount});
-            this.dataGridProduct.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridProduct.Location = new System.Drawing.Point(619, 28);
-            this.dataGridProduct.MultiSelect = false;
-            this.dataGridProduct.Name = "dataGridProduct";
-            this.dataGridProduct.ReadOnly = true;
-            this.dataGridProduct.Size = new System.Drawing.Size(406, 377);
-            this.dataGridProduct.TabIndex = 3;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CountUsersStatusStrip,
-            this.MoneyUserStatusStrip,
-            this.AllMoneyStatusStrip});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 435);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1028, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // CountUsersStatusStrip
-            // 
-            this.CountUsersStatusStrip.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CountUsersStatusStrip.Name = "CountUsersStatusStrip";
-            this.CountUsersStatusStrip.Size = new System.Drawing.Size(139, 17);
-            this.CountUsersStatusStrip.Text = "Кол-во пользователей: 0";
-            // 
-            // MoneyUserStatusStrip
-            // 
-            this.MoneyUserStatusStrip.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.MoneyUserStatusStrip.Name = "MoneyUserStatusStrip";
-            this.MoneyUserStatusStrip.Size = new System.Drawing.Size(204, 17);
-            this.MoneyUserStatusStrip.Text = "Прибыль у данного пользователя: 0";
-            // 
-            // AllMoneyStatusStrip
-            // 
-            this.AllMoneyStatusStrip.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AllMoneyStatusStrip.Name = "AllMoneyStatusStrip";
-            this.AllMoneyStatusStrip.Size = new System.Drawing.Size(109, 17);
-            this.AllMoneyStatusStrip.Text = "Общая прибыль: 0";
-            // 
-            // panel1
-            // 
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Location = new System.Drawing.Point(0, 24);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1028, 408);
-            this.panel1.TabIndex = 2;
-            // 
-            // toolSearchBox
-            // 
-            this.toolSearchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolSearchBox.Name = "toolSearchBox";
-            this.toolSearchBox.Size = new System.Drawing.Size(150, 25);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(114, 22);
-            this.toolStripLabel1.Text = "Поиск по фамилии";
             // 
             // columnId
             // 
@@ -425,12 +361,78 @@
             this.columnPassword.ReadOnly = true;
             this.columnPassword.Visible = false;
             // 
+            // dataGridProduct
+            // 
+            this.dataGridProduct.AllowUserToAddRows = false;
+            this.dataGridProduct.AllowUserToDeleteRows = false;
+            this.dataGridProduct.AllowUserToResizeColumns = false;
+            this.dataGridProduct.AllowUserToResizeRows = false;
+            this.dataGridProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.columnIdProduct,
+            this.columnIdUser,
+            this.columnIdProducts,
+            this.columnPrice,
+            this.columnCount});
+            this.dataGridProduct.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridProduct.Location = new System.Drawing.Point(619, 28);
+            this.dataGridProduct.MultiSelect = false;
+            this.dataGridProduct.Name = "dataGridProduct";
+            this.dataGridProduct.ReadOnly = true;
+            this.dataGridProduct.Size = new System.Drawing.Size(406, 377);
+            this.dataGridProduct.TabIndex = 3;
+            this.dataGridProduct.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridProduct_CellFormatting);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CountUsersStatusStrip,
+            this.MoneyUserStatusStrip,
+            this.AllMoneyStatusStrip});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 435);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1028, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // CountUsersStatusStrip
+            // 
+            this.CountUsersStatusStrip.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CountUsersStatusStrip.Name = "CountUsersStatusStrip";
+            this.CountUsersStatusStrip.Size = new System.Drawing.Size(139, 17);
+            this.CountUsersStatusStrip.Text = "Кол-во пользователей: 0";
+            // 
+            // MoneyUserStatusStrip
+            // 
+            this.MoneyUserStatusStrip.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MoneyUserStatusStrip.Name = "MoneyUserStatusStrip";
+            this.MoneyUserStatusStrip.Size = new System.Drawing.Size(204, 17);
+            this.MoneyUserStatusStrip.Text = "Прибыль у данного пользователя: 0";
+            // 
+            // AllMoneyStatusStrip
+            // 
+            this.AllMoneyStatusStrip.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AllMoneyStatusStrip.Name = "AllMoneyStatusStrip";
+            this.AllMoneyStatusStrip.Size = new System.Drawing.Size(109, 17);
+            this.AllMoneyStatusStrip.Text = "Общая прибыль: 0";
+            // 
+            // panel1
+            // 
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1028, 408);
+            this.panel1.TabIndex = 2;
+            // 
             // columnIdProduct
             // 
             this.columnIdProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.columnIdProduct.DataPropertyName = "parts_id";
             this.columnIdProduct.HeaderText = "Id";
             this.columnIdProduct.Name = "columnIdProduct";
+            this.columnIdProduct.ReadOnly = true;
             this.columnIdProduct.Width = 41;
             // 
             // columnIdUser
@@ -439,27 +441,31 @@
             this.columnIdUser.DataPropertyName = "id_user";
             this.columnIdUser.HeaderText = "Пользователь";
             this.columnIdUser.Name = "columnIdUser";
+            this.columnIdUser.ReadOnly = true;
+            this.columnIdUser.Visible = false;
             this.columnIdUser.Width = 105;
             // 
             // columnIdProducts
             // 
-            this.columnIdProducts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.columnIdProducts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.columnIdProducts.DataPropertyName = "product";
             this.columnIdProducts.HeaderText = "Продукт";
             this.columnIdProducts.Name = "columnIdProducts";
-            this.columnIdProducts.Width = 74;
+            this.columnIdProducts.ReadOnly = true;
             // 
             // columnPrice
             // 
             this.columnPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.columnPrice.HeaderText = "Цена";
             this.columnPrice.Name = "columnPrice";
+            this.columnPrice.ReadOnly = true;
             // 
             // columnCount
             // 
             this.columnCount.DataPropertyName = "count";
             this.columnCount.HeaderText = "Кол-во";
             this.columnCount.Name = "columnCount";
+            this.columnCount.ReadOnly = true;
             this.columnCount.Visible = false;
             // 
             // MainForm
@@ -475,6 +481,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Учет продаж автозапчастей";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

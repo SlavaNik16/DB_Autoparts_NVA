@@ -13,11 +13,11 @@ namespace DB_Autoparts_NVA.DB
         /// <summary>
         /// Набор сущностей класса Autoparts
         /// </summary>
-        public DbSet<Autoparts> AutopartsDB { get; set; }
+        public DbSet<Autoparts> AutopartDB { get; set; }
         /// <summary>
         /// Набор сущностей класса Products
         /// </summary>
-        public DbSet<Products> ProductsDB { get; set; }
+        public DbSet<Products> ProductDB { get; set; }
         /// <summary>
         /// Набор сущностей класса Keys
         /// </summary>
@@ -33,11 +33,11 @@ namespace DB_Autoparts_NVA.DB
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Users>().HasKey(x => x.user_id);
-            modelBuilder.Entity<Users>().ToTable("Users");
+            modelBuilder.Entity<Users>().ToTable("User");
             modelBuilder.Entity<Autoparts>().HasKey(x => x.parts_id);
-            modelBuilder.Entity<Autoparts>().ToTable("Autoparts");
+            modelBuilder.Entity<Autoparts>().ToTable("Autopart");
             modelBuilder.Entity<Products>().HasKey(x => x.id_products);
-            modelBuilder.Entity<Products>().ToTable("Products");
+            modelBuilder.Entity<Products>().ToTable("Product");
             modelBuilder.Entity<Keys>().HasKey(x => x.id);
             modelBuilder.Entity<Keys>().ToTable("Key");
 

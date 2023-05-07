@@ -58,7 +58,7 @@ namespace DB_Autoparts_NVA
         {
             using (var db = new ApplicationContext(options))
             {
-                return db.AutopartsDB.Where(x => x.id_user == user.user_id).ToList();
+                return db.AutopartDB.Where(x => x.id_user == user.user_id).ToList();
             }
         }
         #endregion
@@ -74,6 +74,30 @@ namespace DB_Autoparts_NVA
         {
             DBUsersForm dbUsersForm = new DBUsersForm();
             dbUsersForm.ShowDialog();
+        }
+
+        private void dataGridProduct_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var data = (Autoparts)dataGridProduct.Rows[e.RowIndex].DataBoundItem;
+            if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnIdProducts")
+            {
+                using (var db = new ApplicationContext(options))
+                {
+
+                    var product = db.ProductDB.First(x => x.id_products == data.product);
+                    e.Value = product.title;
+                }
+                var tr = 0;
+            }
+            if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnPrice")
+            {
+                using (var db = new ApplicationContext(options))
+                {
+                    var product = db.ProductDB.FirstOrDefault(x => x.id_products == data.product);
+                    e.Value = product.price * data.count;
+                }
+                var tr = 0;
+            }
         }
     }
 }

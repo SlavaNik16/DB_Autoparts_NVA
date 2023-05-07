@@ -12,7 +12,7 @@ namespace DB_Autoparts_NVA.Models
         /// <summary>
         /// id продукта
         /// </summary>
-        public string id_products { get; set; }
+        public int id_products { get; set; }
 
         /// <summary>
         /// название
