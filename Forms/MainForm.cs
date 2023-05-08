@@ -21,7 +21,7 @@ namespace DB_Autoparts_NVA
         public DbContextOptions<ApplicationContext> options;
         public string statusUser = "";
         private bool cellFormat = false;
-        private List<String> listProducts = new List<string>();
+        private List<Product> listProducts = new List<Product>();
         public MainForm()
         {
             InitializeComponent();
@@ -39,7 +39,10 @@ namespace DB_Autoparts_NVA
                 toolEditProduct.Visible = false;
                 toolDeleteProduct.Visible = false;
                 dataGridUsers.DataSource = ReadUser(options, users);
-                dataGridProduct.DataSource = ReadUserProducts(options, users);
+                var autoparts = ReadUserProducts(options, users);
+                dataGridProduct.DataSource = autoparts;
+                for(int i = 0; i < dataGridProduct.RowCount; i++)
+                    listProducts.Add(ReturnProduct(options, autoparts[i]));
             }
         }
 
@@ -66,6 +69,13 @@ namespace DB_Autoparts_NVA
                 return db.AutopartDB.Where(x => x.id_user == user.user_id).ToList();
             }
         }
+        private static Product ReturnProduct(DbContextOptions<ApplicationContext> options, Autoparts autoparts)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                return db.ProductDB.Find(autoparts.product);
+            }
+        }
         #endregion
 
         private void menuExit_Click(object sender, EventArgs e)
@@ -84,34 +94,23 @@ namespace DB_Autoparts_NVA
         private void dataGridProduct_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
 
-            if (!cellFormat)
-            {
-                var data = (Autoparts)dataGridProduct.Rows[e.RowIndex].DataBoundItem;
-                if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnIdProducts")
-                {
-                    using (var db = new ApplicationContext(options))
-                    {
-                        var product = db.ProductDB.Find(data.product);
-                        e.Value = product.title;
-                    }
-                }
 
-                if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnPrice")
+            var data = (Autoparts)dataGridProduct.Rows[e.RowIndex].DataBoundItem;
+            if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnIdProducts")
+            {
+                using (var db = new ApplicationContext(options))
                 {
-                    using (var db = new ApplicationContext(options))
-                    {
-                        var product = db.ProductDB.Find(data.product);
-                        e.Value = product.price * data.count;
-                    }
-                  
-                    cellFormat = true;
+                    e.Value = listProducts[e.RowIndex].title;
                 }
             }
+
+            if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnPrice")
+            {
+                e.Value = listProducts[e.RowIndex].price * data.count;
+            }
+
         }
        
-        private void dataGridProduct_SelectionChanged(object sender, EventArgs e)
-        {
-            cellFormat = false;
-        }
+ 
     }
 }
