@@ -183,7 +183,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(16, 14);
+            this.label4.Location = new System.Drawing.Point(17, 262);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 22);
             this.label4.TabIndex = 14;
@@ -192,9 +192,9 @@
             // txtBoxEmail
             // 
             this.txtBoxEmail.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.txtBoxEmail.Location = new System.Drawing.Point(126, 14);
+            this.txtBoxEmail.Location = new System.Drawing.Point(126, 262);
             this.txtBoxEmail.Name = "txtBoxEmail";
-            this.txtBoxEmail.Size = new System.Drawing.Size(301, 26);
+            this.txtBoxEmail.Size = new System.Drawing.Size(302, 26);
             this.txtBoxEmail.TabIndex = 15;
             this.txtBoxEmail.Leave += new System.EventHandler(this.txtBoxEmail_Leave);
             // 
@@ -202,7 +202,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(17, 267);
+            this.label5.Location = new System.Drawing.Point(16, 10);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(85, 22);
             this.label5.TabIndex = 16;
@@ -211,7 +211,7 @@
             // txtBoxPhone
             // 
             this.txtBoxPhone.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.txtBoxPhone.Location = new System.Drawing.Point(126, 267);
+            this.txtBoxPhone.Location = new System.Drawing.Point(125, 10);
             this.txtBoxPhone.Name = "txtBoxPhone";
             this.txtBoxPhone.Size = new System.Drawing.Size(302, 26);
             this.txtBoxPhone.TabIndex = 17;
@@ -223,8 +223,8 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.panel1.Controls.Add(this.txtBoxPassword);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.txtBoxEmail);
-            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.txtBoxPhone);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(1, 297);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(480, 81);
@@ -290,9 +290,9 @@
             this.ClientSize = new System.Drawing.Size(484, 441);
             this.Controls.Add(this.butCansel);
             this.Controls.Add(this.butSave);
+            this.Controls.Add(this.txtBoxEmail);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.txtBoxPhone);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboGender);
             this.Controls.Add(this.txtBoxName);

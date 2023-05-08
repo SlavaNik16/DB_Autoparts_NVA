@@ -271,6 +271,12 @@
     <Compile Include="Forms\AuthorizationForm.Designer.cs">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ByAutopartsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ByAutopartsForm.Designer.cs">
+      <DependentUpon>ByAutopartsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DBProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,6 +313,9 @@
     <Compile Include="Models\Users.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\ByAutopartsForm.resx">
+      <DependentUpon>ByAutopartsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DBProductsForm.resx">
       <DependentUpon>DBProductsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -388,6 +397,9 @@
     <Resource Include="Res\editProductIconIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\AutopartsIconNoBacg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

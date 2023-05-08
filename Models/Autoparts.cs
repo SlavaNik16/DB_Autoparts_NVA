@@ -25,5 +25,9 @@ namespace DB_Autoparts_NVA.Models
         /// Количество
         /// </summary>
         public int count { get; set; }
+        /// <summary>
+        /// Дата покупки
+        /// </summary>
+        public DateTime dateBy { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace DB_Autoparts_NVA
     {
         public DbContextOptions<ApplicationContext> options;
         public string statusUser = "";
-        private bool cellFormat = false;
+        private static Users user = null;
         private List<Product> listProducts = new List<Product>();
         public MainForm()
         {
@@ -29,21 +29,32 @@ namespace DB_Autoparts_NVA
         }
         public MainForm(Users users) : this()
         {
+          
             statusUser = ReturnStatusUser(options, users); 
             if (statusUser == "User")
-            {
+            { 
+                user = users;
                 menuBDUsers.Enabled = false;
                 menuDBAutoparts.Enabled = false;
                 toolEdit.Visible = false;
                 toolDelete.Visible = false;
                 toolEditProduct.Visible = false;
-                toolDeleteProduct.Visible = false;
+                toolDeleteProduct.Text = "Oтменить покупку";
+                CountUsersStatusStrip.Visible = false;
+                MoneyUserStatusStrip.Visible = false;
                 dataGridUsers.DataSource = ReadUser(options, users);
-                var autoparts = ReadUserProducts(options, users);
-                dataGridProduct.DataSource = autoparts;
-                for(int i = 0; i < dataGridProduct.RowCount; i++)
-                    listProducts.Add(ReturnProduct(options, autoparts[i]));
+                var autoparts = ReadUserAutoparts(options, users);
+                UpdateDataProduct(autoparts);
+                Status();
             }
+        }
+
+        private void UpdateDataProduct(List<Autoparts> autoparts)
+        {
+            listProducts.Clear();
+            dataGridProduct.DataSource = autoparts;
+            for (int i = 0; i < dataGridProduct.RowCount; i++)
+                listProducts.Add(ReturnProduct(options, autoparts[i]));
         }
 
         #region DBRequests
@@ -62,7 +73,8 @@ namespace DB_Autoparts_NVA
                 return db.UserDB.Where(x => x.user_id == user.user_id).ToList();
             }
         }
-        private static List<Autoparts> ReadUserProducts(DbContextOptions<ApplicationContext> options, Users user)
+
+        private static List<Autoparts> ReadUserAutoparts(DbContextOptions<ApplicationContext> options, Users user)
         {
             using (var db = new ApplicationContext(options))
             {
@@ -75,6 +87,29 @@ namespace DB_Autoparts_NVA
             {
                 return db.ProductDB.Find(autoparts.product);
             }
+        }
+        private static void ByTovarDB(DbContextOptions<ApplicationContext> options, Autoparts autoparts)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                autoparts.id_user = user.user_id;
+                autoparts.dateBy = DateTime.Now;
+                db.AutopartDB.Add(autoparts);
+                db.SaveChanges();
+            }
+        }
+        private static void RemoveTovarDB(DbContextOptions<ApplicationContext> options, Autoparts autoparts)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                var product  = db.AutopartDB.FirstOrDefault(u => u.parts_id == autoparts.parts_id);
+                if (product != null)
+                {
+                    db.AutopartDB.Remove(product);
+                    db.SaveChanges();
+                }
+            }
+
         }
         #endregion
 
@@ -100,17 +135,63 @@ namespace DB_Autoparts_NVA
             {
                 using (var db = new ApplicationContext(options))
                 {
-                    e.Value = listProducts[e.RowIndex].title;
+                    if (e.RowIndex < listProducts.Count)
+                    {
+                        e.Value = listProducts[e.RowIndex].title;
+                    }
                 }
             }
 
             if (dataGridProduct.Columns[e.ColumnIndex].Name == "columnPrice")
             {
-                e.Value = listProducts[e.RowIndex].price * data.count;
+                if (e.RowIndex < listProducts.Count)
+                {
+                    e.Value = listProducts[e.RowIndex].price * data.count;
+                }
             }
 
         }
-       
- 
+
+        private void toolAddProduct_Click(object sender, EventArgs e)
+        {
+            var byProductForm = new ByAutopartsForm();
+            if(byProductForm.ShowDialog() == DialogResult.OK)
+            {
+                ByTovarDB(options, byProductForm.Autoparts);
+                var autoparts = ReadUserAutoparts(options, user);
+                UpdateDataProduct(autoparts);
+                Status();
+            }
+        }
+
+        private void dataGridProduct_SelectionChanged(object sender, EventArgs e)
+        {
+            toolDeleteProduct.Enabled =
+            dataGridProduct.SelectedRows.Count > 0;
+        }
+
+        private void toolDeleteProduct_Click(object sender, EventArgs e)
+        {
+            var autopart = (Autoparts)dataGridProduct.Rows[dataGridProduct.SelectedRows[0].Index].DataBoundItem;
+            if (MessageBox.Show($"Вы действительно хотите удалить \n\rId: {autopart.parts_id}",
+               "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                RemoveTovarDB(options, autopart);
+                var autoparts = ReadUserAutoparts(options, user);
+                UpdateDataProduct(autoparts);
+                Status();
+            }
+        }
+
+        private void Status()
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                var tovar = db.AutopartDB
+                    .Where(x => x.id_user == user.user_id).ToList();
+                var allMoney = tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price) ;
+                AllMoneyStatusStrip.Text = $"Общая сумма: {allMoney:C2}";
+            }
+        }
     }
 }

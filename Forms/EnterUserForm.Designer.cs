@@ -136,7 +136,7 @@ namespace DB_Autoparts_NVA.Forms
             this.Controls.Add(this.panel1);
             this.Name = "EnterUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EnterUserForm";
+            this.Text = "Войти";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderPhone)).EndInit();

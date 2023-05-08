@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.фаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUpgradeStatus = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +72,7 @@
             this.columnIdProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnIdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -91,7 +93,7 @@
             this.menuExit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1028, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1082, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -169,8 +171,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.89834F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.10166F));
             this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.toolStrip2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.dataGridUsers, 0, 1);
@@ -181,7 +183,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 383F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1028, 408);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1082, 408);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // toolStrip1
@@ -193,7 +195,7 @@
             this.toolSearchBox});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(616, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(594, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -231,9 +233,9 @@
             this.toolAddProduct,
             this.toolEditProduct,
             this.toolDeleteProduct});
-            this.toolStrip2.Location = new System.Drawing.Point(616, 0);
+            this.toolStrip2.Location = new System.Drawing.Point(594, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(412, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(488, 25);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -245,6 +247,7 @@
             this.toolAddProduct.Name = "toolAddProduct";
             this.toolAddProduct.Size = new System.Drawing.Size(66, 22);
             this.toolAddProduct.Text = "Купить";
+            this.toolAddProduct.Click += new System.EventHandler(this.toolAddProduct_Click);
             // 
             // toolEditProduct
             // 
@@ -257,12 +260,14 @@
             // 
             // toolDeleteProduct
             // 
+            this.toolDeleteProduct.Enabled = false;
             this.toolDeleteProduct.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.toolDeleteProduct.Image = global::DB_Autoparts_NVA.Properties.Resources.deleteProductIcon;
             this.toolDeleteProduct.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolDeleteProduct.Name = "toolDeleteProduct";
             this.toolDeleteProduct.Size = new System.Drawing.Size(70, 22);
             this.toolDeleteProduct.Text = "Удалить";
+            this.toolDeleteProduct.Click += new System.EventHandler(this.toolDeleteProduct_Click);
             // 
             // dataGridUsers
             // 
@@ -287,7 +292,7 @@
             this.dataGridUsers.Name = "dataGridUsers";
             this.dataGridUsers.ReadOnly = true;
             this.dataGridUsers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridUsers.Size = new System.Drawing.Size(610, 377);
+            this.dataGridUsers.Size = new System.Drawing.Size(588, 377);
             this.dataGridUsers.TabIndex = 2;
             // 
             // columnId
@@ -367,7 +372,6 @@
             // 
             this.dataGridProduct.AllowUserToAddRows = false;
             this.dataGridProduct.AllowUserToDeleteRows = false;
-            this.dataGridProduct.AllowUserToResizeColumns = false;
             this.dataGridProduct.AllowUserToResizeRows = false;
             this.dataGridProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -375,15 +379,17 @@
             this.columnIdProducts,
             this.columnCount,
             this.columnPrice,
+            this.columnDate,
             this.columnIdUser});
             this.dataGridProduct.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridProduct.Location = new System.Drawing.Point(619, 28);
+            this.dataGridProduct.Location = new System.Drawing.Point(597, 28);
             this.dataGridProduct.MultiSelect = false;
             this.dataGridProduct.Name = "dataGridProduct";
             this.dataGridProduct.ReadOnly = true;
-            this.dataGridProduct.Size = new System.Drawing.Size(406, 377);
+            this.dataGridProduct.Size = new System.Drawing.Size(482, 377);
             this.dataGridProduct.TabIndex = 3;
             this.dataGridProduct.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridProduct_CellFormatting);
+            this.dataGridProduct.SelectionChanged += new System.EventHandler(this.dataGridProduct_SelectionChanged);
             // 
             // statusStrip1
             // 
@@ -393,7 +399,7 @@
             this.AllMoneyStatusStrip});
             this.statusStrip1.Location = new System.Drawing.Point(0, 435);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1028, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1082, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -425,13 +431,15 @@
             this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1028, 408);
+            this.panel1.Size = new System.Drawing.Size(1082, 408);
             this.panel1.TabIndex = 2;
             // 
             // columnIdProduct
             // 
             this.columnIdProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.columnIdProduct.DataPropertyName = "parts_id";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.columnIdProduct.DefaultCellStyle = dataGridViewCellStyle10;
             this.columnIdProduct.HeaderText = "Id";
             this.columnIdProduct.Name = "columnIdProduct";
             this.columnIdProduct.ReadOnly = true;
@@ -449,8 +457,8 @@
             // 
             this.columnCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.columnCount.DataPropertyName = "count";
-            dataGridViewCellStyle1.NullValue = "0";
-            this.columnCount.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.NullValue = "0";
+            this.columnCount.DefaultCellStyle = dataGridViewCellStyle11;
             this.columnCount.HeaderText = "Кол-во";
             this.columnCount.Name = "columnCount";
             this.columnCount.ReadOnly = true;
@@ -458,12 +466,21 @@
             // 
             // columnPrice
             // 
-            this.columnPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.NullValue = "0";
-            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle2;
+            this.columnPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle12.NullValue = "0";
+            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle12;
             this.columnPrice.HeaderText = "Общая цена";
             this.columnPrice.Name = "columnPrice";
             this.columnPrice.ReadOnly = true;
+            this.columnPrice.Width = 94;
+            // 
+            // columnDate
+            // 
+            this.columnDate.DataPropertyName = "dateBy";
+            this.columnDate.HeaderText = "Дата покупки";
+            this.columnDate.Name = "columnDate";
+            this.columnDate.ReadOnly = true;
+            this.columnDate.Width = 119;
             // 
             // columnIdUser
             // 
@@ -479,7 +496,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1028, 457);
+            this.ClientSize = new System.Drawing.Size(1082, 457);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
@@ -551,6 +568,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnIdProducts;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnIdUser;
     }
 }
