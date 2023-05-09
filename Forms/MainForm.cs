@@ -27,6 +27,7 @@ namespace DB_Autoparts_NVA
             InitializeComponent();
             options = DataBaseHelper.Option();
             dataGridProduct.EnableHeadersVisualStyles = false;
+            dataGridUsers.EnableHeadersVisualStyles = false;
         }
         public MainForm(Users users) : this()
         {
@@ -45,7 +46,7 @@ namespace DB_Autoparts_NVA
                 MoneyUserStatusStrip.Visible = false;
                 toolSearchBox.Visible = false;
                 dataGridUsers.DataSource = ReadUser(options, users);
-                FormatDataGridProduct(options, user);
+                FormatDataGrid(options,dataGridProduct, user);
                 Status();
             }
         }
@@ -53,7 +54,7 @@ namespace DB_Autoparts_NVA
 
         #region DBRequests
 
-        private void FormatDataGridProduct(DbContextOptions<ApplicationContext> options,Users users)
+        public void FormatDataGrid(DbContextOptions<ApplicationContext> options,DataGridView datagridView,Users users)
         {
             using (var db = new ApplicationContext(options))
             {
@@ -63,11 +64,11 @@ namespace DB_Autoparts_NVA
                     x.parts_id,
                     NameProduct = db.ProductDB.Find(x.product).title,
                     x.count,
-                    priceAll = x.count * db.ProductDB.Find(x.product).price,
+                    priceAll = $"{x.count * db.ProductDB.Find(x.product).price:C2}",
                     x.dateBy
                 }
                 ).ToList();
-                dataGridProduct.DataSource = format;
+                datagridView.DataSource = format;
             }
         } 
         private static string ReturnStatusUser(DbContextOptions<ApplicationContext> options, Users users)
@@ -149,7 +150,7 @@ namespace DB_Autoparts_NVA
             if(byProductForm.ShowDialog() == DialogResult.OK)
             {
                 ByTovarDB(options, byProductForm.Autoparts);
-                FormatDataGridProduct(options,user);
+                FormatDataGrid(options,dataGridProduct,user);
                 Status();
             }
         }
@@ -167,7 +168,7 @@ namespace DB_Autoparts_NVA
                "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 RemoveTovarDB(options, autopart);
-                FormatDataGridProduct(options, user);
+                FormatDataGrid(options, dataGridProduct, user);
                 Status();
             }
         }
@@ -176,9 +177,19 @@ namespace DB_Autoparts_NVA
         {
             using (var db = new ApplicationContext(options))
             {
-                var tovar = db.AutopartDB.Where(x => x.id_user == user.user_id).ToList();
-                var allMoney = tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price) ;
+
+                var allMoney = AllMoney();
                 AllMoneyStatusStrip.Text = $"Общая сумма: {allMoney:C2}";
+            }
+        }
+
+        public decimal AllMoney()
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                var tovar = db.AutopartDB.Where(x => x.id_user == user.user_id).ToList();
+                var allMoney = tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price);
+                return allMoney;
             }
         }
 
