@@ -20,7 +20,8 @@ namespace DB_Autoparts_NVA
     {
         public DbContextOptions<ApplicationContext> options;
         public string statusUser = "";
-        private static Users user = null;
+        private static Users userMy = null;
+        private static Users userSelected = null;
         private List<Product> listProducts = new List<Product>();
         public MainForm()
         {
@@ -35,7 +36,8 @@ namespace DB_Autoparts_NVA
             statusUser = ReturnStatusUser(options, users); 
             if (statusUser == "User")
             { 
-                user = users;
+                userMy = users;
+                statusStripUserLabel.Text = "Статус: Пользователь";
                 menuBDUsers.Enabled = false;
                 menuDBAutoparts.Enabled = false;
                 toolEdit.Visible = false;
@@ -46,8 +48,12 @@ namespace DB_Autoparts_NVA
                 MoneyUserStatusStrip.Visible = false;
                 toolSearchBox.Visible = false;
                 dataGridUsers.DataSource = ReadUser(options, users);
-                FormatDataGrid(options,dataGridProduct, user);
+                FormatDataGrid(options,dataGridProduct, userMy);
                 Status();
+            }else if(statusUser == "Admin")
+            {
+                userMy = users;
+                statusStripUserLabel.Text = "Статус: Админ";
             }
         }
 
@@ -58,7 +64,7 @@ namespace DB_Autoparts_NVA
         {
             using (var db = new ApplicationContext(options))
             {
-                var tovar = ReadUserAutoparts(options,user);
+                var tovar = ReadUserAutoparts(options,userMy);
                 var format = tovar.Select(x => new
                 {
                     x.parts_id,
@@ -104,7 +110,7 @@ namespace DB_Autoparts_NVA
         {
             using (var db = new ApplicationContext(options))
             {
-                autoparts.id_user = user.user_id;
+                autoparts.id_user = userMy.user_id;
                 autoparts.dateBy = DateTime.Now;
                 db.AutopartDB.Add(autoparts);
                 db.SaveChanges();
@@ -150,7 +156,7 @@ namespace DB_Autoparts_NVA
             if(byProductForm.ShowDialog() == DialogResult.OK)
             {
                 ByTovarDB(options, byProductForm.Autoparts);
-                FormatDataGrid(options,dataGridProduct,user);
+                FormatDataGrid(options,dataGridProduct,userMy);
                 Status();
             }
         }
@@ -168,7 +174,7 @@ namespace DB_Autoparts_NVA
                "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 RemoveTovarDB(options, autopart);
-                FormatDataGrid(options, dataGridProduct, user);
+                FormatDataGrid(options, dataGridProduct, userMy);
                 Status();
             }
         }
@@ -187,7 +193,7 @@ namespace DB_Autoparts_NVA
         {
             using (var db = new ApplicationContext(options))
             {
-                var tovar = db.AutopartDB.Where(x => x.id_user == user.user_id).ToList();
+                var tovar = db.AutopartDB.Where(x => x.id_user == userMy.user_id).ToList();
                 var allMoney = tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price);
                 return allMoney;
             }
@@ -195,8 +201,28 @@ namespace DB_Autoparts_NVA
 
         private void menuExport_Click(object sender, EventArgs e)
         {
-            var exportForm = new ExportUserForm(user);
-            exportForm.ShowDialog();
+            ExportUserForm exportForm = null;
+            if (statusUser == "User")
+            {
+                exportForm = new ExportUserForm(userMy);
+            }
+            else if(statusUser == "Admin")
+            {
+                exportForm = new ExportUserForm(userSelected);
+            }
+            this.Visible = false;
+            if (exportForm.ShowDialog() == DialogResult.Yes)
+            {
+                this.Visible = true;
+            }
+
+        }
+
+        private void menuUpgradeStatus_Click(object sender, EventArgs e)
+        {
+            var upgradeStatus = new UpgradeStatusForm(userMy);
+            this.Close();
+            upgradeStatus.ShowDialog();
         }
     }
 }

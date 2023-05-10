@@ -62,7 +62,7 @@ namespace DB_Autoparts_NVA.Forms
                     }
                     var mainForm = new MainForm(unic) ;
                     mainForm.Owner = this;
-                    this.Hide();
+                    this.Hide();                 
                     mainForm.Show();
                 }
             }

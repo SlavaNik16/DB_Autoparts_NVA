@@ -17,6 +17,7 @@ using System.IO;
 using iTextSharp.text.html.simpleparser;
 using System.Xml.Linq;
 using Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
 
 namespace DB_Autoparts_NVA.Forms
 {
@@ -134,6 +135,11 @@ namespace DB_Autoparts_NVA.Forms
             }
             xlSheet.Cells.HorizontalAlignment = 3;
             xlApp.Visible = true;
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
+            xlApp = null;
+            wBook = null;
+            xlSheet = null;
+            MessageBox.Show("Не забудьте самостоятельно выключить процесс в Диспетчере задач");
         }
 
         private void ExportPDf()
@@ -243,5 +249,11 @@ namespace DB_Autoparts_NVA.Forms
                 }
             }
         }
+
+        private void ExportUserForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DialogResult = DialogResult.Yes;
+        }
     }
+
 }
