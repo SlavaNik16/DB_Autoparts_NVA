@@ -17,6 +17,7 @@ namespace DB_Autoparts_NVA.Forms
         {
             InitializeComponent();
             options = DataBaseHelper.Option();
+            progressBarLoad.Value = 0;
         }
 
         private void butClose_Click(object sender, EventArgs e)
@@ -26,43 +27,52 @@ namespace DB_Autoparts_NVA.Forms
 
         private void butReg_Click(object sender, EventArgs e)
         {
+            progressBarLoad.Value = 0;
             using (var db = new ApplicationContext(options))
             {
                 var addForm = new UsersForm();
                 if (addForm.ShowDialog() == DialogResult.OK)
                 {
-
+                    progressBarLoad.Value = 75;
                     Users unic = db.UserDB.FirstOrDefault(x => x.phone == addForm.Users.phone);
                     if (unic != null)
                     {
                         MessageBox.Show("Номер уже существует. Регистрация не подтверждена!");
+                        progressBarLoad.Value = 0;
                         return;
                     }
                     addForm.Users.password = getHashSha256(addForm.Users.password);
                     db.UserDB.Add(addForm.Users);
                     db.SaveChanges();
-
+                    progressBarLoad.Value = 100;
                 }
             }
+
         }
 
         private void butEnter_Click(object sender, EventArgs e)
         {
+            progressBarLoad.Value = 0;
             using (var db = new ApplicationContext(options))
             {
                 var enterUser = new EnterUserForm();
                 if (enterUser.ShowDialog() == DialogResult.OK)
                 {
+                    progressBarLoad.Value = 75;
                     Users unic = db.UserDB.FirstOrDefault(x => x.phone == enterUser.Users.phone &&
                                                             x.password == getHashSha256(enterUser.Users.password));
                     if (unic == null)
                     {
+                       
                         MessageBox.Show("Пользователь не найден!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        progressBarLoad.Value = 0;
                         return;
                     }
+                    progressBarLoad.Value = 100;
                     var mainForm = new MainForm(unic) ;
                     mainForm.Owner = this;
-                    this.Hide();                 
+                    mainForm.Owner = this;
+                    this.Hide();
                     mainForm.Show();
                 }
             }

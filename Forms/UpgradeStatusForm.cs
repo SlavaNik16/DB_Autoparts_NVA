@@ -11,26 +11,30 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApplicationContext = DB_Autoparts_NVA.DB.ApplicationContext;
+using Keys = DB_Autoparts_NVA.Models.Keys;
 
 namespace DB_Autoparts_NVA.Forms
 {
     public partial class UpgradeStatusForm : Form
     {
-        public DbContextOptions<ApplicationContext> options;
+        public DbContextOptions<ApplicationContext> options = DataBaseHelper.Option();
         private Users users;
+        private String status;
         public UpgradeStatusForm()
         {
             InitializeComponent();
-            options = DataBaseHelper.Option();
         }
         public UpgradeStatusForm(Users user):this()
-        {
-            if(user.status == "Admin")
-            {
-                MessageBox.Show("Вы уже повысили доступ!");
-                returnMain();
-            }
+        { 
             users = user;
+            this.Text = "Повышение статуса";
+        }
+        public UpgradeStatusForm(String stat)
+        {
+            InitializeComponent();
+            status = stat;
+            butConfirm.Text = "Добавить";
+            this.Text = "Добавление ключа";
         }
 
         private void butConfirm_Click(object sender, EventArgs e)
@@ -42,17 +46,28 @@ namespace DB_Autoparts_NVA.Forms
             }
             using(var db = new ApplicationContext(options))
             {
-                var key = db.KeyDB.FirstOrDefault(x=>x.keys == maskedTextBox1.Text.ToString());
-                if(key == null)
+                if (users!=null)
                 {
-                    MessageBox.Show("Ключ не найден!!!");
-                    return;
+                    var key = db.KeyDB.FirstOrDefault(x => x.keys == maskedTextBox1.Text.ToString());
+                    if (key == null)
+                    {
+                        MessageBox.Show("Ключ не найден!!!");
+                        return;
+                    }
+                    users.status = "Admin";
+                    db.UserDB.Update(users);
+                    db.KeyDB.Remove(key); 
+                    db.SaveChanges();
+                    returnMain();
                 }
-                users.status = "Admin";
-                db.UserDB.Update(users);
-                db.KeyDB.Remove(key);
-                db.SaveChanges();
-                returnMain();
+                else if(status == "Admin")
+                {
+                    var key = new Keys();
+                    key.keys = maskedTextBox1.Text.ToString();
+                    db.KeyDB.Add(key);
+                    db.SaveChanges();
+                    Close();
+                }
             }
 
         }
@@ -61,6 +76,12 @@ namespace DB_Autoparts_NVA.Forms
             var mainForm = new MainForm(users);
             this.Close();
             mainForm.Show();
+        }
+
+
+        private void butCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

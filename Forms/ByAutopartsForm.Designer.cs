@@ -39,8 +39,8 @@
             this.comboProduct = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.butSave = new System.Windows.Forms.Button();
             this.butCancel = new System.Windows.Forms.Button();
+            this.butSave = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -183,18 +183,6 @@
             this.panel3.Size = new System.Drawing.Size(506, 61);
             this.panel3.TabIndex = 2;
             // 
-            // butSave
-            // 
-            this.butSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.butSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.butSave.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.butSave.Location = new System.Drawing.Point(25, 9);
-            this.butSave.Name = "butSave";
-            this.butSave.Size = new System.Drawing.Size(171, 44);
-            this.butSave.TabIndex = 0;
-            this.butSave.Text = "Купить";
-            this.butSave.UseVisualStyleBackColor = false;
-            // 
             // butCancel
             // 
             this.butCancel.BackColor = System.Drawing.Color.Silver;
@@ -206,6 +194,19 @@
             this.butCancel.TabIndex = 1;
             this.butCancel.Text = "Отменить";
             this.butCancel.UseVisualStyleBackColor = false;
+            this.butCancel.Click += new System.EventHandler(this.butCancel_Click);
+            // 
+            // butSave
+            // 
+            this.butSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.butSave.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.butSave.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butSave.Location = new System.Drawing.Point(25, 9);
+            this.butSave.Name = "butSave";
+            this.butSave.Size = new System.Drawing.Size(171, 44);
+            this.butSave.TabIndex = 0;
+            this.butSave.Text = "Купить";
+            this.butSave.UseVisualStyleBackColor = false;
             // 
             // ByAutopartsForm
             // 

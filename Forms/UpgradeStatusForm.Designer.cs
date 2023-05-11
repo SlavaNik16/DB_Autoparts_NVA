@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.butConfirm = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.butCancel = new System.Windows.Forms.Button();
             this.sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -47,6 +47,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Секретный ключ";
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.maskedTextBox1.Location = new System.Drawing.Point(6, 19);
+            this.maskedTextBox1.Mask = "aaaa-aaaa-aaaa-aaaa";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(380, 39);
+            this.maskedTextBox1.TabIndex = 1;
             // 
             // panel1
             // 
@@ -70,41 +79,34 @@
             this.butConfirm.UseVisualStyleBackColor = false;
             this.butConfirm.Click += new System.EventHandler(this.butConfirm_Click);
             // 
-            // button2
+            // butCancel
             // 
-            this.button2.BackColor = System.Drawing.Color.LightGray;
-            this.button2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(338, 106);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(66, 39);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Отмена";
-            this.button2.UseVisualStyleBackColor = false;
+            this.butCancel.BackColor = System.Drawing.Color.LightGray;
+            this.butCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.butCancel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butCancel.Location = new System.Drawing.Point(338, 106);
+            this.butCancel.Name = "butCancel";
+            this.butCancel.Size = new System.Drawing.Size(66, 39);
+            this.butCancel.TabIndex = 3;
+            this.butCancel.Text = "Отмена";
+            this.butCancel.UseVisualStyleBackColor = false;
+            this.butCancel.Click += new System.EventHandler(this.butCancel_Click);
             // 
             // sqlCommand1
             // 
             this.sqlCommand1.CommandTimeout = 30;
             this.sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.maskedTextBox1.Location = new System.Drawing.Point(6, 19);
-            this.maskedTextBox1.Mask = "aaaa-aaaa-aaaa-aaaa";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(380, 39);
-            this.maskedTextBox1.TabIndex = 1;
-            // 
             // UpgradeStatusForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(416, 148);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.butCancel);
             this.Controls.Add(this.butConfirm);
             this.Controls.Add(this.panel1);
             this.Name = "UpgradeStatusForm";
-            this.Text = "UpgradeStatusForm";
+            this.Text = "Повышение статуса";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -117,7 +119,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button butConfirm;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button butCancel;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }

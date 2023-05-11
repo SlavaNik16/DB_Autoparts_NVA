@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -80,6 +81,10 @@
             this.AllMoneyStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStripUserLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addKeyAdmin = new System.Windows.Forms.ToolStripMenuItem();
+            this.addProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProduct)).BeginInit();
@@ -88,6 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -138,14 +144,14 @@
             // menuDBUsers
             // 
             this.menuDBUsers.Name = "menuDBUsers";
-            this.menuDBUsers.Size = new System.Drawing.Size(180, 22);
+            this.menuDBUsers.Size = new System.Drawing.Size(158, 22);
             this.menuDBUsers.Text = "Пользователей";
             this.menuDBUsers.Click += new System.EventHandler(this.menuDBUsers_Click);
             // 
             // menuDBAutoparts
             // 
             this.menuDBAutoparts.Name = "menuDBAutoparts";
-            this.menuDBAutoparts.Size = new System.Drawing.Size(180, 22);
+            this.menuDBAutoparts.Size = new System.Drawing.Size(158, 22);
             this.menuDBAutoparts.Text = "Автозапчастей";
             // 
             // помощьToolStripMenuItem
@@ -548,11 +554,42 @@
             this.panel1.Size = new System.Drawing.Size(1082, 408);
             this.panel1.TabIndex = 2;
             // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(127, 26);
+            // 
+            // добавитьToolStripMenuItem
+            // 
+            this.добавитьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addKeyAdmin,
+            this.addProduct});
+            this.добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
+            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.добавитьToolStripMenuItem.Text = "Добавить";
+            // 
+            // addKeyAdmin
+            // 
+            this.addKeyAdmin.Name = "addKeyAdmin";
+            this.addKeyAdmin.Size = new System.Drawing.Size(180, 22);
+            this.addKeyAdmin.Text = "Ключ админа";
+            this.addKeyAdmin.Click += new System.EventHandler(this.addKeyAdmin_Click);
+            // 
+            // addProduct
+            // 
+            this.addProduct.Name = "addProduct";
+            this.addProduct.Size = new System.Drawing.Size(180, 22);
+            this.addProduct.Text = "Продукт";
+            this.addProduct.Click += new System.EventHandler(this.addProduct_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1082, 457);
+            this.ContextMenuStrip = this.contextMenuStrip2;
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
@@ -576,6 +613,7 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -626,6 +664,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnIdUser;
         private System.Windows.Forms.ToolStripStatusLabel statusStripUserLabel;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addKeyAdmin;
+        private System.Windows.Forms.ToolStripMenuItem addProduct;
     }
 }
 

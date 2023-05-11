@@ -57,5 +57,10 @@ namespace DB_Autoparts_NVA.Forms
             autoparts.count = (int)numCount.Value;
             txtBoxPrice.Text = (list[comboProduct.SelectedIndex].price * numCount.Value).ToString();
         }
+
+        private void butCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -22,7 +22,6 @@ namespace DB_Autoparts_NVA
         public string statusUser = "";
         private static Users userMy = null;
         private static Users userSelected = null;
-        private List<Product> listProducts = new List<Product>();
         public MainForm()
         {
             InitializeComponent();
@@ -33,7 +32,8 @@ namespace DB_Autoparts_NVA
         public MainForm(Users users) : this()
         {
           
-            statusUser = ReturnStatusUser(options, users); 
+            statusUser = ReturnStatusUser(options, users);
+            contextMenuStrip2.Enabled = false;
             if (statusUser == "User")
             { 
                 userMy = users;
@@ -54,6 +54,7 @@ namespace DB_Autoparts_NVA
             {
                 userMy = users;
                 statusStripUserLabel.Text = "Статус: Админ";
+                contextMenuStrip2.Enabled = true;
             }
         }
 
@@ -144,11 +145,6 @@ namespace DB_Autoparts_NVA
             dbUsersForm.ShowDialog();
         }
 
-        private void dataGridProduct_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-
-
-        }
 
         private void toolAddProduct_Click(object sender, EventArgs e)
         {
@@ -220,9 +216,28 @@ namespace DB_Autoparts_NVA
 
         private void menuUpgradeStatus_Click(object sender, EventArgs e)
         {
-            var upgradeStatus = new UpgradeStatusForm(userMy);
-            this.Close();
-            upgradeStatus.ShowDialog();
+            if (userMy.status == "User")
+            {
+                var upgradeStatus = new UpgradeStatusForm(userMy);
+                this.Close();
+                upgradeStatus.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Вы уже повысили доступ!");
+            }
+        }
+
+        private void addKeyAdmin_Click(object sender, EventArgs e)
+        {
+            var keyForm = new UpgradeStatusForm(statusUser);
+            keyForm.Show();
+
+        }
+
+        private void addProduct_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
