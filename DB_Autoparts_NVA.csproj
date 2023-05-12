@@ -331,6 +331,7 @@
     <Compile Include="Forms\UsersForm.Designer.cs">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\AutopartsFormat.cs" />
     <Compile Include="Models\Autoparts.cs" />
     <Compile Include="Models\Keys.cs" />
     <Compile Include="Models\Product.cs" />

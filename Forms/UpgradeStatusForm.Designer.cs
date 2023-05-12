@@ -106,7 +106,9 @@
             this.Controls.Add(this.butConfirm);
             this.Controls.Add(this.panel1);
             this.Name = "UpgradeStatusForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Повышение статуса";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UpgradeStatusForm_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);

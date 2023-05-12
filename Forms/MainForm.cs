@@ -3,10 +3,12 @@ using DB_Autoparts_NVA.Forms;
 using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Org.BouncyCastle.Math.EC.Rfc7748;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,8 +22,8 @@ namespace DB_Autoparts_NVA
     {
         public DbContextOptions<ApplicationContext> options;
         public string statusUser = "";
-        private static Users userMy = null;
-        private static Users userSelected = null;
+        private static Users userMy = null;//Пользователь
+        private static Users userSelected = null;//Выделенные пользователи
         public MainForm()
         {
             InitializeComponent();
@@ -31,51 +33,73 @@ namespace DB_Autoparts_NVA
         }
         public MainForm(Users users) : this()
         {
-          
+            userMy = users;
             statusUser = ReturnStatusUser(options, users);
             contextMenuStrip2.Enabled = false;
             if (statusUser == "User")
             { 
-                userMy = users;
                 statusStripUserLabel.Text = "Статус: Пользователь";
                 menuBDUsers.Enabled = false;
                 menuDBAutoparts.Enabled = false;
                 toolEdit.Visible = false;
                 toolDelete.Visible = false;
-                toolEditProduct.Visible = false;
                 toolDeleteProduct.Text = "Oтменить покупку";
                 CountUsersStatusStrip.Visible = false;
                 MoneyUserStatusStrip.Visible = false;
                 toolSearchBox.Visible = false;
-                dataGridUsers.DataSource = ReadUser(options, users);
-                FormatDataGrid(options,dataGridProduct, userMy);
+                dataGridProduct.Columns["columnIdUser"].Visible = false;
+                dataGridUsers.DataSource = ReadUser(options);
+                dataGridProduct.DataSource = FormatDataGridUser(options, userMy);
                 Status();
             }else if(statusUser == "Admin")
             {
-                userMy = users;
                 statusStripUserLabel.Text = "Статус: Админ";
                 contextMenuStrip2.Enabled = true;
+                dataGridProduct.Columns["columnIdUser"].Visible = true;
+                dataGridProduct.Columns["columnIdUser"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridUsers.DataSource = ReadUserAll(options);
+                dataGridProduct.DataSource = FormatDataGridAdmin(options);
+                Status();
             }
         }
 
 
         #region DBRequests
 
-        public void FormatDataGrid(DbContextOptions<ApplicationContext> options,DataGridView datagridView,Users users)
+        public List<AutopartsFormat> FormatDataGridUser(DbContextOptions<ApplicationContext> options,Users user)
         {
             using (var db = new ApplicationContext(options))
             {
-                var tovar = ReadUserAutoparts(options,userMy);
-                var format = tovar.Select(x => new
+                var tovar = ReadUserAutoparts(options, user);
+                var format = tovar.Select(x => new AutopartsFormat()
                 {
-                    x.parts_id,
+                    Id_user = x.id_user,
+                    Parts_id = x.parts_id,
                     NameProduct = db.ProductDB.Find(x.product).title,
-                    x.count,
-                    priceAll = $"{x.count * db.ProductDB.Find(x.product).price:C2}",
-                    x.dateBy
+                    Count = x.count,
+                    PriceAll = $"{x.count * db.ProductDB.Find(x.product).price:C2}",
+                    DateBy = x.dateBy
                 }
                 ).ToList();
-                datagridView.DataSource = format;
+               return format;
+            }
+        }  
+        public List<AutopartsFormat> FormatDataGridAdmin(DbContextOptions<ApplicationContext> options)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                var tovar = ReadAutoparts(options);
+                var format = tovar.Select(x => new AutopartsFormat()
+                {
+                    Id_user = x.id_user,
+                    Parts_id = x.parts_id,
+                    NameProduct = db.ProductDB.Find(x.product).title,
+                    Count = x.count,
+                    PriceAll = $"{x.count * db.ProductDB.Find(x.product).price:C2}",
+                    DateBy = x.dateBy
+                }
+                ).ToList();
+                return format;   
             }
         } 
         private static string ReturnStatusUser(DbContextOptions<ApplicationContext> options, Users users)
@@ -85,11 +109,11 @@ namespace DB_Autoparts_NVA
                 return db.UserDB.FirstOrDefault(u => u.phone == users.phone).status;
             }
         }
-        private static List<Users> ReadUser(DbContextOptions<ApplicationContext> options, Users user)
+        private static List<Users> ReadUser(DbContextOptions<ApplicationContext> options)
         {
             using (var db = new ApplicationContext(options))
             {
-                return db.UserDB.Where(x => x.user_id == user.user_id).ToList();
+                return db.UserDB.Where(x => x.user_id == userMy.user_id).ToList();
             }
         }
 
@@ -98,6 +122,23 @@ namespace DB_Autoparts_NVA
             using (var db = new ApplicationContext(options))
             {
                 return db.AutopartDB.Where(x => x.id_user == user.user_id).OrderByDescending(i=>i.parts_id).ToList();
+            }
+        }
+        private static List<Users> ReadUserAll(DbContextOptions<ApplicationContext> options)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                var userList = db.UserDB.Where(x=>x.user_id != userMy.user_id).OrderByDescending(x => x.user_id).ToList();
+                userList.Insert(0, userMy);
+                return userList;
+            }
+        }
+
+        private static List<Autoparts> ReadAutoparts(DbContextOptions<ApplicationContext> options)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                return db.AutopartDB.OrderByDescending(x=>x.parts_id).ToList();
             }
         }
         private static Product ReturnProduct(DbContextOptions<ApplicationContext> options, Autoparts autoparts)
@@ -117,14 +158,27 @@ namespace DB_Autoparts_NVA
                 db.SaveChanges();
             }
         }
-        private static void RemoveTovarDB(DbContextOptions<ApplicationContext> options, Autoparts autoparts)
+        private static void RemoveTovarDB(DbContextOptions<ApplicationContext> options, int autopartsId)
         {
             using (var db = new ApplicationContext(options))
             {
-                var product  = db.AutopartDB.FirstOrDefault(u => u.parts_id == autoparts.parts_id);
+                var product  = db.AutopartDB.FirstOrDefault(u => u.parts_id == autopartsId);
                 if (product != null)
                 {
                     db.AutopartDB.Remove(product);
+                    db.SaveChanges();
+                }
+            }
+
+        }
+        private static void RemoveUsersDB(DbContextOptions<ApplicationContext> options, int usersId)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                var user  = db.UserDB.FirstOrDefault(u => u.user_id == usersId);
+                if (user != null)
+                {
+                    db.UserDB.Remove(user);
                     db.SaveChanges();
                 }
             }
@@ -152,7 +206,7 @@ namespace DB_Autoparts_NVA
             if(byProductForm.ShowDialog() == DialogResult.OK)
             {
                 ByTovarDB(options, byProductForm.Autoparts);
-                FormatDataGrid(options,dataGridProduct,userMy);
+                dataGridProduct.DataSource = FormatDataGridUser(options,userMy);
                 Status();
             }
         }
@@ -165,34 +219,66 @@ namespace DB_Autoparts_NVA
 
         private void toolDeleteProduct_Click(object sender, EventArgs e)
         {
-            var autopart = (Autoparts)dataGridProduct.Rows[dataGridProduct.SelectedRows[0].Index].DataBoundItem;
-            if (MessageBox.Show($"Вы действительно хотите отменить покупку \n\rId: {autopart.parts_id}",
+            var autopart = (AutopartsFormat)dataGridProduct.Rows[dataGridProduct.SelectedRows[0].Index].DataBoundItem;
+            if (autopart.Id_user != userMy.user_id)
+            {
+                MessageBox.Show($"Вы не можете удалить чужую покупку!");
+                return;
+            }
+            if (MessageBox.Show($"Вы действительно хотите отменить покупку с \n\rId: {autopart.Parts_id}",
                "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                RemoveTovarDB(options, autopart);
-                FormatDataGrid(options, dataGridProduct, userMy);
+                RemoveTovarDB(options, autopart.Parts_id);
+                dataGridProduct.DataSource = FormatDataGridUser(options, userMy);
                 Status();
             }
+            
         }
 
         private void Status()
         {
-            using (var db = new ApplicationContext(options))
+            var allMoney = AllMoney();
+            AllMoneyStatusStrip.Text = $"Общая сумма: {allMoney:C2}";
+            CountUsersStatusStrip.Text = $"Кол-во пользователей: {ReadUserAll(options).Count}";
+            if (dataGridUsers.SelectedRows.Count > 0)
             {
-
-                var allMoney = AllMoney();
-                AllMoneyStatusStrip.Text = $"Общая сумма: {allMoney:C2}";
+                userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
+               
+                MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: { MoneyUser(userSelected)}";
+            }
+            else
+            {
+                MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: 0";
             }
         }
 
+        public decimal MoneyUser(Users user)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                var tovar = db.AutopartDB.Where(x => x.id_user == userSelected.user_id).ToList();
+                return tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price);
+            }
+        }
         public decimal AllMoney()
         {
             using (var db = new ApplicationContext(options))
             {
-                var tovar = db.AutopartDB.Where(x => x.id_user == userMy.user_id).ToList();
-                var allMoney = tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price);
+                decimal allMoney = 0;
+                if (statusUser == "User")
+                {
+                    var tovar = db.AutopartDB.Where(x => x.id_user == userMy.user_id).ToList();
+                    allMoney = tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price);
+                }
+                else if(statusUser == "Admin")
+                {
+                    var tovar = db.AutopartDB.ToList();
+                    allMoney = tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price);
+
+                }
                 return allMoney;
             }
+           
         }
 
         private void menuExport_Click(object sender, EventArgs e)
@@ -237,7 +323,58 @@ namespace DB_Autoparts_NVA
 
         private void addProduct_Click(object sender, EventArgs e)
         {
+            var addProductForm = new AddProductForm();
+            addProductForm.ShowDialog();
+        }
 
+        private void dataGridUsers_SelectionChanged(object sender, EventArgs e)
+        {
+            if(statusUser == "Admin")
+            {
+                menuExport.Enabled =
+                toolEdit.Enabled =
+                toolDelete.Enabled =
+                     dataGridUsers.SelectedRows.Count > 0;
+                if (dataGridUsers.SelectedRows.Count > 0)
+                {
+                    userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
+                    dataGridProduct.DataSource = FormatDataGridUser(options, userSelected);
+
+                }
+                else
+                {
+                    dataGridProduct.DataSource = FormatDataGridAdmin(options);
+                }
+            }
+            Status();
+        }
+
+        private void dataGridUsers_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex == 0 && e.ColumnIndex == 0 && userMy.status == "Admin") {
+                if (dataGridUsers.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == userMy.user_id.ToString())
+                {
+                    dataGridUsers.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
+        }
+
+        private void toolDelete_Click(object sender, EventArgs e)
+        {
+            userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
+            if(userSelected.status == "Admin" && userSelected.user_id != userMy.user_id)
+            {
+                MessageBox.Show("Вы не можете заблокировать другого Админа!");
+                return;
+            }
+            if (MessageBox.Show($"Вы действительно хотите заблокировать пользователя с \n\rId: {userSelected.user_id}" +
+                $"\n\rФамилия,Имя: {userSelected.surname},{userSelected.name}\n\rТелефон: {userSelected.phone}",
+               "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                RemoveUsersDB(options, userSelected.user_id);
+                dataGridUsers.DataSource = FormatDataGridUser(options, userMy);
+                Status();
+            }
         }
     }
 }

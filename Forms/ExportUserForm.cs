@@ -25,6 +25,7 @@ namespace DB_Autoparts_NVA.Forms
     {
         private List<String> list = new List<String>() { "Excel", "PDf"};
         public DbContextOptions<ApplicationContext> options;
+        private decimal priceAll;
         private int index = 0;
         private Users users = null;
         public ExportUserForm()
@@ -36,10 +37,13 @@ namespace DB_Autoparts_NVA.Forms
         public ExportUserForm(Users user) : this()
         {
             users = user;
+            
+            priceAll =new MainForm(users).AllMoney();
+            if (user.status == "Admin") priceAll = new MainForm().MoneyUser(user);
             labelFIO.Text = $"{user.surname} {user.name}";
             labelPhone.Text = user.phone.ToString();
             FullComboType();
-            new MainForm().FormatDataGrid(options, dataGridProductExport, users);
+            dataGridProductExport.DataSource = new MainForm().FormatDataGridUser(options,users);
         }
 
      
@@ -109,7 +113,7 @@ namespace DB_Autoparts_NVA.Forms
             i++;//7
             xlSheet.Cells[i, 1] = "Всего: ";
             xlSheet.Cells[i, 1].HorizontalAlignment = HorizontalAlignment.Right;
-            xlSheet.Cells[i, 2] = $"{new MainForm().AllMoney():C2}";
+            xlSheet.Cells[i, 2] = $"{priceAll:C2}";
             xlSheet.Cells[i, 1].Interior.Color = Color.FromArgb(255, 66, 170, 255);
 
             i += 2;//9
@@ -229,7 +233,7 @@ namespace DB_Autoparts_NVA.Forms
             new Phrase("Всего", font));
             cell.BackgroundColor = new BaseColor(240, 240, 240);
             pdfTableUser.AddCell(cell);
-            pdfTableUser.AddCell(new Phrase($"{new MainForm().AllMoney():C2}", font));
+            pdfTableUser.AddCell(new Phrase($"{priceAll:C2}", font));
 
             var saveFileDialog = new SaveFileDialog();
             saveFileDialog.FileName = "История покупок пользователя";
