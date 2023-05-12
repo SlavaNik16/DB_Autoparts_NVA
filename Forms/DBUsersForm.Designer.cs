@@ -261,6 +261,7 @@
             this.Controls.Add(this.dataGridViewUsers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "DBUsersForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Полозователи";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

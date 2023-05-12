@@ -105,6 +105,7 @@
             this.Controls.Add(this.butCancel);
             this.Controls.Add(this.butConfirm);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "UpgradeStatusForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Повышение статуса";

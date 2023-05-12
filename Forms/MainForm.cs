@@ -11,6 +11,7 @@ using System.Data;
 using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -30,6 +31,7 @@ namespace DB_Autoparts_NVA
             options = DataBaseHelper.Option();
             dataGridProduct.EnableHeadersVisualStyles = false;
             dataGridUsers.EnableHeadersVisualStyles = false;
+            toolStripProgressBar1.Value = 0;
         }
         public MainForm(Users users) : this()
         {
@@ -141,13 +143,6 @@ namespace DB_Autoparts_NVA
                 return db.AutopartDB.OrderByDescending(x=>x.parts_id).ToList();
             }
         }
-        private static Product ReturnProduct(DbContextOptions<ApplicationContext> options, Autoparts autoparts)
-        {
-            using (var db = new ApplicationContext(options))
-            {
-                return db.ProductDB.Find(autoparts.product);
-            }
-        }
         private static void ByTovarDB(DbContextOptions<ApplicationContext> options, Autoparts autoparts)
         {
             using (var db = new ApplicationContext(options))
@@ -176,11 +171,23 @@ namespace DB_Autoparts_NVA
             using (var db = new ApplicationContext(options))
             {
                 var user  = db.UserDB.FirstOrDefault(u => u.user_id == usersId);
+                
                 if (user != null)
                 {
+                    var tovars = db.AutopartDB.Where(x => x.id_user == user.user_id).ToList();
+                    db.AutopartDB.RemoveRange(tovars);
                     db.UserDB.Remove(user);
                     db.SaveChanges();
                 }
+            }
+
+        }
+        private static void UpdateUsersDB(DbContextOptions<ApplicationContext> options, Users user)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                db.UserDB.Update(user);
+                db.SaveChanges();
             }
 
         }
@@ -205,9 +212,13 @@ namespace DB_Autoparts_NVA
             var byProductForm = new ByAutopartsForm();
             if(byProductForm.ShowDialog() == DialogResult.OK)
             {
+                toolStripProgressBar1.Value = 0;
                 ByTovarDB(options, byProductForm.Autoparts);
+                toolStripProgressBar1.Value = 75;
                 dataGridProduct.DataSource = FormatDataGridUser(options,userMy);
+                toolStripProgressBar1.Value = 100;
                 Status();
+                toolStripProgressBar1.Value = 0;
             }
         }
 
@@ -228,9 +239,12 @@ namespace DB_Autoparts_NVA
             if (MessageBox.Show($"Вы действительно хотите отменить покупку с \n\rId: {autopart.Parts_id}",
                "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                toolStripProgressBar1.Value = 0;
                 RemoveTovarDB(options, autopart.Parts_id);
+                toolStripProgressBar1.Value = 75;
                 dataGridProduct.DataSource = FormatDataGridUser(options, userMy);
                 Status();
+                toolStripProgressBar1.Value = 0;
             }
             
         }
@@ -283,6 +297,7 @@ namespace DB_Autoparts_NVA
 
         private void menuExport_Click(object sender, EventArgs e)
         {
+            toolStripProgressBar1.Value = 60;
             ExportUserForm exportForm = null;
             if (statusUser == "User")
             {
@@ -292,12 +307,14 @@ namespace DB_Autoparts_NVA
             {
                 exportForm = new ExportUserForm(userSelected);
             }
+            toolStripProgressBar1.Value = 75;
             this.Visible = false;
+            toolStripProgressBar1.Value = 100;
             if (exportForm.ShowDialog() == DialogResult.Yes)
             {
                 this.Visible = true;
             }
-
+            toolStripProgressBar1.Value = 0;
         }
 
         private void menuUpgradeStatus_Click(object sender, EventArgs e)
@@ -312,6 +329,7 @@ namespace DB_Autoparts_NVA
             {
                 MessageBox.Show("Вы уже повысили доступ!");
             }
+            
         }
 
         private void addKeyAdmin_Click(object sender, EventArgs e)
@@ -329,24 +347,32 @@ namespace DB_Autoparts_NVA
 
         private void dataGridUsers_SelectionChanged(object sender, EventArgs e)
         {
-            if(statusUser == "Admin")
+            toolStripProgressBar1.Value = 0;
+            if (statusUser == "Admin")
             {
                 menuExport.Enabled =
                 toolEdit.Enabled =
                 toolDelete.Enabled =
                      dataGridUsers.SelectedRows.Count > 0;
+               
                 if (dataGridUsers.SelectedRows.Count > 0)
-                {
+                { 
+                    toolStripProgressBar1.Value = 50;
                     userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
                     dataGridProduct.DataSource = FormatDataGridUser(options, userSelected);
+                    toolStripProgressBar1.Value = 75;
 
                 }
                 else
                 {
+                    toolStripProgressBar1.Value = 75;
                     dataGridProduct.DataSource = FormatDataGridAdmin(options);
                 }
             }
+            toolStripProgressBar1.Value = 100;
             Status();
+            toolStripProgressBar1.Value = 0;
+
         }
 
         private void dataGridUsers_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -371,9 +397,33 @@ namespace DB_Autoparts_NVA
                 $"\n\rФамилия,Имя: {userSelected.surname},{userSelected.name}\n\rТелефон: {userSelected.phone}",
                "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                toolStripProgressBar1.Value = 0;
                 RemoveUsersDB(options, userSelected.user_id);
-                dataGridUsers.DataSource = FormatDataGridUser(options, userMy);
+                toolStripProgressBar1.Value = 75;
+                dataGridUsers.DataSource = ReadUserAll(options);
                 Status();
+                toolStripProgressBar1.Value = 100;
+            }
+        }
+
+        private void toolEdit_Click(object sender, EventArgs e)
+        {
+            userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
+            if (userSelected.status == "Admin" && userSelected.user_id != userMy.user_id)
+            {
+                MessageBox.Show("Вы не можете редактировать другого Админа!");
+                return;
+            }
+            var usersForm = new UsersForm(userSelected);
+            if (usersForm.ShowDialog() == DialogResult.OK)
+            {
+                toolStripProgressBar1.Value = 0;
+                UpdateUsersDB(options, usersForm.Users);
+                toolStripProgressBar1.Value = 75;
+                dataGridUsers.DataSource = ReadUserAll(options);
+                toolStripProgressBar1.Value = 100;
+                Status();
+                toolStripProgressBar1.Value = 0;
             }
         }
     }

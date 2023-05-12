@@ -41,15 +41,15 @@
             this.comboBoxTypeExport = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridProductExport = new System.Windows.Forms.DataGridView();
-            this.butExport = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.columnIdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnIdProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnIdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.butExport = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductExport)).BeginInit();
             this.panel2.SuspendLayout();
@@ -166,38 +166,6 @@
             this.dataGridProductExport.Size = new System.Drawing.Size(803, 150);
             this.dataGridProductExport.TabIndex = 5;
             // 
-            // butExport
-            // 
-            this.butExport.BackColor = System.Drawing.Color.Goldenrod;
-            this.butExport.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.butExport.Location = new System.Drawing.Point(99, 12);
-            this.butExport.Name = "butExport";
-            this.butExport.Size = new System.Drawing.Size(602, 63);
-            this.butExport.TabIndex = 6;
-            this.butExport.Text = "Экспортировать";
-            this.butExport.UseVisualStyleBackColor = false;
-            this.butExport.Click += new System.EventHandler(this.butExport_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 50);
-            this.panel2.TabIndex = 7;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Lime;
-            this.panel3.Controls.Add(this.butExport);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 298);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(800, 85);
-            this.panel3.TabIndex = 8;
-            // 
             // columnIdProduct
             // 
             this.columnIdProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -254,6 +222,38 @@
             this.columnIdUser.ReadOnly = true;
             this.columnIdUser.Visible = false;
             // 
+            // butExport
+            // 
+            this.butExport.BackColor = System.Drawing.Color.Goldenrod;
+            this.butExport.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butExport.Location = new System.Drawing.Point(99, 12);
+            this.butExport.Name = "butExport";
+            this.butExport.Size = new System.Drawing.Size(602, 63);
+            this.butExport.TabIndex = 6;
+            this.butExport.Text = "Экспортировать";
+            this.butExport.UseVisualStyleBackColor = false;
+            this.butExport.Click += new System.EventHandler(this.butExport_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(800, 50);
+            this.panel2.TabIndex = 7;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Lime;
+            this.panel3.Controls.Add(this.butExport);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 298);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(800, 85);
+            this.panel3.TabIndex = 8;
+            // 
             // ExportUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,6 +263,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dataGridProductExport);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "ExportUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Экспорт товаров пользователя";

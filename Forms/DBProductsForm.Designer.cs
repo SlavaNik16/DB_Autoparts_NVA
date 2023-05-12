@@ -225,6 +225,7 @@
             this.Controls.Add(this.dataGridViewProduct);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "DBProductsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Продукты данного пользователя";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

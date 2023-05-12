@@ -302,7 +302,9 @@
             this.Controls.Add(this.dateTimeBirthday);
             this.Controls.Add(this.labelBirrthDate);
             this.Controls.Add(this.panelHeader);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "UsersForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Регистрация нового пользователя";
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

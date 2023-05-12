@@ -19,6 +19,7 @@ namespace DB_Autoparts_NVA.Forms
         {
             InitializeComponent();
             this.Text = "Создание пользователя";
+            butSave.Text = "Создать";
             user = new Users();
             user.birthday = dateTimeBirthday.Value;
             user.status = "User";
@@ -28,12 +29,14 @@ namespace DB_Autoparts_NVA.Forms
 
         public UsersForm(Users sourse) : this()
         {
+            user = sourse;
             this.Text = "Изменение данных пользователя";
+            butSave.Text = "Изменить";
             txtBoxSurname.Text = sourse.surname;
             txtBoxName.Text = sourse.name;
             comboGender.SelectedItem = sourse.gender;
             dateTimeBirthday.Value = sourse.birthday;
-            txtBoxPhone.Text = sourse.phone;
+            txtBoxPhone.Visible = false;
             txtBoxEmail.Visible = false;
             txtBoxPassword.Visible = false;
         }
@@ -150,8 +153,5 @@ namespace DB_Autoparts_NVA.Forms
             }
 
         }
-
-
-
     }
 }

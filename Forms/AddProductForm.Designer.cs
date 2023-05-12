@@ -146,7 +146,9 @@
             this.ClientSize = new System.Drawing.Size(471, 209);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "AddProductForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddProductForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

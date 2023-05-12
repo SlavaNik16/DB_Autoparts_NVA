@@ -40,7 +40,7 @@
             // 
             this.butEnter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.butEnter.Font = new System.Drawing.Font("Times New Roman", 15.75F);
-            this.butEnter.Location = new System.Drawing.Point(83, 19);
+            this.butEnter.Location = new System.Drawing.Point(69, 18);
             this.butEnter.Name = "butEnter";
             this.butEnter.Size = new System.Drawing.Size(121, 43);
             this.butEnter.TabIndex = 0;
@@ -52,7 +52,7 @@
             // 
             this.butReg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.butReg.Font = new System.Drawing.Font("Times New Roman", 15.75F);
-            this.butReg.Location = new System.Drawing.Point(47, 68);
+            this.butReg.Location = new System.Drawing.Point(33, 67);
             this.butReg.Name = "butReg";
             this.butReg.Size = new System.Drawing.Size(199, 43);
             this.butReg.TabIndex = 1;
@@ -64,7 +64,7 @@
             // 
             this.butClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.butClose.Font = new System.Drawing.Font("Times New Roman", 15.75F);
-            this.butClose.Location = new System.Drawing.Point(68, 117);
+            this.butClose.Location = new System.Drawing.Point(54, 116);
             this.butClose.Name = "butClose";
             this.butClose.Size = new System.Drawing.Size(162, 43);
             this.butClose.TabIndex = 2;
@@ -76,9 +76,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.progressBarLoad});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 183);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 167);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(293, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(262, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -86,17 +86,18 @@
             // 
             this.progressBarLoad.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.progressBarLoad.Name = "progressBarLoad";
-            this.progressBarLoad.Size = new System.Drawing.Size(100, 16);
+            this.progressBarLoad.Size = new System.Drawing.Size(150, 16);
             // 
             // AuthorizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(293, 205);
+            this.ClientSize = new System.Drawing.Size(262, 189);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.butClose);
             this.Controls.Add(this.butReg);
             this.Controls.Add(this.butEnter);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AuthorizationForm";

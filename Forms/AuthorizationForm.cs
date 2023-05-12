@@ -44,7 +44,7 @@ namespace DB_Autoparts_NVA.Forms
                     addForm.Users.password = getHashSha256(addForm.Users.password);
                     db.UserDB.Add(addForm.Users);
                     db.SaveChanges();
-                    progressBarLoad.Value = 100;
+                    progressBarLoad.Value = 0;
                 }
             }
 
