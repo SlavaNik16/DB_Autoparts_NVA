@@ -31,6 +31,7 @@ namespace DB_Autoparts_NVA.Forms
             using (var db = new ApplicationContext(options))
             {
                 var addForm = new UsersForm();
+                progressBarLoad.Value = 45;
                 if (addForm.ShowDialog() == DialogResult.OK)
                 {
                     progressBarLoad.Value = 75;

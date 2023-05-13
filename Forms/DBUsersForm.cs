@@ -1,6 +1,7 @@
 ﻿using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -18,25 +20,32 @@ namespace DB_Autoparts_NVA.Forms
     public partial class DBUsersForm : Form
     {
         public DbContextOptions<ApplicationContext> options;
+        private MainForm mainForm;
         public DBUsersForm()
         {
             InitializeComponent();
             options = DataBaseHelper.Option();
+            Init();
+        }
+        public DBUsersForm(Users user) : this()
+        {
+            mainForm = new MainForm(user);
+        }
+        public void Init()
+        {
             listBox.SelectedIndex = 0;
             using (var db = new ApplicationContext(options))
             {
-                comboGender.DataSource = db.UserDB.OrderBy(x=>x.gender).Select(x=>x.gender).Distinct().ToList();
-                comboBirthday.DataSource = db.UserDB.OrderBy(x => x.birthday).Select(x=>x.birthday).Distinct().ToList();
+                comboGender.DataSource = db.UserDB.OrderBy(x => x.gender).Select(x => x.gender).Distinct().ToList();
+                comboBirthday.DataSource = db.UserDB.OrderBy(x => x.birthday).Select(x => x.birthday).Distinct().ToList();
+                dataGridUsersDB.DataSource = db.UserDB.OrderBy(x => x.user_id).ToList();
             }
-             dataGridUsersDB.DataSource = GetAllUsers();
-            
-        }
-        private List<Users> GetAllUsers()
-        {
-            return MainForm.ReadUserAll(options);
+            ProgressBar.Value = 0;
+           
         }
         private void butClose_Click(object sender, EventArgs e)
         {
+            this.textTrip.Visible = false;
             Close();
         }
 
@@ -124,7 +133,7 @@ namespace DB_Autoparts_NVA.Forms
 
         private void butViewAll_Click(object sender, EventArgs e)
         {
-            dataGridUsersDB.DataSource = GetAllUsers();
+           Init();
         }
 
         private void dataGridUsersDB_SelectionChanged(object sender, EventArgs e)
@@ -145,10 +154,41 @@ namespace DB_Autoparts_NVA.Forms
 
         private void butDelete_Click(object sender, EventArgs e)
         {
-
-            var mainForm = new MainForm();
+            ProgressBar.Value = 10;
+            textTrip.Text = "Идет удаление пользователя";
             var user = (Users)dataGridUsersDB.Rows[dataGridUsersDB.SelectedRows[0].Index].DataBoundItem;
             mainForm.DeleteUser(user);
+            ProgressBar.Value = 75;
+            textTrip.Text = "Почти закончено!";
+            Init();
+            textTrip.Text = "Процессс успешно завершено!";
+        }
+
+        private void DBUsersForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           // ProgressBar.Value = 75;
+            //mainForm.InitAdminDataGrid();
+            //ProgressBar.Value = 90;
+            //mainForm.Show();
+        }
+
+        private void butEdit_Click(object sender, EventArgs e)
+        {
+            ProgressBar.Value = 10;
+            textTrip.Text = "Идет редактирование пользователя";
+            var user = (Users)dataGridUsersDB.Rows[dataGridUsersDB.SelectedRows[0].Index].DataBoundItem;
+            mainForm.EditUser(user);
+            ProgressBar.Value = 75;
+            textTrip.Text = "Почти закончено!";
+            Init();
+            textTrip.Text = "Процессс успешно завершено!";
+        }
+
+        private void DBUsersForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ProgressBar.Value = 90;
+            mainForm.InitAdminDataGrid();
+            mainForm.Show();
         }
     }
 }

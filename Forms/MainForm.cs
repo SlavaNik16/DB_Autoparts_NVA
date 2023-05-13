@@ -4,6 +4,7 @@ using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Win32;
 using Org.BouncyCastle.Math.EC.Rfc7748;
 using System;
 using System.Collections.Generic;
@@ -55,17 +56,20 @@ namespace DB_Autoparts_NVA
                 dataGridProduct.DataSource = FormatDataGridUser(options, userMy);
                 Status();
             }else if(statusUser == "Admin")
-            {
-                statusStripUserLabel.Text = "Статус: Админ";
-                contextMenuStrip2.Enabled = true;
-                dataGridProduct.Columns["columnIdUser"].Visible = true;
-                dataGridProduct.Columns["columnIdUser"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dataGridUsers.DataSource = ReadUserAll(options);
-                dataGridProduct.DataSource = FormatDataGridAdmin(options);
-                Status();
+            { 
+                InitAdminDataGrid();
             }
         }
-
+        public void InitAdminDataGrid()
+        {
+            statusStripUserLabel.Text = "Статус: Админ";
+            contextMenuStrip2.Enabled = true;
+            dataGridProduct.Columns["columnIdUser"].Visible = true;
+            dataGridProduct.Columns["columnIdUser"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridUsers.DataSource = ReadUserAll(options);
+            dataGridProduct.DataSource = FormatDataGridAdmin(options);
+            Status();
+        }
 
         #region DBRequests
 
@@ -272,8 +276,15 @@ namespace DB_Autoparts_NVA
 
         private void menuDBUsers_Click(object sender, EventArgs e)
         {
-            DBUsersForm dbUsersForm = new DBUsersForm();
-            dbUsersForm.ShowDialog();
+            try
+            {
+                DBUsersForm dbUsersForm = new DBUsersForm(userMy);
+                this.Close();
+                dbUsersForm.ShowDialog();
+            }catch(System.InvalidOperationException ex)
+            {
+
+            }
         }
 
 
@@ -334,6 +345,7 @@ namespace DB_Autoparts_NVA
             {
                 MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: 0";
             }
+            toolStripProgressBar1.Value = 0;
         }
 
         public decimal MoneyUser(Users user)
@@ -458,47 +470,50 @@ namespace DB_Autoparts_NVA
         private void toolDelete_Click(object sender, EventArgs e)
         {
             userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
+            toolStripProgressBar1.Value = 0; 
             DeleteUser(userSelected);
+            dataGridUsers.DataSource = ReadUserAll(options);
+            toolStripProgressBar1.Value = 75;
+            Status();
         }
 
         public void DeleteUser(Users user)
         {
-            if (user.status == "Admin" && user.user_id != userMy.user_id)
+            if (user.status == "Admin")
             {
-                MessageBox.Show("Вы не можете заблокировать другого Админа!");
+                MessageBox.Show("Вы не можете заблокировать другого Админа или себя!");
                 return;
             }
             if (MessageBox.Show($"Вы действительно хотите заблокировать пользователя с \n\rId: {user.user_id}" +
                 $"\n\rФамилия,Имя: {user.surname},{user.name}\n\rТелефон: {user.phone}",
                "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                toolStripProgressBar1.Value = 0;
                 RemoveUsersDB(options, user.user_id);
-                toolStripProgressBar1.Value = 75;
-                dataGridUsers.DataSource = ReadUserAll(options);
-                Status();
-                toolStripProgressBar1.Value = 100;
             }
         }
 
         private void toolEdit_Click(object sender, EventArgs e)
         {
             userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
-            if (userSelected.status == "Admin" && userSelected.user_id != userMy.user_id)
+            toolStripProgressBar1.Value = 0;
+            EditUser(userSelected);
+            toolStripProgressBar1.Value = 75;
+            dataGridUsers.DataSource = ReadUserAll(options);
+            Status();
+            toolStripProgressBar1.Value = 0;
+        }
+
+        public void EditUser(Users user)
+        {
+            if (user.status == "Admin" && user.user_id != userMy.user_id)
             {
                 MessageBox.Show("Вы не можете редактировать другого Админа!");
                 return;
             }
-            var usersForm = new UsersForm(userSelected);
+            var usersForm = new UsersForm(user);
             if (usersForm.ShowDialog() == DialogResult.OK)
             {
-                toolStripProgressBar1.Value = 0;
                 UpdateUsersDB(options, usersForm.Users);
-                toolStripProgressBar1.Value = 75;
-                dataGridUsers.DataSource = ReadUserAll(options);
-                toolStripProgressBar1.Value = 100;
-                Status();
-                toolStripProgressBar1.Value = 0;
             }
         }
     }
