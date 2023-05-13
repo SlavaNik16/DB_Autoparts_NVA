@@ -43,7 +43,7 @@ namespace DB_Autoparts_NVA.Forms
             labelFIO.Text = $"{user.surname} {user.name}";
             labelPhone.Text = user.phone.ToString();
             FullComboType();
-            dataGridProductExport.DataSource = new MainForm().FormatDataGridUser(options,users);
+            dataGridProductExport.DataSource = MainForm.FormatDataGridUser(options,users);
         }
 
      
@@ -89,61 +89,57 @@ namespace DB_Autoparts_NVA.Forms
             //Присвоепние имени листа
             xlSheet.Name = "История покупок пользователя";
 
-            xlSheet.Cells[i, 1] = "Фамилия";
-            xlSheet.Cells[i, 2] = users.surname;
+            xlApp.Cells[i, 1] = "Фамилия";
+            xlApp.Cells[i, 2] = users.surname;
             i++;//2
-            xlSheet.Cells[i, 1] = "Имя";
-            xlSheet.Cells[i, 2] = users.name;
+            xlApp.Cells[i, 1] = "Имя";
+            xlApp.Cells[i, 2] = users.name;
             i++;//3
-            xlSheet.Cells[i, 1] = "Пол"; 
-            xlSheet.Cells[i, 2] = users.gender;
+            xlApp.Cells[i, 1] = "Пол";
+            xlApp.Cells[i, 2] = users.gender;
             i++;//4
-            xlSheet.Cells[i, 1] = "День рождения";
-            xlSheet.Cells[i, 2] = users.birthday;
+            xlApp.Cells[i, 1] = "День рождения";
+            xlApp.Cells[i, 2] = users.birthday;
             i++;//5
-            xlSheet.Cells[i, 1] = "Почта";
-            xlSheet.Cells[i, 2] = users.email;
+            xlApp.Cells[i, 1] = "Почта";
+            xlApp.Cells[i, 2] = users.email;
             i++;//6
-            xlSheet.Cells[i, 1] = "Телефон"; 
-            xlSheet.Cells[i, 2] = users.phone;
+            xlApp.Cells[i, 1] = "Телефон";
+            xlApp.Cells[i, 2] = users.phone;
 
-            xlSheet.Range[xlSheet.Cells[1, 1], xlSheet.Cells[i, 1]].Interior.Color = Color.Orange;
-            xlSheet.Range[xlSheet.Cells[1, 2], xlSheet.Cells[i, 2]].Interior.Color = Color.Coral;
+            xlApp.Range[xlApp.Cells[1, 1], xlApp.Cells[i, 1]].Interior.Color = Color.Orange;
+            xlApp.Range[xlApp.Cells[1, 2], xlApp.Cells[i, 2]].Interior.Color = Color.Coral;
 
             i++;//7
-            xlSheet.Cells[i, 1] = "Всего: ";
-            xlSheet.Cells[i, 1].HorizontalAlignment = HorizontalAlignment.Right;
-            xlSheet.Cells[i, 2] = $"{priceAll:C2}";
-            xlSheet.Cells[i, 1].Interior.Color = Color.FromArgb(255, 66, 170, 255);
+            xlApp.Cells[i, 1] = "Всего: ";
+            xlApp.Cells[i, 1].HorizontalAlignment = HorizontalAlignment.Right;
+            xlApp.Cells[i, 2] = $"{priceAll:C2}";
+            xlApp.Cells[i, 1].Interior.Color = Color.FromArgb(255, 66, 170, 255);
 
             i += 2;//9
-            xlSheet.Range[xlSheet.Cells[i, 2], xlSheet.Cells[i, 4]].Merge(true);
-            xlSheet.Cells[i, 2] = "История покупок";
-            xlSheet.Cells[i, 2].Interior.Color = Color.FromArgb(255, 229, 81, 55);
+            xlApp.Range[xlSheet.Cells[i, 2], xlSheet.Cells[i, 4]].Merge(true);
+            xlApp.Cells[i, 2] = "История покупок";
+            xlApp.Cells[i, 2].Interior.Color = Color.FromArgb(255, 229, 81, 55);
 
             i++;//10;
-            xlSheet.Cells[i, 1] = "Id";
-            xlSheet.Cells[i, 2] = "Продукт";
-            xlSheet.Cells[i, 3] = "Кол-во";
-            xlSheet.Cells[i, 4] = "Общая цена";
-            xlSheet.Cells[i, 5] = "Дата покупки";
-            xlSheet.Range[xlSheet.Cells[i, 1], xlSheet.Cells[i, 5]].Interior.Color = Color.Orange;
+            xlApp.Cells[i, 1] = "Id";
+            xlApp.Cells[i, 2] = "Продукт";
+            xlApp.Cells[i, 3] = "Кол-во";
+            xlApp.Cells[i, 4] = "Общая цена";
+            xlApp.Cells[i, 5] = "Дата покупки";
+            xlApp.Range[xlApp.Cells[i, 1], xlApp.Cells[i, 5]].Interior.Color = Color.Orange;
             i++;//11
             for (int k = 0; k < dataGridProductExport.RowCount; k++)
             {
                 for (int j = 1; j < dataGridProductExport.ColumnCount; j++)
                 {
-                    xlSheet.Cells[k + i, j] = dataGridProductExport.Rows[k].Cells[j].Value;
-                    xlSheet.Cells[k + i, j].Interior.Color = Color.FromArgb(255,255, 202, 134);
+                    xlApp.Cells[k + i, j] = dataGridProductExport.Rows[k].Cells[j].Value;
+                    xlApp.Cells[k + i, j].Interior.Color = Color.FromArgb(255,255, 202, 134);
                 }
             }
-            xlSheet.Cells.HorizontalAlignment = 3;
+            xlApp.Cells.HorizontalAlignment = 3;
             xlApp.Visible = true;
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
-            xlApp = null;
-            wBook = null;
-            xlSheet = null;
-            MessageBox.Show("Не забудьте самостоятельно выключить процесс в Диспетчере задач");
+            //MessageBox.Show("Не забудьте самостоятельно выключить процесс в Диспетчере задач");
         }
 
         private void ExportPDf()

@@ -2,6 +2,7 @@
 using DB_Autoparts_NVA.Forms;
 using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Org.BouncyCastle.Math.EC.Rfc7748;
 using System;
@@ -68,7 +69,7 @@ namespace DB_Autoparts_NVA
 
         #region DBRequests
 
-        public List<AutopartsFormat> FormatDataGridUser(DbContextOptions<ApplicationContext> options,Users user)
+        public static List<AutopartsFormat> FormatDataGridUser(DbContextOptions<ApplicationContext> options,Users user)
         {
             using (var db = new ApplicationContext(options))
             {
@@ -86,7 +87,7 @@ namespace DB_Autoparts_NVA
                return format;
             }
         }  
-        public List<AutopartsFormat> FormatDataGridAdmin(DbContextOptions<ApplicationContext> options)
+        public static List<AutopartsFormat> FormatDataGridAdmin(DbContextOptions<ApplicationContext> options)
         {
             using (var db = new ApplicationContext(options))
             {
@@ -110,6 +111,75 @@ namespace DB_Autoparts_NVA
             {
                 return db.UserDB.FirstOrDefault(u => u.phone == users.phone).status;
             }
+        } 
+        public static List<Users> FiltrPhoneAndGender(DbContextOptions<ApplicationContext> options,
+            DateTime birthday, String gender, bool birthdayIsEnabled, bool genderIsEnabled)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                if(birthdayIsEnabled && genderIsEnabled)
+                {
+                    return db.UserDB.Where(u => u.birthday == birthday && u.gender == gender).ToList();
+
+                }
+                else if (birthdayIsEnabled)
+                {
+                     return db.UserDB.Where(u =>u.birthday == birthday).ToList();
+                }
+                else if (genderIsEnabled)
+                {
+                    return db.UserDB.Where(u => u.gender == gender).ToList();
+                }
+                return null;
+            }
+        } 
+        public static List<Users> SortUsersOrderBy(DbContextOptions<ApplicationContext> options, string columnName)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                switch (columnName)
+                {
+                    case "user_id":
+                        return db.UserDB.OrderBy(x => x.user_id).ToList();
+                    case "surname":
+                        return db.UserDB.OrderBy(x => x.surname).ToList();
+                    case "name":
+                        return db.UserDB.OrderBy(x => x.name).ToList();
+                    case "birthday":
+                        return db.UserDB.OrderBy(x => x.birthday).ToList();
+                    case "email":
+                        return db.UserDB.OrderBy(x => x.email).ToList();
+                    case "phone":
+                        return db.UserDB.OrderBy(x => x.phone).ToList();
+                    case "status":
+                        return db.UserDB.OrderBy(x => x.status).ToList();
+                }
+            }
+            return null;
+        }
+        public static List<Users> SortUsersOrderByDescending(DbContextOptions<ApplicationContext> options, string columnName)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                switch (columnName)
+                {
+                    case "user_id":
+                        return db.UserDB.OrderByDescending(x => x.user_id).ToList();
+                    case "surname":
+                        return db.UserDB.OrderByDescending(x => x.surname).ToList();
+                    case "name":
+                        return db.UserDB.OrderByDescending(x => x.name).ToList();
+                    case "birthday":
+                        return db.UserDB.OrderByDescending(x => x.birthday).ToList();
+                    case "email":
+                        return db.UserDB.OrderByDescending(x => x.email).ToList();
+                    case "phone":
+                        return db.UserDB.OrderByDescending(x => x.phone).ToList();
+                    case "status":
+                        return db.UserDB.OrderByDescending(x => x.status).ToList();
+                }
+            }
+            return null;
         }
         private static List<Users> ReadUser(DbContextOptions<ApplicationContext> options)
         {
@@ -126,7 +196,7 @@ namespace DB_Autoparts_NVA
                 return db.AutopartDB.Where(x => x.id_user == user.user_id).OrderByDescending(i=>i.parts_id).ToList();
             }
         }
-        private static List<Users> ReadUserAll(DbContextOptions<ApplicationContext> options)
+        public static List<Users> ReadUserAll(DbContextOptions<ApplicationContext> options)
         {
             using (var db = new ApplicationContext(options))
             {
@@ -388,17 +458,22 @@ namespace DB_Autoparts_NVA
         private void toolDelete_Click(object sender, EventArgs e)
         {
             userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
-            if(userSelected.status == "Admin" && userSelected.user_id != userMy.user_id)
+            DeleteUser(userSelected);
+        }
+
+        public void DeleteUser(Users user)
+        {
+            if (user.status == "Admin" && user.user_id != userMy.user_id)
             {
                 MessageBox.Show("Вы не можете заблокировать другого Админа!");
                 return;
             }
-            if (MessageBox.Show($"Вы действительно хотите заблокировать пользователя с \n\rId: {userSelected.user_id}" +
-                $"\n\rФамилия,Имя: {userSelected.surname},{userSelected.name}\n\rТелефон: {userSelected.phone}",
+            if (MessageBox.Show($"Вы действительно хотите заблокировать пользователя с \n\rId: {user.user_id}" +
+                $"\n\rФамилия,Имя: {user.surname},{user.name}\n\rТелефон: {user.phone}",
                "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 toolStripProgressBar1.Value = 0;
-                RemoveUsersDB(options, userSelected.user_id);
+                RemoveUsersDB(options, user.user_id);
                 toolStripProgressBar1.Value = 75;
                 dataGridUsers.DataSource = ReadUserAll(options);
                 Status();
