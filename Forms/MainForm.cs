@@ -50,7 +50,6 @@ namespace DB_Autoparts_NVA
                 toolDeleteProduct.Text = "Oтменить покупку";
                 CountUsersStatusStrip.Visible = false;
                 MoneyUserStatusStrip.Visible = false;
-                toolSearchBox.Visible = false;
                 dataGridProduct.Columns["columnIdUser"].Visible = false;
                 dataGridUsers.DataSource = ReadUser(options);
                 dataGridProduct.DataSource = FormatDataGridUser(options, userMy);
@@ -81,6 +80,7 @@ namespace DB_Autoparts_NVA
                 var format = tovar.Select(x => new AutopartsFormat()
                 {
                     Id_user = x.id_user,
+                    UserSurname = db.UserDB.Find(x.id_user).surname,
                     Parts_id = x.parts_id,
                     NameProduct = db.ProductDB.Find(x.product).title,
                     Count = x.count,
@@ -99,6 +99,7 @@ namespace DB_Autoparts_NVA
                 var format = tovar.Select(x => new AutopartsFormat()
                 {
                     Id_user = x.id_user,
+                    UserSurname = db.UserDB.Find(x.id_user).surname,
                     Parts_id = x.parts_id,
                     NameProduct = db.ProductDB.Find(x.product).title,
                     Count = x.count,
@@ -136,7 +137,27 @@ namespace DB_Autoparts_NVA
                 }
                 return null;
             }
-        } 
+        }
+        public static List<AutopartsFormat> FiltrProductTitle(DbContextOptions<ApplicationContext> options, String productName)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                var tovar = db.AutopartDB.Where(x => 
+                db.ProductDB.FirstOrDefault(f => f.id_product == x.product).title == productName).ToList();
+                var format = tovar.Select(x => new AutopartsFormat()
+                {
+                    Id_user = x.id_user,
+                    UserSurname = db.UserDB.Find(x.id_user).surname,
+                    Parts_id = x.parts_id,
+                    NameProduct = db.ProductDB.Find(x.product).title,
+                    Count = x.count,
+                    PriceAll = $"{x.count * db.ProductDB.Find(x.product).price:C2}",
+                    DateBy = x.dateBy
+                }
+                ).ToList();
+                return format;
+            }
+        }
         public static List<Users> SortUsersOrderBy(DbContextOptions<ApplicationContext> options, string columnName)
         {
             using (var db = new ApplicationContext(options))
@@ -184,6 +205,53 @@ namespace DB_Autoparts_NVA
                 }
             }
             return null;
+        }
+
+        public static List<AutopartsFormat> SortProductOrderBy(DbContextOptions<ApplicationContext> options, string columnName)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                var format = FormatDataGridAdmin(options);
+                switch (columnName)
+                {
+                    case "parts_id":
+                        return format.OrderBy(x => x.Parts_id).ToList();
+                    case "UserSurname":
+                        return format.OrderBy(x => x.UserSurname).ToList();
+                    case "NameProduct":
+                        return format.OrderBy(x => x.NameProduct).ToList();
+                    case "count":
+                        return format.OrderBy(x => x.Count).ToList();
+                    case "PriceAll":
+                        return format.OrderBy(x => x.PriceAll).ToList();
+                    case "dateBy":
+                        return format.OrderBy(x => x.DateBy).ToList();
+                }
+                return null;
+            }
+        } 
+        public static List<AutopartsFormat> SortProductOrderByDescending(DbContextOptions<ApplicationContext> options, string columnName)
+        {
+            using (var db = new ApplicationContext(options))
+            {
+                var format = FormatDataGridAdmin(options);
+                switch (columnName)
+                {
+                    case "parts_id":
+                        return format.OrderByDescending(x => x.Parts_id).ToList();
+                    case "UserSurname":
+                        return format.OrderByDescending(x => x.UserSurname).ToList();
+                    case "NameProduct":
+                        return format.OrderByDescending(x => x.NameProduct).ToList();
+                    case "count":
+                        return format.OrderByDescending(x => x.Count).ToList();
+                    case "PriceAll":
+                        return format.OrderByDescending(x => x.PriceAll).ToList();
+                    case "dateBy":
+                        return format.OrderByDescending(x => x.DateBy).ToList();
+                }
+                return null;
+            }
         }
         private static List<Users> ReadUser(DbContextOptions<ApplicationContext> options)
         {
@@ -514,6 +582,20 @@ namespace DB_Autoparts_NVA
             if (usersForm.ShowDialog() == DialogResult.OK)
             {
                 UpdateUsersDB(options, usersForm.Users);
+            }
+        }
+
+        private void menuDBAutoparts_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DBProductsForm dbProductsForm = new DBProductsForm(userMy);
+                this.Close();
+                dbProductsForm.Show();
+            }
+            catch (System.InvalidOperationException ex)
+            {
+
             }
         }
     }

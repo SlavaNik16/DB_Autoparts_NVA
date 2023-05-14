@@ -46,6 +46,7 @@ namespace DB_Autoparts_NVA.Forms
         private void butClose_Click(object sender, EventArgs e)
         {
             this.textTrip.Visible = false;
+            ProgressBar.Value = 75;
             Close();
         }
 
@@ -89,31 +90,15 @@ namespace DB_Autoparts_NVA.Forms
             if (listBox.SelectedIndex != -1)
             {
                 string colName = "";
-                switch (listBox.SelectedIndex)
+                if(listBox.SelectedIndex >= 3)
                 {
-                    case 0:
-                        colName = columnIdDataGridViewTextBoxColumn.DataPropertyName;
-                        break;
-                    case 1:
-                        colName = columnSurnameDataGridViewTextBoxColumn.DataPropertyName;
-                        break;
-                    case 2:
-                        colName = columnNameDataGridViewTextBoxColumn.DataPropertyName;
-                        break;
-                    case 3:
-                        colName = columnBirthdayDataGridViewTextBoxColumn.DataPropertyName;
-                        break;
-                    case 4:
-                        colName = сolumnEmailDataGridViewTextBoxColumn.DataPropertyName;
-                        break;
-                    case 5:
-                        colName = columnPhoneDataGridViewTextBoxColumn.DataPropertyName;
-                        break;
-                    case 6:
-                        colName = columnStatusDataGridViewTextBoxColumn.DataPropertyName;
-                        break;
+                    colName = dataGridUsersDB.Columns[listBox.SelectedIndex+1].DataPropertyName;
                 }
-
+                else
+                {
+                    colName = dataGridUsersDB.Columns[listBox.SelectedIndex].DataPropertyName;
+                }
+                
                 if (radioOrder.Checked)
                     dataGridUsersDB.DataSource = MainForm.SortUsersOrderBy(options, colName);
                 else
@@ -186,9 +171,7 @@ namespace DB_Autoparts_NVA.Forms
 
         private void DBUsersForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ProgressBar.Value = 90;
-            mainForm.InitAdminDataGrid();
-            mainForm.Show();
+            
         }
     }
 }

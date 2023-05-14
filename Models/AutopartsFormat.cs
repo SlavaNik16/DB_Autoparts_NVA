@@ -9,17 +9,20 @@ namespace DB_Autoparts_NVA.Models
 {
     public class AutopartsFormat
     {
-      
+        public int Parts_id { get; set; }
+        ///<summary>
+        /// Id пользователя, которому принадлежит продукт
+        /// </summary>
         /// <summary>
         /// Id пользователя, которому принадлежит продукт
         /// </summary>  
         public int Id_user { get; set; }
         /// <summary>
-        /// Уникальный номер продукта
+        /// Фамилия пользователя
         /// </summary>
-        public int Parts_id { get; set; }
-        ///<summary>
-        /// Id пользователя, которому принадлежит продукт
+        public string UserSurname { get; set; }
+        /// <summary>
+        /// Уникальный номер продукта
         /// </summary>
         public string NameProduct { get; set; }
         /// <summary>
