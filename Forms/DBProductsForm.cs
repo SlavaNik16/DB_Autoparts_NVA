@@ -98,20 +98,15 @@ namespace DB_Autoparts_NVA.Forms
 
         private void butClose_Click_1(object sender, EventArgs e)
         {
-            Close();
-        }
-
-        private void DBProductsForm_FormClosing_1(object sender, FormClosingEventArgs e)
-        {
             progressBar.Value = 75;
             if (MessageBox.Show("Вы уверены что хотите выйти!", "Приложение",
-                     MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                progressBar.Value = 90;
+                Close();
                 mainForm.InitAdminDataGrid();
                 mainForm.Show();
-                e.Cancel = true;
             }
-            e.Cancel = false;
             progressBar.Value = 0;
         }
     }

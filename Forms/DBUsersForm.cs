@@ -47,7 +47,15 @@ namespace DB_Autoparts_NVA.Forms
         {
             this.textTrip.Visible = false;
             ProgressBar.Value = 75;
-            Close();
+            if (MessageBox.Show("Вы уверены что хотите выйти!", "Приложение",
+                     MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                ProgressBar.Value = 90;
+                Close();
+                mainForm.InitAdminDataGrid();
+                mainForm.Show();
+            }
+            ProgressBar.Value = 0;
         }
 
         private void butSearch_Click(object sender, EventArgs e)
@@ -149,13 +157,6 @@ namespace DB_Autoparts_NVA.Forms
             textTrip.Text = "Процессс успешно завершено!";
         }
 
-        private void DBUsersForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-           // ProgressBar.Value = 75;
-            //mainForm.InitAdminDataGrid();
-            //ProgressBar.Value = 90;
-            //mainForm.Show();
-        }
 
         private void butEdit_Click(object sender, EventArgs e)
         {
@@ -169,9 +170,5 @@ namespace DB_Autoparts_NVA.Forms
             textTrip.Text = "Процессс успешно завершено!";
         }
 
-        private void DBUsersForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            
-        }
     }
 }
