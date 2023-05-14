@@ -100,14 +100,16 @@ namespace DB_Autoparts_NVA.Forms
         {
             progressBar.Value = 75;
             if (MessageBox.Show("Вы уверены что хотите выйти!", "Приложение",
-                    MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    MessageBoxButtons.YesNo) == DialogResult.No)
             {
-                progressBar.Value = 90;
-                Close();
-                mainForm.InitAdminDataGrid();
-                mainForm.Show();
+                 progressBar.Value = 0;
+                return;
             }
-            progressBar.Value = 0;
+            progressBar.Value = 90;
+            mainForm.InitAdminDataGrid();
+            progressBar.Value = 95;
+            mainForm.Show();
+            this.Close();
         }
     }
 }

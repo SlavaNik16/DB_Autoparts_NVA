@@ -48,14 +48,16 @@ namespace DB_Autoparts_NVA.Forms
             this.textTrip.Visible = false;
             ProgressBar.Value = 75;
             if (MessageBox.Show("Вы уверены что хотите выйти!", "Приложение",
-                     MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    MessageBoxButtons.YesNo) == DialogResult.No)
             {
-                ProgressBar.Value = 90;
-                Close();
-                mainForm.InitAdminDataGrid();
-                mainForm.Show();
+                ProgressBar.Value = 0;
+                return;
             }
-            ProgressBar.Value = 0;
+            ProgressBar.Value = 90;
+            mainForm.InitAdminDataGrid();
+            ProgressBar.Value = 95;
+            mainForm.Show();
+            this.Close();
         }
 
         private void butSearch_Click(object sender, EventArgs e)
