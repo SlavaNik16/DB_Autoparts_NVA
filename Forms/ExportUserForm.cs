@@ -89,62 +89,68 @@ namespace DB_Autoparts_NVA.Forms
             //Присвоепние имени листа
             xlSheet.Name = "История покупок пользователя";
 
-            xlApp.Cells[i, 1] = "Фамилия";
-            xlApp.Cells[i, 2] = users.surname;
+            xlSheet.Cells[i, 1] = "Фамилия";
+            xlSheet.Cells[i, 2] = users.surname;
             i++;//2
-            xlApp.Cells[i, 1] = "Имя";
-            xlApp.Cells[i, 2] = users.name;
+            xlSheet.Cells[i, 1] = "Имя";
+            xlSheet.Cells[i, 2] = users.name;
             i++;//3
-            xlApp.Cells[i, 1] = "Пол";
-            xlApp.Cells[i, 2] = users.gender;
+            xlSheet.Cells[i, 1] = "Пол";
+            xlSheet.Cells[i, 2] = users.gender;
             i++;//4
-            xlApp.Cells[i, 1] = "День рождения";
-            xlApp.Cells[i, 2] = users.birthday;
+            xlSheet.Cells[i, 1] = "День рождения";
+            xlSheet.Cells[i, 2] = users.birthday;
             i++;//5
-            xlApp.Cells[i, 1] = "Почта";
-            xlApp.Cells[i, 2] = users.email;
+            xlSheet.Cells[i, 1] = "Почта";
+            xlSheet.Cells[i, 2] = users.email;
             i++;//6
-            xlApp.Cells[i, 1] = "Телефон";
-            xlApp.Cells[i, 2] = users.phone;
+            xlSheet.Cells[i, 1] = "Телефон";
+            xlSheet.Cells[i, 2] = users.phone;
 
-            xlApp.Range[xlApp.Cells[1, 1], xlApp.Cells[i, 1]].Interior.Color = Color.Orange;
-            xlApp.Range[xlApp.Cells[1, 2], xlApp.Cells[i, 2]].Interior.Color = Color.Coral;
+            xlSheet.Range[xlSheet.Cells[1, 1], xlSheet.Cells[i, 1]].Interior.Color = Color.Orange;
+            xlSheet.Range[xlSheet.Cells[1, 2], xlSheet.Cells[i, 2]].Interior.Color = Color.Coral;
 
             i++;//7
-            xlApp.Cells[i, 1] = "Всего: ";
-            xlApp.Cells[i, 1].HorizontalAlignment = HorizontalAlignment.Right;
-            xlApp.Cells[i, 2] = $"{priceAll:C2}";
-            xlApp.Cells[i, 1].Interior.Color = Color.FromArgb(255, 66, 170, 255);
+            xlSheet.Cells[i, 1] = "Всего: ";
+            xlSheet.Cells[i, 1].HorizontalAlignment = HorizontalAlignment.Right;
+            xlSheet.Cells[i, 2] = $"{priceAll:C2}";
+            xlSheet.Cells[i, 1].Interior.Color = Color.FromArgb(255, 66, 170, 255);
 
             i += 2;//9
-            xlApp.Range[xlSheet.Cells[i, 2], xlSheet.Cells[i, 4]].Merge(true);
-            xlApp.Cells[i, 2] = "История покупок";
-            xlApp.Cells[i, 2].Interior.Color = Color.FromArgb(255, 229, 81, 55);
+            xlSheet.Range[xlSheet.Cells[i, 2], xlSheet.Cells[i, 4]].Merge(true);
+            xlSheet.Cells[i, 2] = "История покупок";
+            xlSheet.Cells[i, 2].Interior.Color = Color.FromArgb(255, 229, 81, 55);
 
             i++;//10;
-            xlApp.Cells[i, 1] = "Id";
-            xlApp.Cells[i, 2] = "Продукт";
-            xlApp.Cells[i, 3] = "Кол-во";
-            xlApp.Cells[i, 4] = "Общая цена";
-            xlApp.Cells[i, 5] = "Дата покупки";
-            xlApp.Range[xlApp.Cells[i, 1], xlApp.Cells[i, 5]].Interior.Color = Color.Orange;
+            xlSheet.Cells[i, 1] = "Id";
+            xlSheet.Cells[i, 2] = "Продукт";
+            xlSheet.Cells[i, 3] = "Кол-во";
+            xlSheet.Cells[i, 4] = "Общая цена";
+            xlSheet.Cells[i, 5] = "Дата покупки";
+            xlSheet.Range[xlSheet.Cells[i, 1], xlSheet.Cells[i, 5]].Interior.Color = Color.Orange;
             i++;//11
             for (int k = 0; k < dataGridProductExport.RowCount; k++)
             {
-                for (int j = 1; j < dataGridProductExport.ColumnCount; j++)
+                for (int j = 0; j < dataGridProductExport.ColumnCount-2; j++)
                 {
-                    xlApp.Cells[k + i, j] = dataGridProductExport.Rows[k].Cells[j].Value;
-                    xlApp.Cells[k + i, j].Interior.Color = Color.FromArgb(255,255, 202, 134);
+                    if (j >= 1)
+                    {
+                        xlSheet.Cells[k + i, j+1]= dataGridProductExport.Rows[k].Cells[j + 2].Value;
+                        xlSheet.Cells[k + i, j+1].Interior.Color = Color.FromArgb(255, 255, 202, 134);
+                        continue;
+                    }
+                        xlSheet.Cells[k + i, j+1]= dataGridProductExport.Rows[k].Cells[j].Value;
+                        xlSheet.Cells[k + i, j+1].Interior.Color = Color.FromArgb(255, 255, 202, 134);
                 }
             }
-            xlApp.Cells.HorizontalAlignment = 3;
+            xlSheet.Cells.HorizontalAlignment = 3;
             xlApp.Visible = true;
             //MessageBox.Show("Не забудьте самостоятельно выключить процесс в Диспетчере задач");
         }
 
         private void ExportPDf()
         {
-            PdfPTable pdfTable = new PdfPTable(dataGridProductExport.ColumnCount - 1);
+            PdfPTable pdfTable = new PdfPTable(dataGridProductExport.ColumnCount - 2);
             pdfTable.DefaultCell.Padding = 3;
             pdfTable.WidthPercentage = 100;
             pdfTable.HorizontalAlignment = 3;
@@ -201,8 +207,9 @@ namespace DB_Autoparts_NVA.Forms
             pdfTableUser.AddCell(new Phrase(users.phone, font));
            
             //Добавление в pdf Header
-            for (int j = 1; j < dataGridProductExport.ColumnCount; j++)
-            { 
+            for (int j = 0; j < dataGridProductExport.ColumnCount; j++)
+            {
+                if (j >= 1 && j <= 2) continue;
                 cell = new PdfPCell(
                     new Phrase(new Phrase(dataGridProductExport.Columns[j].HeaderCell.Value.ToString(), font)));
                 cell.BackgroundColor = new BaseColor(240, 240, 240);
@@ -211,8 +218,9 @@ namespace DB_Autoparts_NVA.Forms
            
             for (int i = 0; i < dataGridProductExport.RowCount; i++)
             {
-                for (int j = 1; j < dataGridProductExport.ColumnCount; j++)
+                for (int j = 0; j < dataGridProductExport.ColumnCount; j++)
                 {
+                    if (j >= 1 && j <= 2) continue;
                     pdfTable.AddCell(
                         new Phrase(dataGridProductExport.Rows[i].Cells[j].Value.ToString(), font));
                 }

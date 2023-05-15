@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApplicationContext = DB_Autoparts_NVA.DB.ApplicationContext;
 
@@ -24,9 +26,11 @@ namespace DB_Autoparts_NVA.Forms
         {
             mainForm = new MainForm(user);
             Init();
+
         }
         public void Init()
         {
+            toolStripText.Text = "";
             listBox.SelectedIndex = 0;
             using (var db = new ApplicationContext(options))
             {
@@ -98,16 +102,16 @@ namespace DB_Autoparts_NVA.Forms
 
         private void butClose_Click_1(object sender, EventArgs e)
         {
+            toolStripText.Text = "Процесс закрытие формы ...";
             progressBar.Value = 75;
             if (MessageBox.Show("Вы уверены что хотите выйти!", "Приложение",
                     MessageBoxButtons.YesNo) == DialogResult.No)
             {
-                 progressBar.Value = 0;
+                toolStripText.Text = "Процесс закрытие формы отменен";
+                progressBar.Value = 0;
                 return;
             }
-            progressBar.Value = 90;
             mainForm.InitAdminDataGrid();
-            progressBar.Value = 95;
             mainForm.Show();
             this.Close();
         }

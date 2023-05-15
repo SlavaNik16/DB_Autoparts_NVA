@@ -45,17 +45,16 @@ namespace DB_Autoparts_NVA.Forms
         }
         private void butClose_Click(object sender, EventArgs e)
         {
-            this.textTrip.Visible = false;
-            ProgressBar.Value = 75;
+            this.textTrip.Text = "Процесс закрытие формы ...";
+            this.ProgressBar.Value = 75;
             if (MessageBox.Show("Вы уверены что хотите выйти!", "Приложение",
                     MessageBoxButtons.YesNo) == DialogResult.No)
             {
+                this.textTrip.Text = "Процесс закрытие формы отменен";
                 ProgressBar.Value = 0;
                 return;
             }
-            ProgressBar.Value = 90;
             mainForm.InitAdminDataGrid();
-            ProgressBar.Value = 95;
             mainForm.Show();
             this.Close();
         }
@@ -171,6 +170,5 @@ namespace DB_Autoparts_NVA.Forms
             Init();
             textTrip.Text = "Процессс успешно завершено!";
         }
-
     }
 }

@@ -344,15 +344,12 @@ namespace DB_Autoparts_NVA
 
         private void menuDBUsers_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DBUsersForm dbUsersForm = new DBUsersForm(userMy);
-                this.Close();
-                dbUsersForm.ShowDialog();
-            }catch(System.InvalidOperationException ex)
-            {
-
-            }
+            toolStripProgressBar1.Value = 0;
+            toolStripProgressBar1.Value = 30;
+            DBUsersForm dbUsersForm = new DBUsersForm(userMy);
+            toolStripProgressBar1.Value = 70;
+            this.Close();
+            dbUsersForm.Show();
         }
 
 
@@ -587,16 +584,12 @@ namespace DB_Autoparts_NVA
 
         private void menuDBAutoparts_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DBProductsForm dbProductsForm = new DBProductsForm(userMy);
-                this.Close();
-                dbProductsForm.Show();
-            }
-            catch (System.InvalidOperationException ex)
-            {
-
-            }
+            toolStripProgressBar1.Value = 0;
+            toolStripProgressBar1.Value = 10;
+            DBProductsForm dbProductsForm = new DBProductsForm(userMy);
+            toolStripProgressBar1.Value = 80;
+            this.Close();
+            dbProductsForm.Show();
         }
     }
 }
