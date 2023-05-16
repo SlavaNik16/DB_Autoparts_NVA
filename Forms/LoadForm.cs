@@ -13,7 +13,6 @@ namespace DB_Autoparts_NVA.Forms
 {
     public partial class LoadForm : Form
     {
-        private Form loadForm;
         public LoadForm()
         {
             InitializeComponent();
@@ -21,16 +20,15 @@ namespace DB_Autoparts_NVA.Forms
             this.AllowTransparency = true;
             this.BackColor = Color.AliceBlue;
             this.TransparencyKey = this.BackColor;
-            loadForm = this;
-            //progressBarLoad.Value = 0;
-            //textLoad.Text = "Загрузка ...";
+            progressBarLoad.Value = 0;
+            textLoad.Text = "Загрузка ...";
 
         }
-        public async void EditTextProgress(string text, int value)
+        public void EditTextProgress(string text, int value)
         {
-                this.textLoad.Text = text;
-                this.progressBarLoad.Value = value;
-           
+            this.textLoad.Text = text;
+            this.progressBarLoad.Value = value;
         }
+
     }
 }

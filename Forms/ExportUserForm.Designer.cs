@@ -28,31 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.labelFIO = new System.Windows.Forms.Label();
             this.labelPhone = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBoxTypeExport = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridProductExport = new System.Windows.Forms.DataGridView();
             this.butExport = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.columnIdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnIdProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnIdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnUserSurname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridProductExport)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -123,51 +114,6 @@
             this.label2.Text = "Вид";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dataGridProductExport
-            // 
-            this.dataGridProductExport.AllowUserToAddRows = false;
-            this.dataGridProductExport.AllowUserToDeleteRows = false;
-            this.dataGridProductExport.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Pink;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridProductExport.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridProductExport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridProductExport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.columnIdProduct,
-            this.columnIdProducts,
-            this.columnCount,
-            this.columnPrice,
-            this.columnDate,
-            this.columnIdUser,
-            this.columnUserSurname});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridProductExport.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridProductExport.Location = new System.Drawing.Point(0, 147);
-            this.dataGridProductExport.MultiSelect = false;
-            this.dataGridProductExport.Name = "dataGridProductExport";
-            this.dataGridProductExport.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridProductExport.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridProductExport.Size = new System.Drawing.Size(803, 150);
-            this.dataGridProductExport.TabIndex = 5;
-            // 
             // butExport
             // 
             this.butExport.BackColor = System.Drawing.Color.Goldenrod;
@@ -200,78 +146,57 @@
             this.panel3.Size = new System.Drawing.Size(800, 85);
             this.panel3.TabIndex = 8;
             // 
-            // columnIdProduct
+            // listView1
             // 
-            this.columnIdProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.columnIdProduct.DataPropertyName = "parts_id";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.columnIdProduct.DefaultCellStyle = dataGridViewCellStyle2;
-            this.columnIdProduct.HeaderText = "Id";
-            this.columnIdProduct.Name = "columnIdProduct";
-            this.columnIdProduct.ReadOnly = true;
-            this.columnIdProduct.Width = 41;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.listView1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listView1.FullRowSelect = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(-3, 147);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(800, 150);
+            this.listView1.TabIndex = 9;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // columnIdProducts
+            // columnHeader1
             // 
-            this.columnIdProducts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnIdProducts.DataPropertyName = "NameProduct";
-            this.columnIdProducts.HeaderText = "Продукт";
-            this.columnIdProducts.Name = "columnIdProducts";
-            this.columnIdProducts.ReadOnly = true;
+            this.columnHeader1.Text = "Id";
             // 
-            // columnCount
+            // columnHeader2
             // 
-            this.columnCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnCount.DataPropertyName = "count";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.columnCount.DefaultCellStyle = dataGridViewCellStyle3;
-            this.columnCount.HeaderText = "Кол-во";
-            this.columnCount.Name = "columnCount";
-            this.columnCount.ReadOnly = true;
+            this.columnHeader2.Text = "Продукт";
+            this.columnHeader2.Width = 202;
             // 
-            // columnPrice
+            // columnHeader3
             // 
-            this.columnPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnPrice.DataPropertyName = "PriceAll";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle4;
-            this.columnPrice.HeaderText = "Общая цена";
-            this.columnPrice.Name = "columnPrice";
-            this.columnPrice.ReadOnly = true;
+            this.columnHeader3.Text = "Кол-во";
+            this.columnHeader3.Width = 180;
             // 
-            // columnDate
+            // columnHeader4
             // 
-            this.columnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnDate.DataPropertyName = "dateBy";
-            this.columnDate.HeaderText = "Дата покупки";
-            this.columnDate.Name = "columnDate";
-            this.columnDate.ReadOnly = true;
+            this.columnHeader4.Text = "Общая цена";
+            this.columnHeader4.Width = 176;
             // 
-            // columnIdUser
+            // columnHeader5
             // 
-            this.columnIdUser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnIdUser.DataPropertyName = "id_user";
-            this.columnIdUser.HeaderText = "Пользователь";
-            this.columnIdUser.Name = "columnIdUser";
-            this.columnIdUser.ReadOnly = true;
-            this.columnIdUser.Visible = false;
-            // 
-            // columnUserSurname
-            // 
-            this.columnUserSurname.DataPropertyName = "UserSurname";
-            this.columnUserSurname.HeaderText = "Фамилия";
-            this.columnUserSurname.Name = "columnUserSurname";
-            this.columnUserSurname.ReadOnly = true;
-            this.columnUserSurname.Visible = false;
+            this.columnHeader5.Text = "Дата покупки";
+            this.columnHeader5.Width = 178;
             // 
             // ExportUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 383);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.dataGridProductExport);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "ExportUserForm";
@@ -280,7 +205,6 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ExportUserForm_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridProductExport)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -295,16 +219,14 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox comboBoxTypeExport;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridProductExport;
         private System.Windows.Forms.Button butExport;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnIdProduct;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnIdProducts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnIdUser;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnUserSurname;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

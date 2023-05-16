@@ -24,6 +24,7 @@ namespace DB_Autoparts_NVA.Forms
     public partial class ExportUserForm : Form
     {
         private List<String> list = new List<String>() { "Excel", "PDf"};
+        public ListViewItem listItem;
         public DbContextOptions<ApplicationContext> options;
         private decimal priceAll;
         private int index = 0;
@@ -42,8 +43,27 @@ namespace DB_Autoparts_NVA.Forms
             if (user.status == "Admin") priceAll = new MainForm().MoneyUser(user);
             labelFIO.Text = $"{user.surname} {user.name}";
             labelPhone.Text = user.phone.ToString();
+            var lists = MainForm.FormatDataGridUser(options, users);
             FullComboType();
-            dataGridProductExport.DataSource = MainForm.FormatDataGridUser(options,users);
+        
+            foreach (var l in lists)
+            {
+                listItem = new ListViewItem(new string[] {
+                    l.Parts_id.ToString(),
+                    l.NameProduct,
+                    l.Count.ToString(),
+                    l.PriceAll, 
+                    l.DateBy.ToString()
+                });
+                listView1.Items.Add(listItem);
+               
+            } 
+            listView1.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView1.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView1.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.HeaderSize);
+            listView1.AutoResizeColumn(3, ColumnHeaderAutoResizeStyle.HeaderSize);
+            listView1.AutoResizeColumn(4, ColumnHeaderAutoResizeStyle.ColumnContent);
+            
         }
 
      
@@ -129,18 +149,12 @@ namespace DB_Autoparts_NVA.Forms
             xlSheet.Cells[i, 5] = "Дата покупки";
             xlSheet.Range[xlSheet.Cells[i, 1], xlSheet.Cells[i, 5]].Interior.Color = Color.Orange;
             i++;//11
-            for (int k = 0; k < dataGridProductExport.RowCount; k++)
+            for (int k = 0; k < listView1.Items.Count; k++)
             {
-                for (int j = 0; j < dataGridProductExport.ColumnCount-2; j++)
+                for (int j = 0; j < listItem.SubItems.Count; j++)
                 {
-                    if (j >= 1)
-                    {
-                        xlSheet.Cells[k + i, j+1]= dataGridProductExport.Rows[k].Cells[j + 2].Value;
-                        xlSheet.Cells[k + i, j+1].Interior.Color = Color.FromArgb(255, 255, 202, 134);
-                        continue;
-                    }
-                        xlSheet.Cells[k + i, j+1]= dataGridProductExport.Rows[k].Cells[j].Value;
-                        xlSheet.Cells[k + i, j+1].Interior.Color = Color.FromArgb(255, 255, 202, 134);
+                    xlSheet.Cells[k + i, j+1]= listView1.Items[k].SubItems[j].Text;
+                    xlSheet.Cells[k + i, j+1].Interior.Color = Color.FromArgb(255, 255, 202, 134);
                 }
             }
             xlSheet.Cells.HorizontalAlignment = 3;
@@ -207,22 +221,20 @@ namespace DB_Autoparts_NVA.Forms
             pdfTableUser.AddCell(new Phrase(users.phone, font));
            
             //Добавление в pdf Header
-            for (int j = 0; j < dataGridProductExport.ColumnCount; j++)
+            for (int j = 0; j < listItem.SubItems.Count; j++)
             {
-                if (j >= 1 && j <= 2) continue;
                 cell = new PdfPCell(
-                    new Phrase(new Phrase(dataGridProductExport.Columns[j].HeaderCell.Value.ToString(), font)));
+                    new Phrase(new Phrase(listView1.Columns[j].Text.ToString(), font)));
                 cell.BackgroundColor = new BaseColor(240, 240, 240);
                 pdfTable.AddCell(cell);
             }
-           
-            for (int i = 0; i < dataGridProductExport.RowCount; i++)
+
+            for (int k = 0; k < listView1.Items.Count; k++)
             {
-                for (int j = 0; j < dataGridProductExport.ColumnCount; j++)
+                for (int j = 0; j < listItem.SubItems.Count; j++)
                 {
-                    if (j >= 1 && j <= 2) continue;
                     pdfTable.AddCell(
-                        new Phrase(dataGridProductExport.Rows[i].Cells[j].Value.ToString(), font));
+                        new Phrase(listView1.Items[k].SubItems[j].Text, font));
                 }
             }
 

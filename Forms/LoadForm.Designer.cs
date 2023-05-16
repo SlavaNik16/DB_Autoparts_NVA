@@ -36,15 +36,15 @@
             // 
             // textLoad
             // 
-            this.textLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textLoad.AutoSize = true;
+            this.textLoad.Dock = System.Windows.Forms.DockStyle.Top;
             this.textLoad.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textLoad.Location = new System.Drawing.Point(94, 2);
+            this.textLoad.Location = new System.Drawing.Point(0, 0);
             this.textLoad.Name = "textLoad";
             this.textLoad.Size = new System.Drawing.Size(81, 21);
             this.textLoad.TabIndex = 1;
             this.textLoad.Text = "Загрузка";
-            this.textLoad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.textLoad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel1
             // 

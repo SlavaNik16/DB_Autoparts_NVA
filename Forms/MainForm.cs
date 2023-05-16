@@ -38,7 +38,7 @@ namespace DB_Autoparts_NVA
         public MainForm(Users users) : this()
         {
             userMy = users;
-            statusUser = ReturnStatusUser(options, users);
+            statusUser = userMy.status;
             contextMenuStrip2.Enabled = false;
             if (statusUser == "User")
             { 
