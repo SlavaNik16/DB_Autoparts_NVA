@@ -1,4 +1,5 @@
-﻿using DB_Autoparts_NVA.DB;
+﻿using DB_Autoparts_NVA.Colors;
+using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Models;
 using iTextSharp.text.pdf.qrcode;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,10 @@ namespace DB_Autoparts_NVA.Forms
         {
             InitializeComponent();
             options =DataBaseHelper.Option();
+            this.BackColor = ColorsHelp.ColorBackground;
+            groupBoxBack.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+            ColorsHelp.ButtonSubmit(butAddProduct);
+            ColorsHelp.ButtonCancel(butСancel);
         }
 
         private void butAddProduct_Click(object sender, EventArgs e)
@@ -73,5 +78,6 @@ namespace DB_Autoparts_NVA.Forms
                 (decimal.TryParse(txtBoxPriceOne.Text.ToString(),out price) && 
                 price > 100m && price < 99999.99m);
         }
+
     }
 }

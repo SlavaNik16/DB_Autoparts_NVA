@@ -56,12 +56,8 @@
             this.columnPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnIdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripText = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductDB)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -181,7 +177,7 @@
             this.butClose.TabIndex = 36;
             this.butClose.Text = "Закрыть";
             this.butClose.UseVisualStyleBackColor = true;
-            this.butClose.Click += new System.EventHandler(this.butClose_Click_1);
+            this.butClose.Click += new System.EventHandler(this.butClose_Click);
             // 
             // butSearch
             // 
@@ -270,10 +266,10 @@
             this.columnIdProductDataGridViewTextBoxColumn.DataPropertyName = "parts_id";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             this.columnIdProductDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.columnIdProductDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.columnIdProductDataGridViewTextBoxColumn.HeaderText = "№";
             this.columnIdProductDataGridViewTextBoxColumn.Name = "columnIdProductDataGridViewTextBoxColumn";
             this.columnIdProductDataGridViewTextBoxColumn.ReadOnly = true;
-            this.columnIdProductDataGridViewTextBoxColumn.Width = 41;
+            this.columnIdProductDataGridViewTextBoxColumn.Width = 43;
             // 
             // columnIdUserDataGridViewTextBoxColumn
             // 
@@ -329,35 +325,11 @@
             this.columnIdUser.ReadOnly = true;
             this.columnIdUser.Visible = false;
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripText,
-            this.progressBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 376);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(804, 24);
-            this.statusStrip1.TabIndex = 45;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // progressBar
-            // 
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(450, 18);
-            // 
-            // toolStripText
-            // 
-            this.toolStripText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.toolStripText.Name = "toolStripText";
-            this.toolStripText.Size = new System.Drawing.Size(85, 19);
-            this.toolStripText.Text = "Действыие";
-            // 
             // DBProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 400);
-            this.Controls.Add(this.statusStrip1);
+            this.ClientSize = new System.Drawing.Size(804, 380);
             this.Controls.Add(this.dataGridProductDB);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.searchBox);
@@ -369,14 +341,15 @@
             this.Controls.Add(this.butClose);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DBProductsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Продукты";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DBProductsForm_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductDB)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -405,8 +378,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnIdUser;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar progressBar;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripText;
     }
 }

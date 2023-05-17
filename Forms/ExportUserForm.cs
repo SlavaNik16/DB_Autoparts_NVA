@@ -18,6 +18,7 @@ using iTextSharp.text.html.simpleparser;
 using System.Xml.Linq;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
+using DB_Autoparts_NVA.Colors;
 
 namespace DB_Autoparts_NVA.Forms
 {
@@ -33,6 +34,9 @@ namespace DB_Autoparts_NVA.Forms
         {
             InitializeComponent();
             options = DataBaseHelper.Option();
+            this.BackColor = ColorsHelp.ColorBackground;
+            panelHeader.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+            ColorsHelp.ButtonSubmit(butExport);
         }
         public ExportUserForm(Users user) : this()
         {
@@ -54,14 +58,14 @@ namespace DB_Autoparts_NVA.Forms
                     l.PriceAll, 
                     l.DateBy.ToString()
                 });
-                listView1.Items.Add(listItem);
+                listView.Items.Add(listItem);
                
             } 
-            listView1.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
-            listView1.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.ColumnContent);
-            listView1.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.HeaderSize);
-            listView1.AutoResizeColumn(3, ColumnHeaderAutoResizeStyle.HeaderSize);
-            listView1.AutoResizeColumn(4, ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.None);
+            listView.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.None);
+            listView.AutoResizeColumn(3, ColumnHeaderAutoResizeStyle.HeaderSize);
+            listView.AutoResizeColumn(4, ColumnHeaderAutoResizeStyle.None);
             
         }
 
@@ -126,34 +130,26 @@ namespace DB_Autoparts_NVA.Forms
             xlSheet.Cells[i, 1] = "Телефон";
             xlSheet.Cells[i, 2] = users.phone;
 
-            xlSheet.Range[xlSheet.Cells[1, 1], xlSheet.Cells[i, 1]].Interior.Color = Color.Orange;
-            xlSheet.Range[xlSheet.Cells[1, 2], xlSheet.Cells[i, 2]].Interior.Color = Color.Coral;
-
             i++;//7
             xlSheet.Cells[i, 1] = "Всего: ";
             xlSheet.Cells[i, 1].HorizontalAlignment = HorizontalAlignment.Right;
             xlSheet.Cells[i, 2] = $"{priceAll:C2}";
-            xlSheet.Cells[i, 1].Interior.Color = Color.FromArgb(255, 66, 170, 255);
 
-            i += 2;//9
-            xlSheet.Range[xlSheet.Cells[i, 2], xlSheet.Cells[i, 4]].Merge(true);
-            xlSheet.Cells[i, 2] = "История покупок";
-            xlSheet.Cells[i, 2].Interior.Color = Color.FromArgb(255, 229, 81, 55);
+            xlSheet.Range[xlSheet.Cells[1, 1], xlSheet.Cells[i, 1]].Interior.Color = ColorsHelp.ColorButtonSubmit;
 
-            i++;//10;
-            xlSheet.Cells[i, 1] = "Id";
+            i+=2;//9
+            xlSheet.Cells[i, 1] = "N Заказа";
             xlSheet.Cells[i, 2] = "Продукт";
             xlSheet.Cells[i, 3] = "Кол-во";
             xlSheet.Cells[i, 4] = "Общая цена";
             xlSheet.Cells[i, 5] = "Дата покупки";
-            xlSheet.Range[xlSheet.Cells[i, 1], xlSheet.Cells[i, 5]].Interior.Color = Color.Orange;
-            i++;//11
-            for (int k = 0; k < listView1.Items.Count; k++)
+            xlSheet.Range[xlSheet.Cells[i, 1], xlSheet.Cells[i, 5]].Interior.Color = ColorsHelp.ColorButtonSubmit;
+            i++;//10
+            for (int k = 0; k < listView.Items.Count; k++)
             {
                 for (int j = 0; j < listItem.SubItems.Count; j++)
                 {
-                    xlSheet.Cells[k + i, j+1]= listView1.Items[k].SubItems[j].Text;
-                    xlSheet.Cells[k + i, j+1].Interior.Color = Color.FromArgb(255, 255, 202, 134);
+                    xlSheet.Cells[k + i, j+1]= listView.Items[k].SubItems[j].Text;
                 }
             }
             xlSheet.Cells.HorizontalAlignment = 3;
@@ -223,17 +219,17 @@ namespace DB_Autoparts_NVA.Forms
             for (int j = 0; j < listItem.SubItems.Count; j++)
             {
                 cell = new PdfPCell(
-                    new Phrase(new Phrase(listView1.Columns[j].Text.ToString(), font)));
+                    new Phrase(new Phrase(listView.Columns[j].Text.ToString(), font)));
                 cell.BackgroundColor = new BaseColor(240, 240, 240);
                 pdfTable.AddCell(cell);
             }
 
-            for (int k = 0; k < listView1.Items.Count; k++)
+            for (int k = 0; k < listView.Items.Count; k++)
             {
                 for (int j = 0; j < listItem.SubItems.Count; j++)
                 {
                     pdfTable.AddCell(
-                        new Phrase(listView1.Items[k].SubItems[j].Text, font));
+                        new Phrase(listView.Items[k].SubItems[j].Text, font));
                 }
             }
 
@@ -272,6 +268,21 @@ namespace DB_Autoparts_NVA.Forms
         private void ExportUserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             DialogResult = DialogResult.Yes;
+        }
+
+        private void listView_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            e.DrawDefault = true;
+            e.Item.BackColor = Color.FromArgb(200,248, 213, 104);
+            e.Item.UseItemStyleForSubItems = true;
+            
+        }
+
+        private void listView_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        {
+            e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(127, 232, 229)), e.Bounds);
+            e.DrawText();
+
         }
     }
 

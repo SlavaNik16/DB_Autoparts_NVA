@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IdentityModel.Protocols.WSTrust;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -20,7 +21,9 @@ namespace DB_Autoparts_NVA.Forms
     public partial class DBUsersForm : Form
     {
         public DbContextOptions<ApplicationContext> options;
-        private MainForm mainForm;
+        private Users usersMy = null;
+
+        private bool exit = false;
         public DBUsersForm()
         {
             InitializeComponent();
@@ -29,7 +32,7 @@ namespace DB_Autoparts_NVA.Forms
         }
         public DBUsersForm(Users user) : this()
         {
-            mainForm = new MainForm(user);
+            usersMy =user;
         }
         public void Init()
         {
@@ -54,14 +57,40 @@ namespace DB_Autoparts_NVA.Forms
                 ProgressBar.Value = 0;
                 return;
             }
-            mainForm.InitAdminDataGrid();
-            mainForm.Show();
-            this.Close();
+            exit = true;
+            if (usersMy == null) {
+                DialogResult = DialogResult.Cancel;
+            }
+            else
+            {
+                var loadForm = new LoadForm();
+                loadForm.Show();
+                loadForm.EditTextProgress("Закрытие формы", 45);
+                new Task(() =>
+                {
+                    var mainForm = new MainForm(usersMy);
+                    this.Invoke(new Action(() =>
+                    {
+                        mainForm.Show();
+                        loadForm.Close();
+                        this.Close();
+                    }));
+                }).Start();
+                Task.Delay(1000).Wait();
+                loadForm.EditTextProgress("Открытие главной формы ...", 65);
+                Task.Delay(1000).Wait();
+                loadForm.EditTextProgress("Обновление данных ...", 75);
+                Task.Delay(3000).Wait();
+                loadForm.EditTextProgress("Загрузка почти завершена ...", 95);
+                Task.Delay(1000).Wait();
+            }
+
         }
 
         private void butSearch_Click(object sender, EventArgs e)
         {
-           
+            var isSearch = false;
+
             for (int i = 0; i < dataGridUsersDB.ColumnCount; i++)
             {
                 for (int j = 0; j < dataGridUsersDB.RowCount; j++)
@@ -74,9 +103,14 @@ namespace DB_Autoparts_NVA.Forms
             {
                 if (dataGridUsersDB.Rows[i].Cells[1].Value.ToString().Contains(searchBox.Text))
                 {
+                    isSearch = true;
                     dataGridUsersDB.Rows[i].Cells[1].Style.BackColor = Color.AliceBlue;
                     dataGridUsersDB.Rows[i].Cells[1].Style.ForeColor = Color.Blue;
                 }
+            }
+            if (!isSearch)
+            {
+                MessageBox.Show("Ничего не найдено!");
             }
         }
 
@@ -133,6 +167,11 @@ namespace DB_Autoparts_NVA.Forms
         private void dataGridUsersDB_SelectionChanged(object sender, EventArgs e)
         {
             menuExport.Enabled = dataGridUsersDB.SelectedRows.Count > 0;
+
+            butEdit.Enabled =
+            butDelete.Enabled =
+                dataGridUsersDB.SelectedRows.Count > 0 && usersMy != null;
+
         }
 
         private void menuExport_Click(object sender, EventArgs e)
@@ -151,11 +190,21 @@ namespace DB_Autoparts_NVA.Forms
             ProgressBar.Value = 10;
             textTrip.Text = "Идет удаление пользователя";
             var user = (Users)dataGridUsersDB.Rows[dataGridUsersDB.SelectedRows[0].Index].DataBoundItem;
-            mainForm.DeleteUser(user);
-            ProgressBar.Value = 75;
-            textTrip.Text = "Почти закончено!";
-            Init();
-            textTrip.Text = "Процессс успешно завершено!";
+            if (user.status == "Admin")
+            {
+                MessageBox.Show("Вы не можете заблокировать другого Админа или себя!");
+                return;
+            }
+            if (MessageBox.Show($"Вы действительно хотите заблокировать пользователя с \n\rId: {user.user_id}" +
+                $"\n\rФамилия,Имя: {user.surname},{user.name}\n\rТелефон: {user.phone}",
+               "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MainForm.RemoveUsersDB(options, user.user_id);
+                ProgressBar.Value = 75;
+                textTrip.Text = "Почти закончено!";
+                Init();
+                textTrip.Text = "Процессс успешно завершено!";
+            }
         }
 
 
@@ -164,11 +213,26 @@ namespace DB_Autoparts_NVA.Forms
             ProgressBar.Value = 10;
             textTrip.Text = "Идет редактирование пользователя";
             var user = (Users)dataGridUsersDB.Rows[dataGridUsersDB.SelectedRows[0].Index].DataBoundItem;
-            mainForm.EditUser(user);
-            ProgressBar.Value = 75;
-            textTrip.Text = "Почти закончено!";
-            Init();
-            textTrip.Text = "Процессс успешно завершено!";
+            if (user.status == "Admin" && user.user_id != usersMy.user_id)
+            {
+                MessageBox.Show("Вы не можете редактировать другого Админа!");
+                return;
+            }
+            var usersForm = new UsersForm(user);
+            if (usersForm.ShowDialog() == DialogResult.OK)
+            {
+                MainForm.UpdateUsersDB(options, usersForm.Users);
+                ProgressBar.Value = 75;
+                textTrip.Text = "Почти закончено!";
+                Init();
+                textTrip.Text = "Процессс успешно завершено!";
+                ProgressBar.Value = 0;
+            }      
+        }
+
+        private void DBUsersForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(!exit)Application.Exit();
         }
     }
 }

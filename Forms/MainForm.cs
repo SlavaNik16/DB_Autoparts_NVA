@@ -33,19 +33,7 @@ namespace DB_Autoparts_NVA
         {
             InitializeComponent();
             options = DataBaseHelper.Option();
-            dataGridProduct.EnableHeadersVisualStyles = false;
-            dataGridUsers.EnableHeadersVisualStyles = false;
-            dataGridUsers.BackgroundColor = ColorsHelp.ColorBackground;
-            dataGridProduct.BackgroundColor = ColorsHelp.ColorBackground;
-            statusStrip1.BackColor = ColorsHelp.ColorBackgroundPanelBack;
-            toolStripDataUser.BackColor = ColorsHelp.ColorBackgroundPanelBack;
-            toolStripDataProduct.BackColor = ColorsHelp.ColorBackgroundPanelBack;
-            menuStrip.BackColor = ColorsHelp.ColorBackground;
-            EventHandlerMenu(ExportMenuItem);
-            EventHandlerMenu(menuDB);
-            EventHandlerMenu(helpMenuItem);
-            EventHandlerMenu(menuExit);
-            toolStripProgressBar1.Value = 0;
+
         }
         public MainForm(Users users) : this()
         {
@@ -53,7 +41,8 @@ namespace DB_Autoparts_NVA
             statusUser = userMy.status;
             contextMenuStrip2.Enabled = false;
             if (statusUser == "User")
-            { 
+            {
+                this.Text = "Магазин автозапчастей";
                 statusStripUserStatus.Text = "Статус: Пользователь";
                 menuDB.Enabled = false;
                 menuDBAutoparts.Enabled = false;
@@ -63,22 +52,23 @@ namespace DB_Autoparts_NVA
                 CountUsersStatusStrip.Visible = false;
                 MoneyUserStatusStrip.Visible = false;
                 dataGridProduct.Columns["columnIdUser"].Visible = false;
+                dataGridUsers.Columns["columnId"].Visible = false;
                 dataGridUsers.DataSource = ReadUser(options);
                 dataGridProduct.DataSource = FormatDataGridUser(options, userMy);
-                Status();
-            }else if(statusUser == "Admin")
-            { 
-                InitAdminDataGrid();
+
             }
-        }
-        public void InitAdminDataGrid()
-        {
-            statusStripUserStatus.Text = "Статус: Админ";
-            contextMenuStrip2.Enabled = true;
-            dataGridProduct.Columns["columnIdUser"].Visible = true;
-            dataGridProduct.Columns["columnIdUser"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridUsers.DataSource = ReadUserAll(options);
-            dataGridProduct.DataSource = FormatDataGridAdmin(options);
+            else if (statusUser == "Admin")
+            {
+                this.Text = "Учет продаж автозапчастей";
+                statusStripUserStatus.Text = "Статус: Админ";
+                contextMenuStrip2.Enabled = true;
+                dataGridProduct.Columns["columnIdUser"].Visible = true;
+                dataGridProduct.Columns["columnIdUser"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridUsers.Columns["columnId"].Visible = true;
+                dataGridUsers.Columns["columnId"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                dataGridUsers.DataSource = ReadUserAll(options);
+                dataGridProduct.DataSource = FormatDataGridAdmin(options);
+            }
             Status();
         }
 
@@ -103,7 +93,7 @@ namespace DB_Autoparts_NVA
 
         #region DBRequests
 
-        public static List<AutopartsFormat> FormatDataGridUser(DbContextOptions<ApplicationContext> options,Users user)
+        public static List<AutopartsFormat> FormatDataGridUser(DbContextOptions<ApplicationContext> options, Users user)
         {
             using (var db = new ApplicationContext(options))
             {
@@ -119,9 +109,9 @@ namespace DB_Autoparts_NVA
                     DateBy = x.dateBy
                 }
                 ).ToList();
-               return format;
+                return format;
             }
-        }  
+        }
         public static List<AutopartsFormat> FormatDataGridAdmin(DbContextOptions<ApplicationContext> options)
         {
             using (var db = new ApplicationContext(options))
@@ -138,22 +128,22 @@ namespace DB_Autoparts_NVA
                     DateBy = x.dateBy
                 }
                 ).ToList();
-                return format;   
+                return format;
             }
-        } 
+        }
         public static List<Users> FiltrPhoneAndGender(DbContextOptions<ApplicationContext> options,
             DateTime birthday, String gender, bool birthdayIsEnabled, bool genderIsEnabled)
         {
             using (var db = new ApplicationContext(options))
             {
-                if(birthdayIsEnabled && genderIsEnabled)
+                if (birthdayIsEnabled && genderIsEnabled)
                 {
                     return db.UserDB.Where(u => u.birthday == birthday && u.gender == gender).ToList();
 
                 }
                 else if (birthdayIsEnabled)
                 {
-                     return db.UserDB.Where(u =>u.birthday == birthday).ToList();
+                    return db.UserDB.Where(u => u.birthday == birthday).ToList();
                 }
                 else if (genderIsEnabled)
                 {
@@ -166,7 +156,7 @@ namespace DB_Autoparts_NVA
         {
             using (var db = new ApplicationContext(options))
             {
-                var tovar = db.AutopartDB.Where(x => 
+                var tovar = db.AutopartDB.Where(x =>
                 db.ProductDB.FirstOrDefault(f => f.id_product == x.product).title == productName).ToList();
                 var format = tovar.Select(x => new AutopartsFormat()
                 {
@@ -253,7 +243,7 @@ namespace DB_Autoparts_NVA
                 }
                 return null;
             }
-        } 
+        }
         public static List<AutopartsFormat> SortProductOrderByDescending(DbContextOptions<ApplicationContext> options, string columnName)
         {
             using (var db = new ApplicationContext(options))
@@ -289,14 +279,14 @@ namespace DB_Autoparts_NVA
         {
             using (var db = new ApplicationContext(options))
             {
-                return db.AutopartDB.Where(x => x.id_user == user.user_id).OrderByDescending(i=>i.parts_id).ToList();
+                return db.AutopartDB.Where(x => x.id_user == user.user_id).OrderByDescending(i => i.parts_id).ToList();
             }
         }
         public static List<Users> ReadUserAll(DbContextOptions<ApplicationContext> options)
         {
             using (var db = new ApplicationContext(options))
             {
-                var userList = db.UserDB.Where(x=>x.user_id != userMy.user_id).OrderByDescending(x => x.user_id).ToList();
+                var userList = db.UserDB.Where(x => x.user_id != userMy.user_id).OrderByDescending(x => x.user_id).ToList();
                 userList.Insert(0, userMy);
                 return userList;
             }
@@ -306,7 +296,7 @@ namespace DB_Autoparts_NVA
         {
             using (var db = new ApplicationContext(options))
             {
-                return db.AutopartDB.OrderByDescending(x=>x.parts_id).ToList();
+                return db.AutopartDB.OrderByDescending(x => x.parts_id).ToList();
             }
         }
         private static void ByTovarDB(DbContextOptions<ApplicationContext> options, Autoparts autoparts)
@@ -323,7 +313,7 @@ namespace DB_Autoparts_NVA
         {
             using (var db = new ApplicationContext(options))
             {
-                var product  = db.AutopartDB.FirstOrDefault(u => u.parts_id == autopartsId);
+                var product = db.AutopartDB.FirstOrDefault(u => u.parts_id == autopartsId);
                 if (product != null)
                 {
                     db.AutopartDB.Remove(product);
@@ -332,12 +322,12 @@ namespace DB_Autoparts_NVA
             }
 
         }
-        private static void RemoveUsersDB(DbContextOptions<ApplicationContext> options, int usersId)
+        public static void RemoveUsersDB(DbContextOptions<ApplicationContext> options, int usersId)
         {
             using (var db = new ApplicationContext(options))
             {
-                var user  = db.UserDB.FirstOrDefault(u => u.user_id == usersId);
-                
+                var user = db.UserDB.FirstOrDefault(u => u.user_id == usersId);
+
                 if (user != null)
                 {
                     var tovars = db.AutopartDB.Where(x => x.id_user == user.user_id).ToList();
@@ -348,7 +338,7 @@ namespace DB_Autoparts_NVA
             }
 
         }
-        private static void UpdateUsersDB(DbContextOptions<ApplicationContext> options, Users user)
+        public static void UpdateUsersDB(DbContextOptions<ApplicationContext> options, Users user)
         {
             using (var db = new ApplicationContext(options))
             {
@@ -368,30 +358,49 @@ namespace DB_Autoparts_NVA
 
         private void menuDBUsers_Click(object sender, EventArgs e)
         {
-            toolStripProgressBar1.Value = 30;
-            new Thread(() =>
+            var result = MessageBox.Show("Внимание! Вы уверены что готовы вносить изменения пользователям!", "Форма открытие окна!",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
             {
-                DBUsersForm dbUsersForm = new DBUsersForm(userMy);
-                this.Invoke(new Action(()=>{
-                    this.Close();
-                    dbUsersForm.Show();
-                }));
-            }).Start();
-            Task.Delay(1000).Wait();
-            toolStripProgressBar1.Value = 75;
-            Task.Delay(1000).Wait();
+                toolStripProgressBar1.Value = 30;
+                new Thread(() =>
+                {
+                    DBUsersForm dbUsersForm = new DBUsersForm(userMy);
+                    this.Invoke(new Action(() =>
+                    {
+                      
+                        dbUsersForm.Show();  
+                        this.Close();
+                    }));
+                }).Start();
+                Task.Delay(1000).Wait();
+                toolStripProgressBar1.Value = 75;
+                Task.Delay(1000).Wait();
+            }
+            else if (result == DialogResult.No)
+            {
+                toolStripProgressBar1.Value = 30;
+                DBUsersForm dbUsersForm = new DBUsersForm();
+                this.Visible = false;
+                if (dbUsersForm.ShowDialog() == DialogResult.Cancel)
+                {
+                    this.Visible = true;
+                }
+                toolStripProgressBar1.Value = 0;
+            }
+
         }
 
 
         private void toolAddProduct_Click(object sender, EventArgs e)
         {
             var byProductForm = new ByAutopartsForm();
-            if(byProductForm.ShowDialog() == DialogResult.OK)
+            if (byProductForm.ShowDialog() == DialogResult.OK)
             {
                 toolStripProgressBar1.Value = 0;
                 ByTovarDB(options, byProductForm.Autoparts);
                 toolStripProgressBar1.Value = 75;
-                dataGridProduct.DataSource = FormatDataGridUser(options,userMy);
+                dataGridProduct.DataSource = FormatDataGridUser(options, userMy);
                 toolStripProgressBar1.Value = 100;
                 Status();
                 toolStripProgressBar1.Value = 0;
@@ -412,7 +421,7 @@ namespace DB_Autoparts_NVA
                 MessageBox.Show($"Вы не можете удалить чужую покупку!");
                 return;
             }
-            if (MessageBox.Show($"Вы действительно хотите отменить покупку с \n\rId: {autopart.Parts_id}",
+            if (MessageBox.Show($"Вы действительно хотите отменить покупку с \n\rN: {autopart.Parts_id}",
                "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 toolStripProgressBar1.Value = 0;
@@ -422,32 +431,34 @@ namespace DB_Autoparts_NVA
                 Status();
                 toolStripProgressBar1.Value = 0;
             }
-            
+
         }
 
         private void Status()
         {
             var allMoney = AllMoney();
             AllMoneyStatusStrip.Text = $"Общая сумма: {allMoney:C2}";
-            CountUsersStatusStrip.Text = $"Кол-во пользователей: {ReadUserAll(options).Count}";
-            if (dataGridUsers.SelectedRows.Count > 0)
+            if (statusUser == "Admin")
             {
-                userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
-               
-                MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: { MoneyUser(userSelected)}";
+                CountUsersStatusStrip.Text = $"Кол-во пользователей: {ReadUserAll(options).Count}";
+                if (dataGridUsers.SelectedRows.Count > 0)
+                {
+                    userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
+
+                    MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: {MoneyUser(userSelected)}";
+                }
+                else
+                {
+                    MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: 0";
+                }
             }
-            else
-            {
-                MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: 0";
-            }
-            toolStripProgressBar1.Value = 0;
         }
 
-        public decimal MoneyUser(Users user)
+        public decimal MoneyUser(Users userSelect)
         {
             using (var db = new ApplicationContext(options))
             {
-                var tovar = db.AutopartDB.Where(x => x.id_user == userSelected.user_id).ToList();
+                var tovar = db.AutopartDB.Where(x => x.id_user == userSelect.user_id).ToList();
                 return tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price);
             }
         }
@@ -458,10 +469,9 @@ namespace DB_Autoparts_NVA
                 decimal allMoney = 0;
                 if (statusUser == "User")
                 {
-                    var tovar = db.AutopartDB.Where(x => x.id_user == userMy.user_id).ToList();
-                    allMoney = tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price);
+                    allMoney = MoneyUser(userMy);
                 }
-                else if(statusUser == "Admin")
+                else if (statusUser == "Admin")
                 {
                     var tovar = db.AutopartDB.ToList();
                     allMoney = tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price);
@@ -469,7 +479,7 @@ namespace DB_Autoparts_NVA
                 }
                 return allMoney;
             }
-           
+
         }
 
         private void menuExport_Click(object sender, EventArgs e)
@@ -480,7 +490,7 @@ namespace DB_Autoparts_NVA
             {
                 exportForm = new ExportUserForm(userMy);
             }
-            else if(statusUser == "Admin")
+            else if (statusUser == "Admin")
             {
                 exportForm = new ExportUserForm(userSelected);
             }
@@ -506,7 +516,7 @@ namespace DB_Autoparts_NVA
             {
                 MessageBox.Show("Вы уже повысили доступ!");
             }
-            
+
         }
 
         private void addKeyAdmin_Click(object sender, EventArgs e)
@@ -524,16 +534,15 @@ namespace DB_Autoparts_NVA
 
         private void dataGridUsers_SelectionChanged(object sender, EventArgs e)
         {
-            toolStripProgressBar1.Value = 0;
             if (statusUser == "Admin")
             {
                 menuExport.Enabled =
                 toolEdit.Enabled =
                 toolDelete.Enabled =
                      dataGridUsers.SelectedRows.Count > 0;
-               
+
                 if (dataGridUsers.SelectedRows.Count > 0)
-                { 
+                {
                     toolStripProgressBar1.Value = 50;
                     userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
                     dataGridProduct.DataSource = FormatDataGridUser(options, userSelected);
@@ -546,7 +555,6 @@ namespace DB_Autoparts_NVA
                     dataGridProduct.DataSource = FormatDataGridAdmin(options);
                 }
             }
-            toolStripProgressBar1.Value = 100;
             Status();
             toolStripProgressBar1.Value = 0;
 
@@ -555,25 +563,22 @@ namespace DB_Autoparts_NVA
         private void toolDelete_Click(object sender, EventArgs e)
         {
             userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
-            toolStripProgressBar1.Value = 0; 
-            DeleteUser(userSelected);
-            dataGridUsers.DataSource = ReadUserAll(options);
-            toolStripProgressBar1.Value = 75;
-            Status();
-        }
-
-        public void DeleteUser(Users user)
-        {
-            if (user.status == "Admin")
+            if (userSelected.status == "Admin")
             {
                 MessageBox.Show("Вы не можете заблокировать другого Админа или себя!");
                 return;
             }
-            if (MessageBox.Show($"Вы действительно хотите заблокировать пользователя с \n\rId: {user.user_id}" +
-                $"\n\rФамилия,Имя: {user.surname},{user.name}\n\rТелефон: {user.phone}",
+            if (MessageBox.Show($"Вы действительно хотите заблокировать пользователя с \n\rId: {userSelected.user_id}" +
+                $"\n\rФамилия,Имя: {userSelected.surname},{userSelected.name}\n\rТелефон: {userSelected.phone}",
                "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                RemoveUsersDB(options, user.user_id);
+                toolStripProgressBar1.Value = 25;
+                RemoveUsersDB(options, userSelected.user_id);
+                toolStripProgressBar1.Value = 50;
+                dataGridUsers.DataSource = ReadUserAll(options);
+                toolStripProgressBar1.Value = 75;
+                Status();
+                toolStripProgressBar1.Value = 0;
             }
         }
 
@@ -582,28 +587,22 @@ namespace DB_Autoparts_NVA
             userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
 
 
-            EditUser(userSelected);
-
-            toolStripProgressBar1.Value = 75;
-
-            dataGridUsers.DataSource = ReadUserAll(options);
-
-            Status();
-
-            toolStripProgressBar1.Value = 0;
-        }
-
-        public void EditUser(Users user)
-        {
-            if (user.status == "Admin" && user.user_id != userMy.user_id)
+            if (userSelected.status == "Admin" && userSelected.user_id != userMy.user_id)
             {
                 MessageBox.Show("Вы не можете редактировать другого Админа!");
                 return;
             }
-            var usersForm = new UsersForm(user);
+            var usersForm = new UsersForm(userSelected);
             if (usersForm.ShowDialog() == DialogResult.OK)
             {
+                toolStripProgressBar1.Value = 25;
                 UpdateUsersDB(options, usersForm.Users);
+                toolStripProgressBar1.Value = 50;
+
+                dataGridUsers.DataSource = ReadUserAll(options);
+                toolStripProgressBar1.Value = 75;
+                Status();
+                toolStripProgressBar1.Value = 0;
             }
         }
 
@@ -612,10 +611,15 @@ namespace DB_Autoparts_NVA
             toolStripProgressBar1.Value = 30;
             new Thread(() =>
             {
-                DBProductsForm dbProductsForm = new DBProductsForm(userMy); 
-                this.Invoke(new Action(() => {
-                    this.Close();
-                    dbProductsForm.Show();
+                DBProductsForm dbProductsForm = new DBProductsForm();
+                this.Invoke(new Action(() =>
+                {
+                    this.Visible = false;
+                    if (dbProductsForm.ShowDialog() == DialogResult.Cancel)
+                    {
+                        this.Visible = true;
+                        toolStripProgressBar1.Value = 0;
+                    }
                 }));
             }).Start();
             Task.Delay(1000).Wait();
@@ -632,6 +636,23 @@ namespace DB_Autoparts_NVA
         {
             var aboutProgram = new AboutProgramForm();
             aboutProgram.ShowDialog();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            dataGridProduct.EnableHeadersVisualStyles = false;
+            dataGridUsers.EnableHeadersVisualStyles = false;
+            dataGridUsers.BackgroundColor = ColorsHelp.ColorBackground;
+            dataGridProduct.BackgroundColor = ColorsHelp.ColorBackground;
+            statusStrip1.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+            toolStripDataUser.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+            toolStripDataProduct.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+            menuStrip.BackColor = ColorsHelp.ColorBackground;
+            EventHandlerMenu(ExportMenuItem);
+            EventHandlerMenu(menuDB);
+            EventHandlerMenu(helpMenuItem);
+            EventHandlerMenu(menuExit);
+            toolStripProgressBar1.Value = 0;
         }
     }
 }

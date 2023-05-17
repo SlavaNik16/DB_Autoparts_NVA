@@ -64,7 +64,7 @@
             this.panelHeader.Controls.Add(this.labelHeader);
             this.panelHeader.Controls.Add(this.logoCollegePictureBox);
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(534, 100);
             this.panelHeader.TabIndex = 1;
@@ -87,7 +87,7 @@
             this.logoCollegePictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.logoCollegePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.logoCollegePictureBox.Location = new System.Drawing.Point(15, 8);
-            this.logoCollegePictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.logoCollegePictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.logoCollegePictureBox.Name = "logoCollegePictureBox";
             this.logoCollegePictureBox.Size = new System.Drawing.Size(123, 82);
             this.logoCollegePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -101,7 +101,7 @@
             this.dateTimeBirthday.CalendarTitleForeColor = System.Drawing.Color.White;
             this.dateTimeBirthday.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimeBirthday.Location = new System.Drawing.Point(191, 279);
-            this.dateTimeBirthday.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimeBirthday.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimeBirthday.MaxDate = new System.DateTime(2007, 12, 31, 0, 0, 0, 0);
             this.dateTimeBirthday.MinDate = new System.DateTime(1972, 1, 1, 0, 0, 0, 0);
             this.dateTimeBirthday.Name = "dateTimeBirthday";
@@ -151,7 +151,7 @@
             // 
             this.txtBoxSurname.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.txtBoxSurname.Location = new System.Drawing.Point(16, 160);
-            this.txtBoxSurname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxSurname.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxSurname.Name = "txtBoxSurname";
             this.txtBoxSurname.Size = new System.Drawing.Size(237, 26);
             this.txtBoxSurname.TabIndex = 0;
@@ -163,7 +163,7 @@
             // 
             this.txtBoxName.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.txtBoxName.Location = new System.Drawing.Point(301, 160);
-            this.txtBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxName.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxName.Name = "txtBoxName";
             this.txtBoxName.Size = new System.Drawing.Size(223, 26);
             this.txtBoxName.TabIndex = 1;
@@ -180,7 +180,7 @@
             "Мужской",
             "Женский"});
             this.comboGender.Location = new System.Drawing.Point(236, 218);
-            this.comboGender.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboGender.Margin = new System.Windows.Forms.Padding(4);
             this.comboGender.Name = "comboGender";
             this.comboGender.Size = new System.Drawing.Size(140, 30);
             this.comboGender.TabIndex = 34;
@@ -215,7 +215,7 @@
             // 
             this.txtBoxEmail.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.txtBoxEmail.Location = new System.Drawing.Point(147, 322);
-            this.txtBoxEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxEmail.Name = "txtBoxEmail";
             this.txtBoxEmail.Size = new System.Drawing.Size(352, 26);
             this.txtBoxEmail.TabIndex = 2;
@@ -238,7 +238,7 @@
             // 
             this.txtBoxPhone.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.txtBoxPhone.Location = new System.Drawing.Point(146, 12);
-            this.txtBoxPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxPhone.Name = "txtBoxPhone";
             this.txtBoxPhone.Size = new System.Drawing.Size(352, 26);
             this.txtBoxPhone.TabIndex = 3;
@@ -253,7 +253,7 @@
             this.panelBack.Controls.Add(this.txtBoxPhone);
             this.panelBack.Controls.Add(this.label5);
             this.panelBack.Location = new System.Drawing.Point(1, 366);
-            this.panelBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelBack.Margin = new System.Windows.Forms.Padding(4);
             this.panelBack.Name = "panelBack";
             this.panelBack.Size = new System.Drawing.Size(533, 100);
             this.panelBack.TabIndex = 2;
@@ -262,7 +262,7 @@
             // 
             this.txtBoxPassword.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.txtBoxPassword.Location = new System.Drawing.Point(146, 60);
-            this.txtBoxPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxPassword.Name = "txtBoxPassword";
             this.txtBoxPassword.PasswordChar = '*';
             this.txtBoxPassword.Size = new System.Drawing.Size(352, 26);
@@ -288,7 +288,7 @@
             this.butSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.butSave.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.butSave.Location = new System.Drawing.Point(34, 476);
-            this.butSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.butSave.Margin = new System.Windows.Forms.Padding(4);
             this.butSave.Name = "butSave";
             this.butSave.Size = new System.Drawing.Size(158, 56);
             this.butSave.TabIndex = 5;
@@ -301,7 +301,7 @@
             this.butCansel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.butCansel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.butCansel.Location = new System.Drawing.Point(341, 476);
-            this.butCansel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.butCansel.Margin = new System.Windows.Forms.Padding(4);
             this.butCansel.Name = "butCansel";
             this.butCansel.Size = new System.Drawing.Size(158, 56);
             this.butCansel.TabIndex = 6;
@@ -338,7 +338,9 @@
             this.Controls.Add(this.panelHeader);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "UsersForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Регистрация нового пользователя";

@@ -125,6 +125,9 @@ namespace DB_Autoparts_NVA.Forms
             this.Controls.Add(this.label2);
             this.Controls.Add(this.butEnter);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "EnterUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Войти";

@@ -1,4 +1,5 @@
-﻿using DB_Autoparts_NVA.DB;
+﻿using DB_Autoparts_NVA.Colors;
+using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,27 +23,21 @@ namespace DB_Autoparts_NVA.Forms
         public ByAutopartsForm()
         {
             InitializeComponent();
+            this.BackColor = ColorsHelp.ColorBackground;
+            panelHeader.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+            ColorsHelp.ButtonSubmit(butSave);
+            ColorsHelp.ButtonCancel(butCancel);
             autoparts = new Autoparts();
             autoparts.count = 1;
             options = DataBaseHelper.Option();
             using (var db = new ApplicationContext(options))
-            {
+            { 
                 list = db.ProductDB.ToList();
-                if (list != null)
-                {
-                    FullComboBoxProduct(list);
-                }
+                list.ForEach(x=> comboProduct.Items.Add(x.title));
+                comboProduct.SelectedIndex = 0;
             }
         }
         public Autoparts Autoparts => autoparts;
-        private void FullComboBoxProduct(List<Product> list)
-        {
-            foreach (var product in list)
-            {
-                comboProduct.Items.Add(product.title);
-            }
-            comboProduct.SelectedIndex = 0;
-        }
 
         private void comboProduct_SelectedIndexChanged(object sender, EventArgs e)
         {

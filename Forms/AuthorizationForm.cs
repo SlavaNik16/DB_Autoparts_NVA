@@ -98,7 +98,6 @@ namespace DB_Autoparts_NVA.Forms
                         mainForm.Owner = this;
                         this.Invoke(new Action(() =>
                         {
-                            // this.Hide();
                             mainForm.Show();
                             loadForm.Close();
                             this.Hide();

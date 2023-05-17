@@ -15,41 +15,37 @@ namespace DB_Autoparts_NVA.Forms
     public partial class DBProductsForm : Form
     {
         public DbContextOptions<ApplicationContext> options;
-        private MainForm mainForm;
+        private Users userMy;
         private const int COLUMN_PRICE = 2;
+        private bool exit = false;
         public DBProductsForm()
         {
             InitializeComponent();
             options = DataBaseHelper.Option();
-        }
-        public DBProductsForm(Users user) : this()
-        {
-            mainForm = new MainForm(user);
             Init();
-
         }
         public void Init()
         {
-            toolStripText.Text = "";
             listBox.SelectedIndex = 0;
             using (var db = new ApplicationContext(options))
             {
                 var list = MainForm.FormatDataGridAdmin(options);
                 dataGridProductDB.DataSource = list;
                 comboTovar.DataSource = db.AutopartDB.Select(x =>
-                                        db.ProductDB.FirstOrDefault(f=>f.id_product == x.product).title).Distinct().ToList();
-               
+                                        db.ProductDB.FirstOrDefault(f => f.id_product == x.product).title).Distinct().ToList();
+
             }
 
         }
 
         private void butSearch_Click(object sender, EventArgs e)
         {
+            var isSearch = false;
             for (int i = 0; i < dataGridProductDB.ColumnCount; i++)
             {
                 for (int j = 0; j < dataGridProductDB.RowCount; j++)
                 {
-                    dataGridProductDB[i, j].Style.BackColor = Color.FromArgb(255,255, 251, 217);
+                    dataGridProductDB[i, j].Style.BackColor = Color.FromArgb(255, 255, 251, 217);
                     dataGridProductDB[i, j].Style.ForeColor = Color.Black;
                 }
             }
@@ -57,9 +53,14 @@ namespace DB_Autoparts_NVA.Forms
             {
                 if (dataGridProductDB.Rows[i].Cells[COLUMN_PRICE].Value.ToString().Contains(searchBox.Text))
                 {
+                    isSearch = true;
                     dataGridProductDB.Rows[i].Cells[COLUMN_PRICE].Style.BackColor = Color.AliceBlue;
                     dataGridProductDB.Rows[i].Cells[COLUMN_PRICE].Style.ForeColor = Color.Blue;
                 }
+            }
+            if (!isSearch)
+            {
+                MessageBox.Show("Ничего не найдено!");
             }
         }
 
@@ -94,26 +95,23 @@ namespace DB_Autoparts_NVA.Forms
             Init();
         }
 
-        private void DBProductsForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            mainForm.InitAdminDataGrid();
-            mainForm.Show();
-        }
 
-        private void butClose_Click_1(object sender, EventArgs e)
+
+
+        private void butClose_Click(object sender, EventArgs e)
         {
-            toolStripText.Text = "Процесс закрытие формы ...";
-            progressBar.Value = 75;
             if (MessageBox.Show("Вы уверены что хотите выйти!", "Приложение",
-                    MessageBoxButtons.YesNo) == DialogResult.No)
+                  MessageBoxButtons.YesNo) == DialogResult.No)
             {
-                toolStripText.Text = "Процесс закрытие формы отменен";
-                progressBar.Value = 0;
                 return;
             }
-            mainForm.InitAdminDataGrid();
-            mainForm.Show();
-            this.Close();
+
+            exit = true;
+            DialogResult = DialogResult.Cancel;
+        }
+            private void DBProductsForm_FormClosed(object sender, FormClosedEventArgs e)
+            {
+                if (!exit) Application.Exit();
+            }
         }
     }
-}
