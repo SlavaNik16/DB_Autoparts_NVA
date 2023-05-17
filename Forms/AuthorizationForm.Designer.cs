@@ -38,11 +38,12 @@
             // 
             // butEnter
             // 
-            this.butEnter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.butEnter.Font = new System.Drawing.Font("Times New Roman", 15.75F);
-            this.butEnter.Location = new System.Drawing.Point(69, 18);
+            this.butEnter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(163)))), ((int)(((byte)(208)))));
+            this.butEnter.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
+            this.butEnter.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butEnter.Location = new System.Drawing.Point(28, 18);
             this.butEnter.Name = "butEnter";
-            this.butEnter.Size = new System.Drawing.Size(121, 43);
+            this.butEnter.Size = new System.Drawing.Size(208, 43);
             this.butEnter.TabIndex = 0;
             this.butEnter.Text = "Войти";
             this.butEnter.UseVisualStyleBackColor = false;
@@ -50,20 +51,21 @@
             // 
             // butReg
             // 
-            this.butReg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.butReg.Font = new System.Drawing.Font("Times New Roman", 15.75F);
-            this.butReg.Location = new System.Drawing.Point(33, 67);
+            this.butReg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(163)))), ((int)(((byte)(208)))));
+            this.butReg.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
+            this.butReg.Font = new System.Drawing.Font("Century Gothic", 15.75F);
+            this.butReg.Location = new System.Drawing.Point(28, 67);
             this.butReg.Name = "butReg";
-            this.butReg.Size = new System.Drawing.Size(199, 43);
+            this.butReg.Size = new System.Drawing.Size(208, 43);
             this.butReg.TabIndex = 1;
-            this.butReg.Text = "Зарегистрироваться";
+            this.butReg.Text = "Регистрация";
             this.butReg.UseVisualStyleBackColor = false;
             this.butReg.Click += new System.EventHandler(this.butReg_Click);
             // 
             // butClose
             // 
-            this.butClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.butClose.Font = new System.Drawing.Font("Times New Roman", 15.75F);
+            this.butClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(51)))), ((int)(((byte)(0)))));
+            this.butClose.Font = new System.Drawing.Font("Century Gothic", 15.75F);
             this.butClose.Location = new System.Drawing.Point(54, 116);
             this.butClose.Name = "butClose";
             this.butClose.Size = new System.Drawing.Size(162, 43);
@@ -94,6 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(74)))), ((int)(((byte)(104)))));
             this.ClientSize = new System.Drawing.Size(262, 170);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.butClose);

@@ -1,4 +1,5 @@
-﻿using DB_Autoparts_NVA.Models;
+﻿using DB_Autoparts_NVA.Colors;
+using DB_Autoparts_NVA.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,9 @@ namespace DB_Autoparts_NVA.Forms
         public EnterUserForm()
         {
             InitializeComponent();
+            this.BackColor = ColorsHelp.ColorBackground;
+            ColorsHelp.ButtonSubmit(butEnter);
+            ColorsHelp.ButtonCancel(butCansel);
             user = new Users();
         }
 

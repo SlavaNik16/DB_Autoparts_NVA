@@ -1,4 +1,5 @@
-﻿using DB_Autoparts_NVA.DB;
+﻿using DB_Autoparts_NVA.Colors;
+using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -23,18 +24,19 @@ namespace DB_Autoparts_NVA.Forms
         public UpgradeStatusForm()
         {
             InitializeComponent();
+            butConfirm.Text = "Добавить";
+            this.Text = "Добавление ключа";
+            this.BackColor = ColorsHelp.ColorBackground;
+            ColorsHelp.ButtonSubmit(butConfirm);
+            ColorsHelp.ButtonCancel(butCancel);
+            panelHeader.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+
         }
         public UpgradeStatusForm(Users user):this()
         { 
             users = user;
             this.Text = "Повышение статуса";
-        }
-        public UpgradeStatusForm(String stat)
-        {
-            InitializeComponent();
-            status = stat;
-            butConfirm.Text = "Добавить";
-            this.Text = "Добавление ключа";
+            butConfirm.Text = "Подтвердить";
         }
 
         private void butConfirm_Click(object sender, EventArgs e)
@@ -60,7 +62,7 @@ namespace DB_Autoparts_NVA.Forms
                     db.SaveChanges();
                     returnMain();
                 }
-                else if(status == "Admin")
+                else
                 {
                     var key = new Keys();
                     key.keys = maskedTextBox1.Text.ToString();

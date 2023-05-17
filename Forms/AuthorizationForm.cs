@@ -1,4 +1,5 @@
-﻿using DB_Autoparts_NVA.DB;
+﻿using DB_Autoparts_NVA.Colors;
+using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,13 +17,15 @@ namespace DB_Autoparts_NVA.Forms
     public partial class AuthorizationForm : Form
     {
         public DbContextOptions<ApplicationContext> options;
-        private Stopwatch stopwatch;
         public AuthorizationForm()
         {
             InitializeComponent();
             options = DataBaseHelper.Option();
-            progressBarLoad.Value = 0;
-            stopwatch = new Stopwatch();
+            this.BackColor = ColorsHelp.ColorBackground;
+            ColorsHelp.ButtonSubmit(butReg);   
+            ColorsHelp.ButtonSubmit(butEnter);
+            ColorsHelp.ButtonCancel(butClose);
+
         }
 
         private void butClose_Click(object sender, EventArgs e)

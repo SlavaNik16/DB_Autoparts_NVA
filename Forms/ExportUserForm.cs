@@ -33,7 +33,6 @@ namespace DB_Autoparts_NVA.Forms
         {
             InitializeComponent();
             options = DataBaseHelper.Option();
-            dataGridProductExport.EnableHeadersVisualStyles = false;
         }
         public ExportUserForm(Users user) : this()
         {
@@ -164,7 +163,7 @@ namespace DB_Autoparts_NVA.Forms
 
         private void ExportPDf()
         {
-            PdfPTable pdfTable = new PdfPTable(dataGridProductExport.ColumnCount - 2);
+            PdfPTable pdfTable = new PdfPTable(listItem.SubItems.Count);
             pdfTable.DefaultCell.Padding = 3;
             pdfTable.WidthPercentage = 100;
             pdfTable.HorizontalAlignment = 3;

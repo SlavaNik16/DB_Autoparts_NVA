@@ -1,4 +1,5 @@
-﻿using DB_Autoparts_NVA.DB;
+﻿using DB_Autoparts_NVA.Colors;
+using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Forms;
 using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
@@ -33,6 +35,16 @@ namespace DB_Autoparts_NVA
             options = DataBaseHelper.Option();
             dataGridProduct.EnableHeadersVisualStyles = false;
             dataGridUsers.EnableHeadersVisualStyles = false;
+            dataGridUsers.BackgroundColor = ColorsHelp.ColorBackground;
+            dataGridProduct.BackgroundColor = ColorsHelp.ColorBackground;
+            statusStrip1.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+            toolStripDataUser.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+            toolStripDataProduct.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+            menuStrip.BackColor = ColorsHelp.ColorBackground;
+            EventHandlerMenu(ExportMenuItem);
+            EventHandlerMenu(menuDB);
+            EventHandlerMenu(helpMenuItem);
+            EventHandlerMenu(menuExit);
             toolStripProgressBar1.Value = 0;
         }
         public MainForm(Users users) : this()
@@ -42,8 +54,8 @@ namespace DB_Autoparts_NVA
             contextMenuStrip2.Enabled = false;
             if (statusUser == "User")
             { 
-                statusStripUserLabel.Text = "Статус: Пользователь";
-                menuBDUsers.Enabled = false;
+                statusStripUserStatus.Text = "Статус: Пользователь";
+                menuDB.Enabled = false;
                 menuDBAutoparts.Enabled = false;
                 toolEdit.Visible = false;
                 toolDelete.Visible = false;
@@ -61,13 +73,32 @@ namespace DB_Autoparts_NVA
         }
         public void InitAdminDataGrid()
         {
-            statusStripUserLabel.Text = "Статус: Админ";
+            statusStripUserStatus.Text = "Статус: Админ";
             contextMenuStrip2.Enabled = true;
             dataGridProduct.Columns["columnIdUser"].Visible = true;
             dataGridProduct.Columns["columnIdUser"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridUsers.DataSource = ReadUserAll(options);
             dataGridProduct.DataSource = FormatDataGridAdmin(options);
             Status();
+        }
+
+        private void EventHandlerMenu(ToolStripMenuItem menuItem)
+        {
+            menuItem.DropDownOpened += MenuItem_DropDownOpened;
+            menuItem.DropDownClosed += MenuItem_DropDownClosed;
+        }
+
+
+        private void MenuItem_DropDownClosed(object sender, EventArgs e)
+        {
+            var menuItem = sender as ToolStripMenuItem;
+            menuItem.ForeColor = Color.White;
+        }
+
+        private void MenuItem_DropDownOpened(object sender, EventArgs e)
+        {
+            var menuItem = sender as ToolStripMenuItem;
+            menuItem.ForeColor = Color.Black;
         }
 
         #region DBRequests
@@ -108,13 +139,6 @@ namespace DB_Autoparts_NVA
                 }
                 ).ToList();
                 return format;   
-            }
-        } 
-        private static string ReturnStatusUser(DbContextOptions<ApplicationContext> options, Users users)
-        {
-            using (var db = new ApplicationContext(options))
-            {
-                return db.UserDB.FirstOrDefault(u => u.phone == users.phone).status;
             }
         } 
         public static List<Users> FiltrPhoneAndGender(DbContextOptions<ApplicationContext> options,
@@ -344,12 +368,18 @@ namespace DB_Autoparts_NVA
 
         private void menuDBUsers_Click(object sender, EventArgs e)
         {
-            toolStripProgressBar1.Value = 0;
             toolStripProgressBar1.Value = 30;
-            DBUsersForm dbUsersForm = new DBUsersForm(userMy);
-            toolStripProgressBar1.Value = 70;
-            this.Close();
-            dbUsersForm.Show();
+            new Thread(() =>
+            {
+                DBUsersForm dbUsersForm = new DBUsersForm(userMy);
+                this.Invoke(new Action(()=>{
+                    this.Close();
+                    dbUsersForm.Show();
+                }));
+            }).Start();
+            Task.Delay(1000).Wait();
+            toolStripProgressBar1.Value = 75;
+            Task.Delay(1000).Wait();
         }
 
 
@@ -466,7 +496,7 @@ namespace DB_Autoparts_NVA
 
         private void menuUpgradeStatus_Click(object sender, EventArgs e)
         {
-            if (userMy.status == "User")
+            if (statusUser == "User")
             {
                 var upgradeStatus = new UpgradeStatusForm(userMy);
                 this.Close();
@@ -481,7 +511,7 @@ namespace DB_Autoparts_NVA
 
         private void addKeyAdmin_Click(object sender, EventArgs e)
         {
-            var keyForm = new UpgradeStatusForm(statusUser);
+            var keyForm = new UpgradeStatusForm();
             keyForm.Show();
 
         }
@@ -522,16 +552,6 @@ namespace DB_Autoparts_NVA
 
         }
 
-        private void dataGridUsers_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.RowIndex == 0 && e.ColumnIndex == 0 && userMy.status == "Admin") {
-                if (dataGridUsers.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == userMy.user_id.ToString())
-                {
-                    dataGridUsers.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
-                }
-            }
-        }
-
         private void toolDelete_Click(object sender, EventArgs e)
         {
             userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
@@ -560,11 +580,16 @@ namespace DB_Autoparts_NVA
         private void toolEdit_Click(object sender, EventArgs e)
         {
             userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
-            toolStripProgressBar1.Value = 0;
+
+
             EditUser(userSelected);
+
             toolStripProgressBar1.Value = 75;
+
             dataGridUsers.DataSource = ReadUserAll(options);
+
             Status();
+
             toolStripProgressBar1.Value = 0;
         }
 
@@ -584,12 +609,19 @@ namespace DB_Autoparts_NVA
 
         private void menuDBAutoparts_Click(object sender, EventArgs e)
         {
-            toolStripProgressBar1.Value = 0;
-            toolStripProgressBar1.Value = 10;
-            DBProductsForm dbProductsForm = new DBProductsForm(userMy);
-            toolStripProgressBar1.Value = 80;
-            this.Close();
-            dbProductsForm.Show();
+            toolStripProgressBar1.Value = 30;
+            new Thread(() =>
+            {
+                DBProductsForm dbProductsForm = new DBProductsForm(userMy); 
+                this.Invoke(new Action(() => {
+                    this.Close();
+                    dbProductsForm.Show();
+                }));
+            }).Start();
+            Task.Delay(1000).Wait();
+            toolStripProgressBar1.Value = 75;
+            Task.Delay(1000).Wait();
         }
+
     }
 }

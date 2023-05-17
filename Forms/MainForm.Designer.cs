@@ -29,32 +29,39 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.фаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.ExportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUpgradeStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.menuExport = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuBDUsers = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDB = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDBUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDBAutoparts = new System.Windows.Forms.ToolStripMenuItem();
-            this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridProduct = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.columnIdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnIdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnIdProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnIdUserSurname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripDataUser = new System.Windows.Forms.ToolStrip();
             this.toolEdit = new System.Windows.Forms.ToolStripButton();
             this.toolDelete = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripDataProduct = new System.Windows.Forms.ToolStrip();
             this.toolAddProduct = new System.Windows.Forms.ToolStripButton();
             this.toolDeleteProduct = new System.Windows.Forms.ToolStripButton();
             this.dataGridUsers = new System.Windows.Forms.DataGridView();
@@ -71,80 +78,80 @@
             this.CountUsersStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.MoneyUserStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.AllMoneyStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusStripUserLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStripUserStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addKeyAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.addProduct = new System.Windows.Forms.ToolStripMenuItem();
-            this.columnIdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnIdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnIdProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnIdUserSurname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.menuStrip1.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProduct)).BeginInit();
-            this.toolStrip1.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
+            this.toolStripDataUser.SuspendLayout();
+            this.toolStripDataProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.фаToolStripMenuItem,
-            this.menuBDUsers,
-            this.помощьToolStripMenuItem,
+            this.menuStrip.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ExportMenuItem,
+            this.menuDB,
+            this.helpMenuItem,
             this.menuExit});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1082, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(1082, 25);
+            this.menuStrip.TabIndex = 0;
+            this.menuStrip.Text = "menuStrip1";
             // 
-            // фаToolStripMenuItem
+            // ExportMenuItem
             // 
-            this.фаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ExportMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.ExportMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuUpgradeStatus,
             this.menuExport});
-            this.фаToolStripMenuItem.Name = "фаToolStripMenuItem";
-            this.фаToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.фаToolStripMenuItem.Text = "Экспорт";
+            this.ExportMenuItem.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ExportMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ExportMenuItem.Name = "ExportMenuItem";
+            this.ExportMenuItem.Size = new System.Drawing.Size(77, 21);
+            this.ExportMenuItem.Text = "Экспорт";
+            this.ExportMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             // 
             // menuUpgradeStatus
             // 
             this.menuUpgradeStatus.Name = "menuUpgradeStatus";
-            this.menuUpgradeStatus.Size = new System.Drawing.Size(197, 22);
+            this.menuUpgradeStatus.Size = new System.Drawing.Size(223, 22);
             this.menuUpgradeStatus.Text = "Повысить статус";
             this.menuUpgradeStatus.Click += new System.EventHandler(this.menuUpgradeStatus_Click);
             // 
             // menuExport
             // 
             this.menuExport.Name = "menuExport";
-            this.menuExport.Size = new System.Drawing.Size(197, 22);
+            this.menuExport.Size = new System.Drawing.Size(223, 22);
             this.menuExport.Text = "Экспорт пользователя";
             this.menuExport.Click += new System.EventHandler(this.menuExport_Click);
             // 
-            // menuBDUsers
+            // menuDB
             // 
-            this.menuBDUsers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuDB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuDBUsers,
             this.menuDBAutoparts});
-            this.menuBDUsers.Name = "menuBDUsers";
-            this.menuBDUsers.Size = new System.Drawing.Size(87, 20);
-            this.menuBDUsers.Text = "База данных";
+            this.menuDB.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.menuDB.ForeColor = System.Drawing.Color.White;
+            this.menuDB.Name = "menuDB";
+            this.menuDB.Size = new System.Drawing.Size(103, 21);
+            this.menuDB.Text = "База данных";
             // 
             // menuDBUsers
             // 
             this.menuDBUsers.Name = "menuDBUsers";
-            this.menuDBUsers.Size = new System.Drawing.Size(158, 22);
+            this.menuDBUsers.Size = new System.Drawing.Size(180, 22);
             this.menuDBUsers.Text = "Пользователей";
             this.menuDBUsers.Click += new System.EventHandler(this.menuDBUsers_Click);
             // 
@@ -155,31 +162,35 @@
             this.menuDBAutoparts.Text = "Автозапчастей";
             this.menuDBAutoparts.Click += new System.EventHandler(this.menuDBAutoparts_Click);
             // 
-            // помощьToolStripMenuItem
+            // helpMenuItem
             // 
-            this.помощьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.справкаToolStripMenuItem,
             this.оПрограммеToolStripMenuItem});
-            this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
-            this.помощьToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-            this.помощьToolStripMenuItem.Text = "Помощь";
+            this.helpMenuItem.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.helpMenuItem.ForeColor = System.Drawing.Color.White;
+            this.helpMenuItem.Name = "helpMenuItem";
+            this.helpMenuItem.Size = new System.Drawing.Size(77, 21);
+            this.helpMenuItem.Text = "Помощь";
             // 
             // справкаToolStripMenuItem
             // 
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.справкаToolStripMenuItem.Text = "Справка";
             // 
             // оПрограммеToolStripMenuItem
             // 
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             // 
             // menuExit
             // 
+            this.menuExit.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.menuExit.ForeColor = System.Drawing.Color.White;
             this.menuExit.Name = "menuExit";
-            this.menuExit.Size = new System.Drawing.Size(54, 20);
+            this.menuExit.Size = new System.Drawing.Size(59, 21);
             this.menuExit.Text = "Выход";
             this.menuExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
@@ -189,8 +200,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.89834F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.10166F));
             this.tableLayoutPanel1.Controls.Add(this.dataGridProduct, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.toolStrip2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.toolStripDataUser, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.toolStripDataProduct, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.dataGridUsers, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -206,14 +217,14 @@
             this.dataGridProduct.AllowUserToAddRows = false;
             this.dataGridProduct.AllowUserToDeleteRows = false;
             this.dataGridProduct.AllowUserToResizeRows = false;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnIdProduct,
@@ -223,89 +234,163 @@
             this.columnPrice,
             this.columnDate,
             this.columnIdUserSurname});
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridProduct.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridProduct.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridProduct.Location = new System.Drawing.Point(597, 28);
             this.dataGridProduct.MultiSelect = false;
             this.dataGridProduct.Name = "dataGridProduct";
             this.dataGridProduct.ReadOnly = true;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridProduct.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridProduct.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridProduct.Size = new System.Drawing.Size(482, 377);
             this.dataGridProduct.TabIndex = 3;
             this.dataGridProduct.SelectionChanged += new System.EventHandler(this.dataGridProduct_SelectionChanged);
             // 
-            // toolStrip1
+            // columnIdProduct
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.columnIdProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.columnIdProduct.DataPropertyName = "parts_id";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.columnIdProduct.DefaultCellStyle = dataGridViewCellStyle11;
+            this.columnIdProduct.HeaderText = "Id";
+            this.columnIdProduct.Name = "columnIdProduct";
+            this.columnIdProduct.ReadOnly = true;
+            this.columnIdProduct.Width = 41;
+            // 
+            // columnIdUser
+            // 
+            this.columnIdUser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.columnIdUser.DataPropertyName = "Id_user";
+            this.columnIdUser.HeaderText = "User";
+            this.columnIdUser.Name = "columnIdUser";
+            this.columnIdUser.ReadOnly = true;
+            this.columnIdUser.Visible = false;
+            // 
+            // columnIdProducts
+            // 
+            this.columnIdProducts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnIdProducts.DataPropertyName = "NameProduct";
+            this.columnIdProducts.HeaderText = "Продукт";
+            this.columnIdProducts.Name = "columnIdProducts";
+            this.columnIdProducts.ReadOnly = true;
+            // 
+            // columnCount
+            // 
+            this.columnCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.columnCount.DataPropertyName = "count";
+            dataGridViewCellStyle12.NullValue = "0";
+            this.columnCount.DefaultCellStyle = dataGridViewCellStyle12;
+            this.columnCount.HeaderText = "Кол-во";
+            this.columnCount.Name = "columnCount";
+            this.columnCount.ReadOnly = true;
+            this.columnCount.Width = 66;
+            // 
+            // columnPrice
+            // 
+            this.columnPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.columnPrice.DataPropertyName = "PriceAll";
+            dataGridViewCellStyle13.NullValue = "0";
+            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle13;
+            this.columnPrice.HeaderText = "Общая цена";
+            this.columnPrice.Name = "columnPrice";
+            this.columnPrice.ReadOnly = true;
+            this.columnPrice.Width = 94;
+            // 
+            // columnDate
+            // 
+            this.columnDate.DataPropertyName = "dateBy";
+            this.columnDate.HeaderText = "Дата покупки";
+            this.columnDate.Name = "columnDate";
+            this.columnDate.ReadOnly = true;
+            this.columnDate.Width = 119;
+            // 
+            // columnIdUserSurname
+            // 
+            this.columnIdUserSurname.DataPropertyName = "UserSurname";
+            this.columnIdUserSurname.HeaderText = "Фамилия";
+            this.columnIdUserSurname.Name = "columnIdUserSurname";
+            this.columnIdUserSurname.ReadOnly = true;
+            this.columnIdUserSurname.Visible = false;
+            // 
+            // toolStripDataUser
+            // 
+            this.toolStripDataUser.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.toolStripDataUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolEdit,
             this.toolDelete});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(594, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStripDataUser.Location = new System.Drawing.Point(0, 0);
+            this.toolStripDataUser.Name = "toolStripDataUser";
+            this.toolStripDataUser.Size = new System.Drawing.Size(594, 25);
+            this.toolStripDataUser.TabIndex = 0;
+            this.toolStripDataUser.Text = "toolStrip1";
             // 
             // toolEdit
             // 
+            this.toolEdit.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolEdit.ForeColor = System.Drawing.Color.Black;
             this.toolEdit.Image = global::DB_Autoparts_NVA.Properties.Resources.editIcon;
-            this.toolEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolEdit.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.toolEdit.Name = "toolEdit";
-            this.toolEdit.Size = new System.Drawing.Size(107, 22);
+            this.toolEdit.Size = new System.Drawing.Size(125, 22);
             this.toolEdit.Text = "Редактировать";
             this.toolEdit.Click += new System.EventHandler(this.toolEdit_Click);
             // 
             // toolDelete
             // 
+            this.toolDelete.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolDelete.ForeColor = System.Drawing.Color.Black;
             this.toolDelete.Image = global::DB_Autoparts_NVA.Properties.Resources.deleteIcon;
             this.toolDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolDelete.Name = "toolDelete";
-            this.toolDelete.Size = new System.Drawing.Size(98, 22);
+            this.toolDelete.Size = new System.Drawing.Size(110, 22);
             this.toolDelete.Text = "Блокировать";
             this.toolDelete.Click += new System.EventHandler(this.toolDelete_Click);
             // 
-            // toolStrip2
+            // toolStripDataProduct
             // 
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDataProduct.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.toolStripDataProduct.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolAddProduct,
             this.toolDeleteProduct});
-            this.toolStrip2.Location = new System.Drawing.Point(594, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(488, 25);
-            this.toolStrip2.TabIndex = 1;
-            this.toolStrip2.Text = "toolStrip2";
+            this.toolStripDataProduct.Location = new System.Drawing.Point(594, 0);
+            this.toolStripDataProduct.Name = "toolStripDataProduct";
+            this.toolStripDataProduct.Size = new System.Drawing.Size(488, 25);
+            this.toolStripDataProduct.TabIndex = 1;
+            this.toolStripDataProduct.Text = "toolStrip2";
             // 
             // toolAddProduct
             // 
-            this.toolAddProduct.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolAddProduct.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.toolAddProduct.ForeColor = System.Drawing.Color.Black;
             this.toolAddProduct.Image = global::DB_Autoparts_NVA.Properties.Resources.addProductIcon;
             this.toolAddProduct.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolAddProduct.Name = "toolAddProduct";
-            this.toolAddProduct.Size = new System.Drawing.Size(66, 22);
+            this.toolAddProduct.Size = new System.Drawing.Size(69, 22);
             this.toolAddProduct.Text = "Купить";
             this.toolAddProduct.Click += new System.EventHandler(this.toolAddProduct_Click);
             // 
             // toolDeleteProduct
             // 
             this.toolDeleteProduct.Enabled = false;
-            this.toolDeleteProduct.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolDeleteProduct.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.toolDeleteProduct.ForeColor = System.Drawing.Color.Black;
             this.toolDeleteProduct.Image = global::DB_Autoparts_NVA.Properties.Resources.deleteProductIcon;
             this.toolDeleteProduct.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolDeleteProduct.Name = "toolDeleteProduct";
-            this.toolDeleteProduct.Size = new System.Drawing.Size(70, 22);
+            this.toolDeleteProduct.Size = new System.Drawing.Size(79, 22);
             this.toolDeleteProduct.Text = "Удалить";
             this.toolDeleteProduct.Click += new System.EventHandler(this.toolDeleteProduct_Click);
             // 
@@ -314,14 +399,15 @@
             this.dataGridUsers.AllowUserToAddRows = false;
             this.dataGridUsers.AllowUserToDeleteRows = false;
             this.dataGridUsers.AllowUserToResizeRows = false;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
+            this.dataGridUsers.BackgroundColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnId,
@@ -333,31 +419,30 @@
             this.columnPhone,
             this.columnStatus,
             this.columnPassword});
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridUsers.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridUsers.DefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridUsers.Location = new System.Drawing.Point(3, 28);
             this.dataGridUsers.MultiSelect = false;
             this.dataGridUsers.Name = "dataGridUsers";
             this.dataGridUsers.ReadOnly = true;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridUsers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridUsers.Size = new System.Drawing.Size(588, 377);
             this.dataGridUsers.TabIndex = 2;
-            this.dataGridUsers.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridUsers_CellFormatting);
             this.dataGridUsers.SelectionChanged += new System.EventHandler(this.dataGridUsers_SelectionChanged);
             // 
             // columnId
@@ -435,13 +520,15 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.statusStrip1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CountUsersStatusStrip,
             this.MoneyUserStatusStrip,
             this.AllMoneyStatusStrip,
-            this.statusStripUserLabel,
+            this.statusStripUserStatus,
             this.toolStripProgressBar1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 435);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 432);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1082, 22);
             this.statusStrip1.TabIndex = 3;
@@ -449,35 +536,40 @@
             // 
             // CountUsersStatusStrip
             // 
-            this.CountUsersStatusStrip.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CountUsersStatusStrip.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CountUsersStatusStrip.ForeColor = System.Drawing.Color.Black;
             this.CountUsersStatusStrip.Name = "CountUsersStatusStrip";
-            this.CountUsersStatusStrip.Size = new System.Drawing.Size(139, 17);
+            this.CountUsersStatusStrip.Size = new System.Drawing.Size(166, 17);
             this.CountUsersStatusStrip.Text = "Кол-во пользователей: 0";
             // 
             // MoneyUserStatusStrip
             // 
-            this.MoneyUserStatusStrip.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MoneyUserStatusStrip.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MoneyUserStatusStrip.ForeColor = System.Drawing.Color.Black;
             this.MoneyUserStatusStrip.Name = "MoneyUserStatusStrip";
-            this.MoneyUserStatusStrip.Size = new System.Drawing.Size(209, 17);
+            this.MoneyUserStatusStrip.Size = new System.Drawing.Size(248, 17);
             this.MoneyUserStatusStrip.Text = "Прибыль от данного пользователя: 0";
             // 
             // AllMoneyStatusStrip
             // 
-            this.AllMoneyStatusStrip.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AllMoneyStatusStrip.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AllMoneyStatusStrip.ForeColor = System.Drawing.Color.Black;
             this.AllMoneyStatusStrip.Name = "AllMoneyStatusStrip";
-            this.AllMoneyStatusStrip.Size = new System.Drawing.Size(109, 17);
+            this.AllMoneyStatusStrip.Size = new System.Drawing.Size(131, 17);
             this.AllMoneyStatusStrip.Text = "Общая прибыль: 0";
             // 
-            // statusStripUserLabel
+            // statusStripUserStatus
             // 
-            this.statusStripUserLabel.Name = "statusStripUserLabel";
-            this.statusStripUserLabel.Size = new System.Drawing.Size(126, 17);
-            this.statusStripUserLabel.Text = "Статус: Пользователь";
+            this.statusStripUserStatus.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.statusStripUserStatus.ForeColor = System.Drawing.Color.Black;
+            this.statusStripUserStatus.Name = "statusStripUserStatus";
+            this.statusStripUserStatus.Size = new System.Drawing.Size(147, 17);
+            this.statusStripUserStatus.Text = "Статус: Пользователь";
             // 
             // toolStripProgressBar1
             // 
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(400, 16);
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(200, 16);
             // 
             // panel1
             // 
@@ -519,98 +611,31 @@
             this.addProduct.Text = "Продукт";
             this.addProduct.Click += new System.EventHandler(this.addProduct_Click);
             // 
-            // columnIdProduct
-            // 
-            this.columnIdProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.columnIdProduct.DataPropertyName = "parts_id";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.columnIdProduct.DefaultCellStyle = dataGridViewCellStyle20;
-            this.columnIdProduct.HeaderText = "Id";
-            this.columnIdProduct.Name = "columnIdProduct";
-            this.columnIdProduct.ReadOnly = true;
-            this.columnIdProduct.Width = 41;
-            // 
-            // columnIdUser
-            // 
-            this.columnIdUser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.columnIdUser.DataPropertyName = "Id_user";
-            this.columnIdUser.HeaderText = "User";
-            this.columnIdUser.Name = "columnIdUser";
-            this.columnIdUser.ReadOnly = true;
-            this.columnIdUser.Visible = false;
-            this.columnIdUser.Width = 54;
-            // 
-            // columnIdProducts
-            // 
-            this.columnIdProducts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnIdProducts.DataPropertyName = "NameProduct";
-            this.columnIdProducts.HeaderText = "Продукт";
-            this.columnIdProducts.Name = "columnIdProducts";
-            this.columnIdProducts.ReadOnly = true;
-            // 
-            // columnCount
-            // 
-            this.columnCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.columnCount.DataPropertyName = "count";
-            dataGridViewCellStyle21.NullValue = "0";
-            this.columnCount.DefaultCellStyle = dataGridViewCellStyle21;
-            this.columnCount.HeaderText = "Кол-во";
-            this.columnCount.Name = "columnCount";
-            this.columnCount.ReadOnly = true;
-            this.columnCount.Width = 66;
-            // 
-            // columnPrice
-            // 
-            this.columnPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.columnPrice.DataPropertyName = "PriceAll";
-            dataGridViewCellStyle22.NullValue = "0";
-            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle22;
-            this.columnPrice.HeaderText = "Общая цена";
-            this.columnPrice.Name = "columnPrice";
-            this.columnPrice.ReadOnly = true;
-            this.columnPrice.Width = 94;
-            // 
-            // columnDate
-            // 
-            this.columnDate.DataPropertyName = "dateBy";
-            this.columnDate.HeaderText = "Дата покупки";
-            this.columnDate.Name = "columnDate";
-            this.columnDate.ReadOnly = true;
-            this.columnDate.Width = 119;
-            // 
-            // columnIdUserSurname
-            // 
-            this.columnIdUserSurname.DataPropertyName = "UserSurname";
-            this.columnIdUserSurname.HeaderText = "Фамилия";
-            this.columnIdUserSurname.Name = "columnIdUserSurname";
-            this.columnIdUserSurname.ReadOnly = true;
-            this.columnIdUserSurname.Visible = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 457);
+            this.ClientSize = new System.Drawing.Size(1082, 454);
             this.ContextMenuStrip = this.contextMenuStrip2;
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Учет продаж автозапчастей";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProduct)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
+            this.toolStripDataUser.ResumeLayout(false);
+            this.toolStripDataUser.PerformLayout();
+            this.toolStripDataProduct.ResumeLayout(false);
+            this.toolStripDataProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -623,20 +648,20 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem фаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem ExportMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuExit;
         private System.Windows.Forms.ToolStripMenuItem menuUpgradeStatus;
-        private System.Windows.Forms.ToolStripMenuItem menuBDUsers;
+        private System.Windows.Forms.ToolStripMenuItem menuDB;
         private System.Windows.Forms.ToolStripMenuItem menuDBUsers;
         private System.Windows.Forms.ToolStripMenuItem menuDBAutoparts;
         private System.Windows.Forms.ToolStripMenuItem menuExport;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStripDataUser;
         private System.Windows.Forms.ToolStripButton toolEdit;
         private System.Windows.Forms.ToolStripButton toolDelete;
-        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStrip toolStripDataProduct;
         private System.Windows.Forms.DataGridView dataGridUsers;
         private System.Windows.Forms.DataGridView dataGridProduct;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -657,7 +682,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnPhone;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnPassword;
-        private System.Windows.Forms.ToolStripStatusLabel statusStripUserLabel;
+        private System.Windows.Forms.ToolStripStatusLabel statusStripUserStatus;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addKeyAdmin;

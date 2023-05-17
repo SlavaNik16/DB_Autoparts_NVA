@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DB_Autoparts_NVA.Colors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,7 @@ namespace DB_Autoparts_NVA.Forms
             this.AllowTransparency = true;
             this.BackColor = Color.AliceBlue;
             this.TransparencyKey = this.BackColor;
+            panelHead.BackColor = ColorsHelp.ColorButtonSubmit;
             progressBarLoad.Value = 0;
             textLoad.Text = "Загрузка ...";
 
