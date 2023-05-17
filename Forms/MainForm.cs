@@ -623,5 +623,15 @@ namespace DB_Autoparts_NVA
             Task.Delay(1000).Wait();
         }
 
+        private void menuHelpProvider_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, helpProvider.HelpNamespace);
+        }
+
+        private void menuAboutProgram_Click(object sender, EventArgs e)
+        {
+            var aboutProgram = new AboutProgramForm();
+            aboutProgram.ShowDialog();
+        }
     }
 }

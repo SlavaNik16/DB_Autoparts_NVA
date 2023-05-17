@@ -40,7 +40,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.maskedTextBox1);
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(392, 75);
@@ -51,7 +54,7 @@
             // maskedTextBox1
             // 
             this.maskedTextBox1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.maskedTextBox1.Location = new System.Drawing.Point(6, 19);
+            this.maskedTextBox1.Location = new System.Drawing.Point(6, 23);
             this.maskedTextBox1.Mask = "aaaa-aaaa-aaaa-aaaa";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(380, 39);
@@ -70,7 +73,7 @@
             // butConfirm
             // 
             this.butConfirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.butConfirm.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butConfirm.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.butConfirm.Location = new System.Drawing.Point(18, 106);
             this.butConfirm.Name = "butConfirm";
             this.butConfirm.Size = new System.Drawing.Size(173, 39);
@@ -83,10 +86,10 @@
             // 
             this.butCancel.BackColor = System.Drawing.Color.LightGray;
             this.butCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.butCancel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.butCancel.Location = new System.Drawing.Point(332, 106);
+            this.butCancel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butCancel.Location = new System.Drawing.Point(307, 106);
             this.butCancel.Name = "butCancel";
-            this.butCancel.Size = new System.Drawing.Size(66, 39);
+            this.butCancel.Size = new System.Drawing.Size(91, 39);
             this.butCancel.TabIndex = 3;
             this.butCancel.Text = "Отмена";
             this.butCancel.UseVisualStyleBackColor = false;

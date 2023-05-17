@@ -46,8 +46,8 @@
             this.menuDBUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDBAutoparts = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuHelpProvider = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAboutProgram = new System.Windows.Forms.ToolStripMenuItem();
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridProduct = new System.Windows.Forms.DataGridView();
@@ -85,6 +85,7 @@
             this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addKeyAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.addProduct = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpProvider = new System.Windows.Forms.HelpProvider();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProduct)).BeginInit();
@@ -165,25 +166,27 @@
             // helpMenuItem
             // 
             this.helpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.справкаToolStripMenuItem,
-            this.оПрограммеToolStripMenuItem});
+            this.menuHelpProvider,
+            this.menuAboutProgram});
             this.helpMenuItem.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.helpMenuItem.ForeColor = System.Drawing.Color.White;
             this.helpMenuItem.Name = "helpMenuItem";
             this.helpMenuItem.Size = new System.Drawing.Size(77, 21);
             this.helpMenuItem.Text = "Помощь";
             // 
-            // справкаToolStripMenuItem
+            // menuHelpProvider
             // 
-            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.справкаToolStripMenuItem.Text = "Справка";
+            this.menuHelpProvider.Name = "menuHelpProvider";
+            this.menuHelpProvider.Size = new System.Drawing.Size(180, 22);
+            this.menuHelpProvider.Text = "Справка";
+            this.menuHelpProvider.Click += new System.EventHandler(this.menuHelpProvider_Click);
             // 
-            // оПрограммеToolStripMenuItem
+            // menuAboutProgram
             // 
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
+            this.menuAboutProgram.Name = "menuAboutProgram";
+            this.menuAboutProgram.Size = new System.Drawing.Size(180, 22);
+            this.menuAboutProgram.Text = "О программе";
+            this.menuAboutProgram.Click += new System.EventHandler(this.menuAboutProgram_Click);
             // 
             // menuExit
             // 
@@ -611,6 +614,11 @@
             this.addProduct.Text = "Продукт";
             this.addProduct.Click += new System.EventHandler(this.addProduct_Click);
             // 
+            // helpProvider
+            // 
+            this.helpProvider.HelpNamespace = "C:\\Users\\nikol\\OneDrive\\Рабочий стол\\Дополнение\\C#\\DB_Autoparts_NVA\\Пользовательс" +
+    "кое соглашение.txt";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -671,8 +679,8 @@
         private System.Windows.Forms.ToolStripButton toolAddProduct;
         private System.Windows.Forms.ToolStripButton toolDeleteProduct;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuHelpProvider;
+        private System.Windows.Forms.ToolStripMenuItem menuAboutProgram;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnId;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnSurname;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnName;
@@ -695,6 +703,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnIdUserSurname;
+        private System.Windows.Forms.HelpProvider helpProvider;
     }
 }
 
