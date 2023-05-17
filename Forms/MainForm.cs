@@ -368,8 +368,8 @@ namespace DB_Autoparts_NVA
                     DBUsersForm dbUsersForm = new DBUsersForm(userMy);
                     this.Invoke(new Action(() =>
                     {
-                      
-                        dbUsersForm.Show();  
+
+                        dbUsersForm.Show();
                         this.Close();
                     }));
                 }).Start();
@@ -484,24 +484,37 @@ namespace DB_Autoparts_NVA
 
         private void menuExport_Click(object sender, EventArgs e)
         {
-            toolStripProgressBar1.Value = 60;
-            ExportUserForm exportForm = null;
-            if (statusUser == "User")
+            toolStripProgressBar1.Value = 30;
+            new Thread(() =>
             {
-                exportForm = new ExportUserForm(userMy);
-            }
-            else if (statusUser == "Admin")
-            {
-                exportForm = new ExportUserForm(userSelected);
-            }
-            toolStripProgressBar1.Value = 75;
-            this.Visible = false;
-            toolStripProgressBar1.Value = 100;
-            if (exportForm.ShowDialog() == DialogResult.Yes)
-            {
-                this.Visible = true;
-            }
-            toolStripProgressBar1.Value = 0;
+                ExportUserForm exportForm = null;
+                if (statusUser == "User")
+                {
+                    exportForm = new ExportUserForm(userMy);
+                }
+                else if (statusUser == "Admin")
+                {
+                    exportForm = new ExportUserForm(userSelected);
+                }
+                this.Invoke(new Action(() =>
+                {
+                    toolStripProgressBar1.Value = 80;
+                    this.Visible = false;
+                }));
+                
+                if (exportForm.ShowDialog() == DialogResult.Yes)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        this.Visible = true;
+                        toolStripProgressBar1.Value = 0;
+                    }));
+                }
+
+            }).Start();
+            Task.Delay(1000).Wait();
+            toolStripProgressBar1.Value = 50;
+            Task.Delay(1000).Wait();
         }
 
         private void menuUpgradeStatus_Click(object sender, EventArgs e)

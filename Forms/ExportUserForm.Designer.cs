@@ -54,7 +54,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(794, 57);
+            this.label1.Size = new System.Drawing.Size(794, 39);
             this.label1.TabIndex = 1;
             this.label1.Text = "Экспорт пользователя";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -91,9 +91,9 @@
             this.panelHeader.Controls.Add(this.labelPhone);
             this.panelHeader.Controls.Add(this.labelFIO);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelHeader.Location = new System.Drawing.Point(3, 60);
+            this.panelHeader.Location = new System.Drawing.Point(3, 42);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(794, 94);
+            this.panelHeader.Size = new System.Drawing.Size(794, 92);
             this.panelHeader.TabIndex = 4;
             // 
             // comboBoxTypeExport
@@ -124,9 +124,9 @@
             this.butExport.BackColor = System.Drawing.Color.Goldenrod;
             this.butExport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.butExport.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.butExport.Location = new System.Drawing.Point(3, 311);
+            this.butExport.Location = new System.Drawing.Point(3, 317);
             this.butExport.Name = "butExport";
-            this.butExport.Size = new System.Drawing.Size(794, 81);
+            this.butExport.Size = new System.Drawing.Size(794, 75);
             this.butExport.TabIndex = 6;
             this.butExport.Text = "Экспорт";
             this.butExport.UseVisualStyleBackColor = false;
@@ -145,11 +145,11 @@
             this.listView.FullRowSelect = true;
             this.listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView.HideSelection = false;
-            this.listView.Location = new System.Drawing.Point(3, 160);
+            this.listView.Location = new System.Drawing.Point(3, 140);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
             this.listView.OwnerDraw = true;
-            this.listView.Size = new System.Drawing.Size(794, 145);
+            this.listView.Size = new System.Drawing.Size(794, 171);
             this.listView.TabIndex = 9;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -183,7 +183,7 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.butExport, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.panelHeader, 0, 1);
@@ -192,13 +192,10 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 151F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 87F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 395);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
@@ -208,8 +205,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 395);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "ExportUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Экспорт товаров пользователя";
