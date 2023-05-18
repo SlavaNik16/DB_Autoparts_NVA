@@ -21,8 +21,8 @@ namespace DB_Autoparts_NVA.Forms
         public DBProductsForm()
         {
             InitializeComponent();
+            this.dataGridProductDB.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             options = DataBaseHelper.Option();
-            Init();
         }
         public void Init()
         {
@@ -109,9 +109,15 @@ namespace DB_Autoparts_NVA.Forms
             exit = true;
             DialogResult = DialogResult.Cancel;
         }
-            private void DBProductsForm_FormClosed(object sender, FormClosedEventArgs e)
-            {
-                if (!exit) Application.Exit();
-            }
+        private void DBProductsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!exit) Application.Exit();
+        }
+
+        private void DBProductsForm_Load(object sender, EventArgs e)
+        {
+            this.dataGridProductDB.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Init();
         }
     }
+}

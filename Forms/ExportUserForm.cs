@@ -28,7 +28,6 @@ namespace DB_Autoparts_NVA.Forms
         public ListViewItem listItem;
         public DbContextOptions<ApplicationContext> options;
         private decimal priceAll;
-        private int index = 0;
         private Users users = null;
         public ExportUserForm()
         {
@@ -45,31 +44,33 @@ namespace DB_Autoparts_NVA.Forms
             priceAll =new MainForm(users).AllMoney();
             if (user.status == "Admin") priceAll = new MainForm().MoneyUser(user);
             labelFIO.Text = $"{user.surname} {user.name}";
-            labelPhone.Text = user.phone.ToString();
-            var lists = MainForm.FormatDataGridUser(options, users);
+            labelPhone.Text = user.phone.ToString(); 
             FullComboType();
-        
+        }
+
+        private void InitListView()
+        {
+            var lists = MainForm.FormatDataGridUser(options, users);
+
+
             foreach (var l in lists)
             {
                 listItem = new ListViewItem(new string[] {
                     l.Parts_id.ToString(),
                     l.NameProduct,
                     l.Count.ToString(),
-                    l.PriceAll, 
+                    l.PriceAll,
                     l.DateBy.ToString()
                 });
                 listView.Items.Add(listItem);
-               
-            } 
+
+            }
             listView.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.None);
             listView.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.ColumnContent);
             listView.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.None);
             listView.AutoResizeColumn(3, ColumnHeaderAutoResizeStyle.HeaderSize);
             listView.AutoResizeColumn(4, ColumnHeaderAutoResizeStyle.None);
-            
         }
-
-     
         private void FullComboType()
         {
             foreach(var text in list)
@@ -82,12 +83,11 @@ namespace DB_Autoparts_NVA.Forms
 
         private void comboBoxTypeExport_SelectedIndexChanged(object sender, EventArgs e)
         {
-            index = comboBoxTypeExport.SelectedIndex;
         }
 
         private void butExport_Click(object sender, EventArgs e)
         {
-            switch (index)
+            switch (comboBoxTypeExport.SelectedIndex)
             {
                 case 0:
                     ExportExcel();
@@ -283,6 +283,11 @@ namespace DB_Autoparts_NVA.Forms
             e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(127, 232, 229)), e.Bounds);
             e.DrawText();
 
+        }
+
+        private void ExportUserForm_Load(object sender, EventArgs e)
+        {
+            InitListView();
         }
     }
 

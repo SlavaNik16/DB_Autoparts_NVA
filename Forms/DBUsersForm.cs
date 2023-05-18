@@ -27,15 +27,16 @@ namespace DB_Autoparts_NVA.Forms
         public DBUsersForm()
         {
             InitializeComponent();
+            this.dataGridUsersDB.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             options = DataBaseHelper.Option();
-            Init();
         }
         public DBUsersForm(Users user) : this()
         {
-            usersMy =user;
+            usersMy = user;
         }
         public void Init()
         {
+
             listBox.SelectedIndex = 0;
             using (var db = new ApplicationContext(options))
             {
@@ -44,7 +45,7 @@ namespace DB_Autoparts_NVA.Forms
                 dataGridUsersDB.DataSource = db.UserDB.OrderBy(x => x.user_id).ToList();
             }
             ProgressBar.Value = 0;
-           
+
         }
         private void butClose_Click(object sender, EventArgs e)
         {
@@ -58,32 +59,7 @@ namespace DB_Autoparts_NVA.Forms
                 return;
             }
             exit = true;
-            if (usersMy == null) {
-                DialogResult = DialogResult.Cancel;
-            }
-            else
-            {
-                var loadForm = new LoadForm();
-                loadForm.Show();
-                loadForm.EditTextProgress("Закрытие формы", 45);
-                new Task(() =>
-                {
-                    var mainForm = new MainForm(usersMy);
-                    this.Invoke(new Action(() =>
-                    {
-                        mainForm.Show();
-                        loadForm.Close();
-                        this.Close();
-                    }));
-                }).Start();
-                Task.Delay(1000).Wait();
-                loadForm.EditTextProgress("Открытие главной формы ...", 65);
-                Task.Delay(1000).Wait();
-                loadForm.EditTextProgress("Обновление данных ...", 75);
-                Task.Delay(3000).Wait();
-                loadForm.EditTextProgress("Загрузка почти завершена ...", 95);
-                Task.Delay(1000).Wait();
-            }
+            DialogResult = DialogResult.Retry;
 
         }
 
@@ -126,22 +102,22 @@ namespace DB_Autoparts_NVA.Forms
                 dataGridUsersDB.DataSource = filtr;
             }
         }
-           
+
 
         private void butSort_Click(object sender, EventArgs e)
         {
             if (listBox.SelectedIndex != -1)
             {
                 string colName = "";
-                if(listBox.SelectedIndex >= 3)
+                if (listBox.SelectedIndex >= 3)
                 {
-                    colName = dataGridUsersDB.Columns[listBox.SelectedIndex+1].DataPropertyName;
+                    colName = dataGridUsersDB.Columns[listBox.SelectedIndex + 1].DataPropertyName;
                 }
                 else
                 {
                     colName = dataGridUsersDB.Columns[listBox.SelectedIndex].DataPropertyName;
                 }
-                
+
                 if (radioOrder.Checked)
                     dataGridUsersDB.DataSource = MainForm.SortUsersOrderBy(options, colName);
                 else
@@ -161,28 +137,46 @@ namespace DB_Autoparts_NVA.Forms
 
         private void butViewAll_Click(object sender, EventArgs e)
         {
-           Init();
+            Init();
         }
 
         private void dataGridUsersDB_SelectionChanged(object sender, EventArgs e)
         {
-            menuExport.Enabled = dataGridUsersDB.SelectedRows.Count > 0;
-
+            menuExport.Enabled =
             butEdit.Enabled =
             butDelete.Enabled =
-                dataGridUsersDB.SelectedRows.Count > 0 && usersMy != null;
+                    dataGridUsersDB.SelectedRows.Count > 0;
 
         }
 
         private void menuExport_Click(object sender, EventArgs e)
         {
-            var user = (Users)dataGridUsersDB.Rows[dataGridUsersDB.SelectedRows[0].Index].DataBoundItem;
-            var exportForm = new ExportUserForm(user);
-            this.Visible = false;
-            if (exportForm.ShowDialog() == DialogResult.Yes)
+            textTrip.Text = "Подготовка пользователя к экспорту";
+            ProgressBar.Value = 20;
+
+            new Thread(() =>
             {
-                this.Visible = true;
-            }
+                var user = (Users)dataGridUsersDB.Rows[dataGridUsersDB.SelectedRows[0].Index].DataBoundItem;
+                ExportUserForm exportForm = new ExportUserForm(user);
+                this.Invoke(new Action(() =>
+                {
+                    this.Visible = false;
+                }));
+                if (exportForm.ShowDialog() == DialogResult.Yes)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        this.Visible = true;
+                       // textTrip.Text = "Действие";
+                        //ProgressBar.Value = 0;
+                    }));
+                }
+            }).Start();
+            Task.Delay(1000).Wait();
+            textTrip.Text = "Открытие окна";
+            ProgressBar.Value = 40;
+            Task.Delay(1000).Wait();
+
         }
 
         private void butDelete_Click(object sender, EventArgs e)
@@ -227,12 +221,18 @@ namespace DB_Autoparts_NVA.Forms
                 Init();
                 textTrip.Text = "Процессс успешно завершено!";
                 ProgressBar.Value = 0;
-            }      
+            }
         }
 
         private void DBUsersForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if(!exit)Application.Exit();
+            if (!exit) Application.Exit();
+        }
+
+        private void DBUsersForm_Load(object sender, EventArgs e)
+        {
+            this.dataGridUsersDB.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Init();
         }
     }
 }

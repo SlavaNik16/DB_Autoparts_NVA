@@ -38,6 +38,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.ExportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUpgradeStatus = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,6 +87,7 @@
             this.addKeyAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.addProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
+            this.updateData = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProduct)).BeginInit();
@@ -333,7 +335,8 @@
             this.toolStripDataUser.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.toolStripDataUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolEdit,
-            this.toolDelete});
+            this.toolDelete,
+            this.updateData});
             this.toolStripDataUser.Location = new System.Drawing.Point(0, 0);
             this.toolStripDataUser.Name = "toolStripDataUser";
             this.toolStripDataUser.Size = new System.Drawing.Size(594, 25);
@@ -620,6 +623,16 @@
             this.helpProvider.HelpNamespace = "C:\\Users\\nikol\\OneDrive\\Рабочий стол\\Дополнение\\C#\\DB_Autoparts_NVA\\Пользовательс" +
     "кое соглашение.txt";
             // 
+            // updateData
+            // 
+            this.updateData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.updateData.Image = ((System.Drawing.Image)(resources.GetObject("updateData.Image")));
+            this.updateData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.updateData.Name = "updateData";
+            this.updateData.Size = new System.Drawing.Size(128, 22);
+            this.updateData.Text = "Обновить данные";
+            this.updateData.Click += new System.EventHandler(this.updateData_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -706,6 +719,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnIdUserSurname;
+        private System.Windows.Forms.ToolStripButton updateData;
     }
 }
 

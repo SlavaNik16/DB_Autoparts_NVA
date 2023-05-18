@@ -29,6 +29,8 @@ namespace DB_Autoparts_NVA
         public string statusUser = "";
         private static Users userMy = null;//Пользователь
         private static Users userSelected = null;//Выделенные пользователи
+
+        private bool statusChange = false;
         public MainForm()
         {
             InitializeComponent();
@@ -356,40 +358,7 @@ namespace DB_Autoparts_NVA
             authForm.Visible = true;
         }
 
-        private void menuDBUsers_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show("Внимание! Вы уверены что готовы вносить изменения пользователям!", "Форма открытие окна!",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (result == DialogResult.Yes)
-            {
-                toolStripProgressBar1.Value = 30;
-                new Thread(() =>
-                {
-                    DBUsersForm dbUsersForm = new DBUsersForm(userMy);
-                    this.Invoke(new Action(() =>
-                    {
-
-                        dbUsersForm.Show();
-                        this.Close();
-                    }));
-                }).Start();
-                Task.Delay(1000).Wait();
-                toolStripProgressBar1.Value = 75;
-                Task.Delay(1000).Wait();
-            }
-            else if (result == DialogResult.No)
-            {
-                toolStripProgressBar1.Value = 30;
-                DBUsersForm dbUsersForm = new DBUsersForm();
-                this.Visible = false;
-                if (dbUsersForm.ShowDialog() == DialogResult.Cancel)
-                {
-                    this.Visible = true;
-                }
-                toolStripProgressBar1.Value = 0;
-            }
-
-        }
+        
 
 
         private void toolAddProduct_Click(object sender, EventArgs e)
@@ -402,6 +371,7 @@ namespace DB_Autoparts_NVA
                 toolStripProgressBar1.Value = 75;
                 dataGridProduct.DataSource = FormatDataGridUser(options, userMy);
                 toolStripProgressBar1.Value = 100;
+                statusChange = false;
                 Status();
                 toolStripProgressBar1.Value = 0;
             }
@@ -428,6 +398,7 @@ namespace DB_Autoparts_NVA
                 RemoveTovarDB(options, autopart.Parts_id);
                 toolStripProgressBar1.Value = 75;
                 dataGridProduct.DataSource = FormatDataGridUser(options, userMy);
+                statusChange = false;
                 Status();
                 toolStripProgressBar1.Value = 0;
             }
@@ -436,21 +407,25 @@ namespace DB_Autoparts_NVA
 
         private void Status()
         {
-            var allMoney = AllMoney();
-            AllMoneyStatusStrip.Text = $"Общая сумма: {allMoney:C2}";
-            if (statusUser == "Admin")
+            if (!statusChange)
             {
-                CountUsersStatusStrip.Text = $"Кол-во пользователей: {ReadUserAll(options).Count}";
-                if (dataGridUsers.SelectedRows.Count > 0)
+                var allMoney = AllMoney();
+                AllMoneyStatusStrip.Text = $"Общая сумма: {allMoney:C2}";
+                if (statusUser == "Admin")
                 {
-                    userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
+                    CountUsersStatusStrip.Text = $"Кол-во пользователей: {dataGridUsers.RowCount}";
+                    if (dataGridUsers.SelectedRows.Count > 0)
+                    {
+                        userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
 
-                    MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: {MoneyUser(userSelected)}";
+                        MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: {MoneyUser(userSelected)}";
+                    }
+                    else
+                    {
+                        MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: 0";
+                    }
                 }
-                else
-                {
-                    MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: 0";
-                }
+                statusChange = true;
             }
         }
 
@@ -491,17 +466,18 @@ namespace DB_Autoparts_NVA
                 if (statusUser == "User")
                 {
                     exportForm = new ExportUserForm(userMy);
+                    
                 }
                 else if (statusUser == "Admin")
                 {
-                    exportForm = new ExportUserForm(userSelected);
+                    exportForm = new ExportUserForm(userSelected); 
+                   
                 }
                 this.Invoke(new Action(() =>
                 {
-                    toolStripProgressBar1.Value = 80;
+                    toolStripProgressBar1.Value = 50;
                     this.Visible = false;
                 }));
-                
                 if (exportForm.ShowDialog() == DialogResult.Yes)
                 {
                     this.Invoke(new Action(() =>
@@ -512,9 +488,6 @@ namespace DB_Autoparts_NVA
                 }
 
             }).Start();
-            Task.Delay(1000).Wait();
-            toolStripProgressBar1.Value = 50;
-            Task.Delay(1000).Wait();
         }
 
         private void menuUpgradeStatus_Click(object sender, EventArgs e)
@@ -547,6 +520,7 @@ namespace DB_Autoparts_NVA
 
         private void dataGridUsers_SelectionChanged(object sender, EventArgs e)
         {
+            toolStripProgressBar1.Value = 30;
             if (statusUser == "Admin")
             {
                 menuExport.Enabled =
@@ -556,16 +530,12 @@ namespace DB_Autoparts_NVA
 
                 if (dataGridUsers.SelectedRows.Count > 0)
                 {
+                    statusChange = false;
                     toolStripProgressBar1.Value = 50;
                     userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
                     dataGridProduct.DataSource = FormatDataGridUser(options, userSelected);
                     toolStripProgressBar1.Value = 75;
 
-                }
-                else
-                {
-                    toolStripProgressBar1.Value = 75;
-                    dataGridProduct.DataSource = FormatDataGridAdmin(options);
                 }
             }
             Status();
@@ -590,6 +560,7 @@ namespace DB_Autoparts_NVA
                 toolStripProgressBar1.Value = 50;
                 dataGridUsers.DataSource = ReadUserAll(options);
                 toolStripProgressBar1.Value = 75;
+                statusChange = false;
                 Status();
                 toolStripProgressBar1.Value = 0;
             }
@@ -614,6 +585,7 @@ namespace DB_Autoparts_NVA
 
                 dataGridUsers.DataSource = ReadUserAll(options);
                 toolStripProgressBar1.Value = 75;
+                statusChange = false;
                 Status();
                 toolStripProgressBar1.Value = 0;
             }
@@ -631,6 +603,30 @@ namespace DB_Autoparts_NVA
                     if (dbProductsForm.ShowDialog() == DialogResult.Cancel)
                     {
                         this.Visible = true;
+                        toolStripProgressBar1.Value = 0;
+                    }
+                }));
+            }).Start();
+            Task.Delay(1000).Wait();
+            toolStripProgressBar1.Value = 75;
+            Task.Delay(1000).Wait();
+        }
+        private void menuDBUsers_Click(object sender, EventArgs e)
+        {
+            toolStripProgressBar1.Value = 30;
+            new Thread(() =>
+            {
+                DBUsersForm dbUsersForm = new DBUsersForm(userMy);
+                this.Invoke(new Action(() =>
+                {
+                    this.Visible = false;
+                    if (dbUsersForm.ShowDialog() == DialogResult.Retry)
+                    {
+                        this.Visible = true;
+                        if (MessageBox.Show("Обновить данные?", "Сообщение!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            updateData_Click(sender, e);
+                        }
                         toolStripProgressBar1.Value = 0;
                     }
                 }));
@@ -666,6 +662,35 @@ namespace DB_Autoparts_NVA
             EventHandlerMenu(helpMenuItem);
             EventHandlerMenu(menuExit);
             toolStripProgressBar1.Value = 0;
+        }
+
+
+        private void updateData_Click(object sender, EventArgs e)
+        {
+            var loadForm = new LoadForm();
+            loadForm.Show();
+            loadForm.EditTextProgress("Идет обновление данных", 45);
+            new Task(() =>
+            {
+                this.Invoke(new Action(() =>
+                {
+                    dataGridUsers.DataSource = ReadUserAll(options);
+                    dataGridProduct.DataSource = FormatDataGridAdmin(options);
+                    loadForm.Close();
+                    statusChange = false;
+                    Status();
+                   
+                }));
+                
+            }).Start();
+            Task.Delay(1000).Wait();
+            loadForm.EditTextProgress("Обновление всех клиентов ...", 65);
+            Task.Delay(1000).Wait();
+            loadForm.EditTextProgress("Обновление всех заказов ...", 75);
+            Task.Delay(1000).Wait();
+            loadForm.EditTextProgress("Загрузка почти завершена ...", 95);
+            Task.Delay(1000).Wait();
+           
         }
     }
 }

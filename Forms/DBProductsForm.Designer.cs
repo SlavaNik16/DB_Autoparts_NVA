@@ -347,6 +347,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Продукты";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DBProductsForm_FormClosed);
+            this.Load += new System.EventHandler(this.DBProductsForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductDB)).EndInit();
