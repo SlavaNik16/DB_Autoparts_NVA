@@ -38,7 +38,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.ExportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUpgradeStatus = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,6 +61,7 @@
             this.toolStripDataUser = new System.Windows.Forms.ToolStrip();
             this.toolEdit = new System.Windows.Forms.ToolStripButton();
             this.toolDelete = new System.Windows.Forms.ToolStripButton();
+            this.updateData = new System.Windows.Forms.ToolStripButton();
             this.toolStripDataProduct = new System.Windows.Forms.ToolStrip();
             this.toolAddProduct = new System.Windows.Forms.ToolStripButton();
             this.toolDeleteProduct = new System.Windows.Forms.ToolStripButton();
@@ -87,7 +87,6 @@
             this.addKeyAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.addProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
-            this.updateData = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProduct)).BeginInit();
@@ -154,14 +153,14 @@
             // menuDBUsers
             // 
             this.menuDBUsers.Name = "menuDBUsers";
-            this.menuDBUsers.Size = new System.Drawing.Size(180, 22);
+            this.menuDBUsers.Size = new System.Drawing.Size(173, 22);
             this.menuDBUsers.Text = "Пользователей";
             this.menuDBUsers.Click += new System.EventHandler(this.menuDBUsers_Click);
             // 
             // menuDBAutoparts
             // 
             this.menuDBAutoparts.Name = "menuDBAutoparts";
-            this.menuDBAutoparts.Size = new System.Drawing.Size(180, 22);
+            this.menuDBAutoparts.Size = new System.Drawing.Size(173, 22);
             this.menuDBAutoparts.Text = "Автозапчастей";
             this.menuDBAutoparts.Click += new System.EventHandler(this.menuDBAutoparts_Click);
             // 
@@ -364,6 +363,15 @@
             this.toolDelete.Size = new System.Drawing.Size(110, 22);
             this.toolDelete.Text = "Блокировать";
             this.toolDelete.Click += new System.EventHandler(this.toolDelete_Click);
+            // 
+            // updateData
+            // 
+            this.updateData.Image = global::DB_Autoparts_NVA.Properties.Resources.refresh;
+            this.updateData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.updateData.Name = "updateData";
+            this.updateData.Size = new System.Drawing.Size(144, 22);
+            this.updateData.Text = "Обновить данные";
+            this.updateData.Click += new System.EventHandler(this.updateData_Click);
             // 
             // toolStripDataProduct
             // 
@@ -623,15 +631,6 @@
             this.helpProvider.HelpNamespace = "C:\\Users\\nikol\\OneDrive\\Рабочий стол\\Дополнение\\C#\\DB_Autoparts_NVA\\Пользовательс" +
     "кое соглашение.txt";
             // 
-            // updateData
-            // 
-            this.updateData.Image = ((System.Drawing.Image)(resources.GetObject("updateData.Image")));
-            this.updateData.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.updateData.Name = "updateData";
-            this.updateData.Size = new System.Drawing.Size(144, 22);
-            this.updateData.Text = "Обновить данные";
-            this.updateData.Click += new System.EventHandler(this.updateData_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -648,6 +647,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Учет продаж автозапчастей";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();

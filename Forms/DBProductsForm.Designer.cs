@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.butSort = new System.Windows.Forms.Button();
             this.radioDeOrder = new System.Windows.Forms.RadioButton();
@@ -67,6 +67,8 @@
             this.groupBox1.Controls.Add(this.radioOrder);
             this.groupBox1.Controls.Add(this.listBox);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(587, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(217, 276);
@@ -77,10 +79,11 @@
             // butSort
             // 
             this.butSort.BackColor = System.Drawing.Color.Yellow;
-            this.butSort.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.butSort.Location = new System.Drawing.Point(9, 250);
+            this.butSort.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butSort.ForeColor = System.Drawing.Color.Black;
+            this.butSort.Location = new System.Drawing.Point(8, 229);
             this.butSort.Name = "butSort";
-            this.butSort.Size = new System.Drawing.Size(192, 25);
+            this.butSort.Size = new System.Drawing.Size(192, 41);
             this.butSort.TabIndex = 4;
             this.butSort.Text = "Сортировать";
             this.butSort.UseVisualStyleBackColor = false;
@@ -89,9 +92,10 @@
             // radioDeOrder
             // 
             this.radioDeOrder.AutoSize = true;
-            this.radioDeOrder.Location = new System.Drawing.Point(9, 221);
+            this.radioDeOrder.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioDeOrder.Location = new System.Drawing.Point(8, 200);
             this.radioDeOrder.Name = "radioDeOrder";
-            this.radioDeOrder.Size = new System.Drawing.Size(154, 17);
+            this.radioDeOrder.Size = new System.Drawing.Size(180, 21);
             this.radioDeOrder.TabIndex = 3;
             this.radioDeOrder.Text = "Сортировка по убыванию";
             this.radioDeOrder.UseVisualStyleBackColor = true;
@@ -100,9 +104,10 @@
             // 
             this.radioOrder.AutoSize = true;
             this.radioOrder.Checked = true;
-            this.radioOrder.Location = new System.Drawing.Point(9, 198);
+            this.radioOrder.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioOrder.Location = new System.Drawing.Point(8, 177);
             this.radioOrder.Name = "radioOrder";
-            this.radioOrder.Size = new System.Drawing.Size(170, 17);
+            this.radioOrder.Size = new System.Drawing.Size(200, 21);
             this.radioOrder.TabIndex = 2;
             this.radioOrder.TabStop = true;
             this.radioOrder.Text = "Сортировка по возрастанию";
@@ -110,9 +115,11 @@
             // 
             // listBox
             // 
+            this.listBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listBox.FormattingEnabled = true;
+            this.listBox.ItemHeight = 19;
             this.listBox.Items.AddRange(new object[] {
-            "Id",
+            "№",
             "Фамилия пользователя",
             "Наименование продукта",
             "Количество",
@@ -120,57 +127,62 @@
             "Дата покупки"});
             this.listBox.Location = new System.Drawing.Point(11, 32);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(192, 160);
+            this.listBox.Size = new System.Drawing.Size(192, 137);
             this.listBox.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 16);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(10, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 13);
+            this.label1.Size = new System.Drawing.Size(134, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Поле для сортировки";
             // 
             // comboTovar
             // 
             this.comboTovar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboTovar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboTovar.FormattingEnabled = true;
-            this.comboTovar.Location = new System.Drawing.Point(205, 303);
+            this.comboTovar.Location = new System.Drawing.Point(205, 302);
             this.comboTovar.Name = "comboTovar";
-            this.comboTovar.Size = new System.Drawing.Size(252, 21);
+            this.comboTovar.Size = new System.Drawing.Size(252, 27);
             this.comboTovar.TabIndex = 39;
             // 
             // searchBox
             // 
+            this.searchBox.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.searchBox.Location = new System.Drawing.Point(205, 346);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(252, 20);
+            this.searchBox.Size = new System.Drawing.Size(252, 22);
             this.searchBox.TabIndex = 38;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(11, 342);
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(11, 344);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(188, 23);
+            this.label3.Size = new System.Drawing.Size(195, 22);
             this.label3.TabIndex = 37;
             this.label3.Text = "Поиск пользователя";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(11, 302);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(180, 23);
+            this.label2.Size = new System.Drawing.Size(195, 22);
             this.label2.TabIndex = 32;
             this.label2.Text = "Фильтрация товара";
             // 
             // butClose
             // 
-            this.butClose.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butClose.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.butClose.Location = new System.Drawing.Point(595, 337);
             this.butClose.Name = "butClose";
             this.butClose.Size = new System.Drawing.Size(196, 36);
@@ -182,10 +194,10 @@
             // butSearch
             // 
             this.butSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.butSearch.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butSearch.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.butSearch.Location = new System.Drawing.Point(463, 337);
             this.butSearch.Name = "butSearch";
-            this.butSearch.Size = new System.Drawing.Size(97, 36);
+            this.butSearch.Size = new System.Drawing.Size(118, 36);
             this.butSearch.TabIndex = 35;
             this.butSearch.Text = "Найти";
             this.butSearch.UseVisualStyleBackColor = false;
@@ -194,7 +206,7 @@
             // butViewAll
             // 
             this.butViewAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.butViewAll.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butViewAll.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.butViewAll.Location = new System.Drawing.Point(595, 294);
             this.butViewAll.Name = "butViewAll";
             this.butViewAll.Size = new System.Drawing.Size(196, 36);
@@ -206,10 +218,10 @@
             // butFiltr
             // 
             this.butFiltr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.butFiltr.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butFiltr.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.butFiltr.Location = new System.Drawing.Point(463, 294);
             this.butFiltr.Name = "butFiltr";
-            this.butFiltr.Size = new System.Drawing.Size(97, 36);
+            this.butFiltr.Size = new System.Drawing.Size(118, 36);
             this.butFiltr.TabIndex = 33;
             this.butFiltr.Text = "Фильтровать";
             this.butFiltr.UseVisualStyleBackColor = false;
@@ -220,14 +232,14 @@
             this.dataGridProductDB.AllowUserToAddRows = false;
             this.dataGridProductDB.AllowUserToDeleteRows = false;
             this.dataGridProductDB.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridProductDB.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridProductDB.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.dataGridProductDB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProductDB.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnIdProductDataGridViewTextBoxColumn,
@@ -237,26 +249,26 @@
             this.columnPriceDataGridViewTextBoxColumn,
             this.columnDateDataGridViewTextBoxColumn,
             this.columnIdUser});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridProductDB.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridProductDB.DefaultCellStyle = dataGridViewCellStyle29;
             this.dataGridProductDB.Location = new System.Drawing.Point(12, 12);
             this.dataGridProductDB.MultiSelect = false;
             this.dataGridProductDB.Name = "dataGridProductDB";
             this.dataGridProductDB.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridProductDB.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridProductDB.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
             this.dataGridProductDB.Size = new System.Drawing.Size(569, 276);
             this.dataGridProductDB.TabIndex = 44;
             // 
@@ -264,8 +276,8 @@
             // 
             this.columnIdProductDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.columnIdProductDataGridViewTextBoxColumn.DataPropertyName = "parts_id";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.columnIdProductDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.columnIdProductDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle26;
             this.columnIdProductDataGridViewTextBoxColumn.HeaderText = "№";
             this.columnIdProductDataGridViewTextBoxColumn.Name = "columnIdProductDataGridViewTextBoxColumn";
             this.columnIdProductDataGridViewTextBoxColumn.ReadOnly = true;
@@ -291,8 +303,8 @@
             // 
             this.columnCountDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.columnCountDataGridViewTextBoxColumn.DataPropertyName = "count";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.columnCountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle27.NullValue = "0";
+            this.columnCountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle27;
             this.columnCountDataGridViewTextBoxColumn.HeaderText = "Кол-во";
             this.columnCountDataGridViewTextBoxColumn.Name = "columnCountDataGridViewTextBoxColumn";
             this.columnCountDataGridViewTextBoxColumn.ReadOnly = true;
@@ -302,8 +314,8 @@
             // 
             this.columnPriceDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.columnPriceDataGridViewTextBoxColumn.DataPropertyName = "PriceAll";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.columnPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle28.NullValue = "0";
+            this.columnPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle28;
             this.columnPriceDataGridViewTextBoxColumn.HeaderText = "Общая цена";
             this.columnPriceDataGridViewTextBoxColumn.Name = "columnPriceDataGridViewTextBoxColumn";
             this.columnPriceDataGridViewTextBoxColumn.ReadOnly = true;
@@ -345,7 +357,7 @@
             this.MinimizeBox = false;
             this.Name = "DBProductsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Продукты";
+            this.Text = "Заказы";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DBProductsForm_FormClosed);
             this.Load += new System.EventHandler(this.DBProductsForm_Load);
             this.groupBox1.ResumeLayout(false);

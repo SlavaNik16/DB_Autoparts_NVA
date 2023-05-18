@@ -147,7 +147,8 @@
             this.textBoxDescription.TabIndex = 23;
             this.textBoxDescription.TabStop = false;
             this.textBoxDescription.Text = "Работу сделал студент 3 курса\r\nНиколаев Вячеслав ИП-20-3\r\nCПб ГБОУ \"Политехническ" +
-    "ий колледж городского хозяйства\"";
+    "ий колледж городского хозяйства\"\r\nПочта: nik@gmail.com\r\nТелефон: 8(800)-555-35-3" +
+    "5";
             // 
             // okButton
             // 

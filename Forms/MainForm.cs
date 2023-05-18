@@ -29,7 +29,7 @@ namespace DB_Autoparts_NVA
         public string statusUser = "";
         private static Users userMy = null;//Пользователь
         private static Users userSelected = null;//Выделенные пользователи
-
+        private bool exit = false;
         private bool statusChange = false;
         public MainForm()
         {
@@ -355,6 +355,7 @@ namespace DB_Autoparts_NVA
 
         private void menuExit_Click(object sender, EventArgs e)
         {
+            exit = true;
             Close();
             var authForm = new AuthorizationForm();
             authForm.Visible = true;
@@ -498,6 +499,7 @@ namespace DB_Autoparts_NVA
         {
             if (statusUser == "User")
             {
+                exit = true;
                 var upgradeStatus = new UpgradeStatusForm(userMy);
                 this.Close();
                 upgradeStatus.ShowDialog();
@@ -695,6 +697,11 @@ namespace DB_Autoparts_NVA
             loadForm.EditTextProgress("Загрузка почти завершена ...", 95);
             Task.Delay(1000).Wait();
            
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!exit) Application.Exit();
         }
     }
 }

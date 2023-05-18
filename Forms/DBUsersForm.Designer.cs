@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.butSort = new System.Windows.Forms.Button();
             this.radioDeOrder = new System.Windows.Forms.RadioButton();
@@ -45,7 +45,7 @@
             this.butSearch = new System.Windows.Forms.Button();
             this.butViewAll = new System.Windows.Forms.Button();
             this.butFiltr = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuExport = new System.Windows.Forms.ToolStripMenuItem();
             this.butEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.butDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,13 +62,13 @@
             this.comboBirthday = new System.Windows.Forms.ComboBox();
             this.checkBoxGender = new System.Windows.Forms.CheckBox();
             this.checkBoxPhone = new System.Windows.Forms.CheckBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.textTrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.groupBox1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsersDB)).BeginInit();
-            this.statusStrip1.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -78,9 +78,11 @@
             this.groupBox1.Controls.Add(this.radioOrder);
             this.groupBox1.Controls.Add(this.listBox);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(588, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(217, 287);
+            this.groupBox1.Size = new System.Drawing.Size(217, 296);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Сортировка";
@@ -88,10 +90,11 @@
             // butSort
             // 
             this.butSort.BackColor = System.Drawing.Color.Yellow;
-            this.butSort.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.butSort.Location = new System.Drawing.Point(9, 250);
+            this.butSort.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butSort.ForeColor = System.Drawing.Color.Black;
+            this.butSort.Location = new System.Drawing.Point(9, 248);
             this.butSort.Name = "butSort";
-            this.butSort.Size = new System.Drawing.Size(192, 25);
+            this.butSort.Size = new System.Drawing.Size(192, 42);
             this.butSort.TabIndex = 4;
             this.butSort.Text = "Сортировать";
             this.butSort.UseVisualStyleBackColor = false;
@@ -102,7 +105,7 @@
             this.radioDeOrder.AutoSize = true;
             this.radioDeOrder.Location = new System.Drawing.Point(9, 221);
             this.radioDeOrder.Name = "radioDeOrder";
-            this.radioDeOrder.Size = new System.Drawing.Size(154, 17);
+            this.radioDeOrder.Size = new System.Drawing.Size(180, 21);
             this.radioDeOrder.TabIndex = 3;
             this.radioDeOrder.Text = "Сортировка по убыванию";
             this.radioDeOrder.UseVisualStyleBackColor = true;
@@ -113,7 +116,7 @@
             this.radioOrder.Checked = true;
             this.radioOrder.Location = new System.Drawing.Point(9, 198);
             this.radioOrder.Name = "radioOrder";
-            this.radioOrder.Size = new System.Drawing.Size(170, 17);
+            this.radioOrder.Size = new System.Drawing.Size(200, 21);
             this.radioOrder.TabIndex = 2;
             this.radioOrder.TabStop = true;
             this.radioOrder.Text = "Сортировка по возрастанию";
@@ -121,7 +124,9 @@
             // 
             // listBox
             // 
+            this.listBox.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.listBox.FormattingEnabled = true;
+            this.listBox.ItemHeight = 19;
             this.listBox.Items.AddRange(new object[] {
             "Id",
             "Фамилия",
@@ -132,7 +137,7 @@
             "Статус"});
             this.listBox.Location = new System.Drawing.Point(9, 32);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(192, 160);
+            this.listBox.Size = new System.Drawing.Size(192, 156);
             this.listBox.TabIndex = 1;
             // 
             // label1
@@ -140,7 +145,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 13);
+            this.label1.Size = new System.Drawing.Size(134, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Поле для сортировки";
             // 
@@ -148,43 +153,47 @@
             // 
             this.comboGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboGender.Enabled = false;
+            this.comboGender.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.comboGender.FormattingEnabled = true;
-            this.comboGender.Location = new System.Drawing.Point(134, 357);
+            this.comboGender.Location = new System.Drawing.Point(134, 355);
             this.comboGender.Name = "comboGender";
-            this.comboGender.Size = new System.Drawing.Size(149, 21);
+            this.comboGender.Size = new System.Drawing.Size(149, 27);
             this.comboGender.TabIndex = 23;
             // 
             // searchBox
             // 
-            this.searchBox.Location = new System.Drawing.Point(195, 394);
+            this.searchBox.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.searchBox.Location = new System.Drawing.Point(212, 394);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(255, 20);
+            this.searchBox.Size = new System.Drawing.Size(238, 22);
             this.searchBox.TabIndex = 22;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(12, 390);
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(7, 390);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(177, 23);
+            this.label3.Size = new System.Drawing.Size(199, 22);
             this.label3.TabIndex = 21;
             this.label3.Text = "Поиск по фамилии";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(4, 356);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 23);
+            this.label2.Size = new System.Drawing.Size(123, 22);
             this.label2.TabIndex = 16;
             this.label2.Text = "Фильтрация";
             // 
             // butClose
             // 
-            this.butClose.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.butClose.Location = new System.Drawing.Point(588, 385);
+            this.butClose.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.butClose.Location = new System.Drawing.Point(596, 387);
             this.butClose.Name = "butClose";
             this.butClose.Size = new System.Drawing.Size(196, 36);
             this.butClose.TabIndex = 20;
@@ -195,10 +204,10 @@
             // butSearch
             // 
             this.butSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.butSearch.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.butSearch.Location = new System.Drawing.Point(456, 385);
+            this.butSearch.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.butSearch.Location = new System.Drawing.Point(456, 387);
             this.butSearch.Name = "butSearch";
-            this.butSearch.Size = new System.Drawing.Size(97, 36);
+            this.butSearch.Size = new System.Drawing.Size(126, 36);
             this.butSearch.TabIndex = 19;
             this.butSearch.Text = "Найти";
             this.butSearch.UseVisualStyleBackColor = false;
@@ -207,8 +216,8 @@
             // butViewAll
             // 
             this.butViewAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.butViewAll.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.butViewAll.Location = new System.Drawing.Point(588, 342);
+            this.butViewAll.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.butViewAll.Location = new System.Drawing.Point(596, 349);
             this.butViewAll.Name = "butViewAll";
             this.butViewAll.Size = new System.Drawing.Size(196, 36);
             this.butViewAll.TabIndex = 18;
@@ -219,45 +228,51 @@
             // butFiltr
             // 
             this.butFiltr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.butFiltr.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.butFiltr.Location = new System.Drawing.Point(456, 342);
+            this.butFiltr.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.butFiltr.Location = new System.Drawing.Point(456, 349);
             this.butFiltr.Name = "butFiltr";
-            this.butFiltr.Size = new System.Drawing.Size(97, 36);
+            this.butFiltr.Size = new System.Drawing.Size(126, 36);
             this.butFiltr.TabIndex = 17;
             this.butFiltr.Text = "Фильтровать";
             this.butFiltr.UseVisualStyleBackColor = false;
             this.butFiltr.Click += new System.EventHandler(this.butFiltr_Click);
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuExport,
             this.butEdit,
             this.butDelete});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(804, 24);
-            this.menuStrip1.TabIndex = 24;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(804, 25);
+            this.menuStrip.TabIndex = 24;
+            this.menuStrip.Text = "menuStrip1";
             // 
             // menuExport
             // 
+            this.menuExport.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.menuExport.ForeColor = System.Drawing.Color.White;
             this.menuExport.Name = "menuExport";
-            this.menuExport.Size = new System.Drawing.Size(142, 20);
+            this.menuExport.Size = new System.Drawing.Size(167, 21);
             this.menuExport.Text = "Экспорт пользователя";
             this.menuExport.Click += new System.EventHandler(this.menuExport_Click);
             // 
             // butEdit
             // 
+            this.butEdit.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.butEdit.ForeColor = System.Drawing.Color.White;
             this.butEdit.Name = "butEdit";
-            this.butEdit.Size = new System.Drawing.Size(73, 20);
+            this.butEdit.Size = new System.Drawing.Size(82, 21);
             this.butEdit.Text = "Изменить";
             this.butEdit.Click += new System.EventHandler(this.butEdit_Click);
             // 
             // butDelete
             // 
+            this.butDelete.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.butDelete.ForeColor = System.Drawing.Color.White;
             this.butDelete.Name = "butDelete";
-            this.butDelete.Size = new System.Drawing.Size(63, 20);
+            this.butDelete.Size = new System.Drawing.Size(71, 21);
             this.butDelete.Text = "Удалить";
             this.butDelete.Click += new System.EventHandler(this.butDelete_Click);
             // 
@@ -266,14 +281,14 @@
             this.dataGridUsersDB.AllowUserToAddRows = false;
             this.dataGridUsersDB.AllowUserToDeleteRows = false;
             this.dataGridUsersDB.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridUsersDB.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridUsersDB.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridUsersDB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridUsersDB.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnIdDataGridViewTextBoxColumn,
@@ -285,28 +300,28 @@
             this.columnPhoneDataGridViewTextBoxColumn,
             this.columnStatusDataGridViewTextBoxColumn,
             this.columnPasswordDataGridViewTextBoxColumn});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridUsersDB.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridUsersDB.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridUsersDB.Location = new System.Drawing.Point(8, 27);
             this.dataGridUsersDB.MultiSelect = false;
             this.dataGridUsersDB.Name = "dataGridUsersDB";
             this.dataGridUsersDB.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridUsersDB.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridUsersDB.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridUsersDB.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridUsersDB.Size = new System.Drawing.Size(574, 287);
+            this.dataGridUsersDB.Size = new System.Drawing.Size(574, 296);
             this.dataGridUsersDB.TabIndex = 25;
             this.dataGridUsersDB.SelectionChanged += new System.EventHandler(this.dataGridUsersDB_SelectionChanged);
             // 
@@ -387,19 +402,21 @@
             // 
             this.comboBirthday.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBirthday.Enabled = false;
+            this.comboBirthday.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.comboBirthday.FormattingEnabled = true;
-            this.comboBirthday.Location = new System.Drawing.Point(301, 357);
+            this.comboBirthday.Location = new System.Drawing.Point(291, 355);
             this.comboBirthday.Name = "comboBirthday";
-            this.comboBirthday.Size = new System.Drawing.Size(149, 21);
+            this.comboBirthday.Size = new System.Drawing.Size(149, 27);
             this.comboBirthday.TabIndex = 26;
             // 
             // checkBoxGender
             // 
             this.checkBoxGender.AutoSize = true;
-            this.checkBoxGender.Font = new System.Drawing.Font("Times New Roman", 15.75F);
-            this.checkBoxGender.Location = new System.Drawing.Point(169, 329);
+            this.checkBoxGender.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+            this.checkBoxGender.ForeColor = System.Drawing.Color.White;
+            this.checkBoxGender.Location = new System.Drawing.Point(170, 327);
             this.checkBoxGender.Name = "checkBoxGender";
-            this.checkBoxGender.Size = new System.Drawing.Size(74, 27);
+            this.checkBoxGender.Size = new System.Drawing.Size(77, 26);
             this.checkBoxGender.TabIndex = 29;
             this.checkBoxGender.Text = "Пола";
             this.checkBoxGender.UseVisualStyleBackColor = true;
@@ -408,29 +425,31 @@
             // checkBoxPhone
             // 
             this.checkBoxPhone.AutoSize = true;
-            this.checkBoxPhone.Font = new System.Drawing.Font("Times New Roman", 15.75F);
-            this.checkBoxPhone.Location = new System.Drawing.Point(299, 329);
+            this.checkBoxPhone.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+            this.checkBoxPhone.ForeColor = System.Drawing.Color.White;
+            this.checkBoxPhone.Location = new System.Drawing.Point(291, 327);
             this.checkBoxPhone.Name = "checkBoxPhone";
-            this.checkBoxPhone.Size = new System.Drawing.Size(155, 27);
+            this.checkBoxPhone.Size = new System.Drawing.Size(162, 26);
             this.checkBoxPhone.TabIndex = 30;
             this.checkBoxPhone.Text = "Дня рождения";
             this.checkBoxPhone.UseVisualStyleBackColor = true;
             this.checkBoxPhone.CheckedChanged += new System.EventHandler(this.checkBoxPhone_CheckedChanged);
             // 
-            // statusStrip1
+            // statusStrip
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.textTrip,
             this.ProgressBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 425);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(804, 26);
-            this.statusStrip1.TabIndex = 31;
-            this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip.Location = new System.Drawing.Point(0, 429);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(804, 26);
+            this.statusStrip.TabIndex = 31;
+            this.statusStrip.Text = "statusStrip1";
             // 
             // textTrip
             // 
             this.textTrip.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textTrip.ForeColor = System.Drawing.Color.White;
             this.textTrip.Name = "textTrip";
             this.textTrip.Size = new System.Drawing.Size(85, 21);
             this.textTrip.Text = "Действие";
@@ -445,13 +464,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 451);
-            this.Controls.Add(this.statusStrip1);
+            this.ClientSize = new System.Drawing.Size(804, 455);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.checkBoxPhone);
             this.Controls.Add(this.checkBoxGender);
             this.Controls.Add(this.comboBirthday);
             this.Controls.Add(this.dataGridUsersDB);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.comboGender);
             this.Controls.Add(this.searchBox);
             this.Controls.Add(this.label3);
@@ -471,11 +490,11 @@
             this.Load += new System.EventHandler(this.DBUsersForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsersDB)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -496,7 +515,7 @@
         private System.Windows.Forms.Button butSearch;
         private System.Windows.Forms.Button butViewAll;
         private System.Windows.Forms.Button butFiltr;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem menuExport;
         private System.Windows.Forms.ToolStripMenuItem butEdit;
         private System.Windows.Forms.ToolStripMenuItem butDelete;
@@ -513,7 +532,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnPhoneDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnPasswordDataGridViewTextBoxColumn;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel textTrip;
         private System.Windows.Forms.ToolStripProgressBar ProgressBar;
     }

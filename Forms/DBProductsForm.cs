@@ -1,4 +1,5 @@
 ﻿
+using DB_Autoparts_NVA.Colors;
 using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
@@ -117,6 +118,14 @@ namespace DB_Autoparts_NVA.Forms
         private void DBProductsForm_Load(object sender, EventArgs e)
         {
             this.dataGridProductDB.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridProductDB.EnableHeadersVisualStyles = false;
+            this.BackColor = ColorsHelp.ColorBackground;
+            dataGridProductDB.BackgroundColor = ColorsHelp.ColorBackground;
+            ColorsHelp.ButtonSubmit(butFiltr);
+            ColorsHelp.ButtonSubmit(butSearch);
+            ColorsHelp.ButtonSubmit(butSort);
+            ColorsHelp.ButtonSubmit(butViewAll);
+            ColorsHelp.ButtonCancel(butClose);
             Init();
         }
     }
