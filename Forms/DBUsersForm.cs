@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.IdentityModel.Protocols.WSTrust;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -154,27 +155,24 @@ namespace DB_Autoparts_NVA.Forms
             textTrip.Text = "Подготовка пользователя к экспорту";
             ProgressBar.Value = 20;
 
-            new Thread(() =>
+           var thead = new Thread(() =>
             {
                 var user = (Users)dataGridUsersDB.Rows[dataGridUsersDB.SelectedRows[0].Index].DataBoundItem;
-                ExportUserForm exportForm = new ExportUserForm(user);
-                this.Invoke(new Action(() =>
-                {
-                    this.Visible = false;
-                }));
-                if (exportForm.ShowDialog() == DialogResult.Yes)
+                var expForm = new ExportUserForm(user);
+                if (expForm.ShowDialog() == DialogResult.Yes)
                 {
                     this.Invoke(new Action(() =>
                     {
-                        this.Visible = true;
-                       // textTrip.Text = "Действие";
-                        //ProgressBar.Value = 0;
+                        textTrip.Text = "Действие";
+                        ProgressBar.Value = 0;
                     }));
                 }
-            }).Start();
+            });
+            thead.SetApartmentState(ApartmentState.STA);
+            thead.Start();
             Task.Delay(1000).Wait();
             textTrip.Text = "Открытие окна";
-            ProgressBar.Value = 40;
+            ProgressBar.Value = 70;
             Task.Delay(1000).Wait();
 
         }

@@ -154,14 +154,14 @@
             // menuDBUsers
             // 
             this.menuDBUsers.Name = "menuDBUsers";
-            this.menuDBUsers.Size = new System.Drawing.Size(173, 22);
+            this.menuDBUsers.Size = new System.Drawing.Size(180, 22);
             this.menuDBUsers.Text = "Пользователей";
             this.menuDBUsers.Click += new System.EventHandler(this.menuDBUsers_Click);
             // 
             // menuDBAutoparts
             // 
             this.menuDBAutoparts.Name = "menuDBAutoparts";
-            this.menuDBAutoparts.Size = new System.Drawing.Size(173, 22);
+            this.menuDBAutoparts.Size = new System.Drawing.Size(180, 22);
             this.menuDBAutoparts.Text = "Автозапчастей";
             this.menuDBAutoparts.Click += new System.EventHandler(this.menuDBAutoparts_Click);
             // 
@@ -625,11 +625,10 @@
             // 
             // updateData
             // 
-            this.updateData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.updateData.Image = ((System.Drawing.Image)(resources.GetObject("updateData.Image")));
             this.updateData.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.updateData.Name = "updateData";
-            this.updateData.Size = new System.Drawing.Size(128, 22);
+            this.updateData.Size = new System.Drawing.Size(144, 22);
             this.updateData.Text = "Обновить данные";
             this.updateData.Click += new System.EventHandler(this.updateData_Click);
             // 

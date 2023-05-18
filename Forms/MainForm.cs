@@ -42,6 +42,7 @@ namespace DB_Autoparts_NVA
             userMy = users;
             statusUser = userMy.status;
             contextMenuStrip2.Enabled = false;
+            updateData.Visible = false;
             if (statusUser == "User")
             {
                 this.Text = "Магазин автозапчастей";
@@ -64,6 +65,7 @@ namespace DB_Autoparts_NVA
                 this.Text = "Учет продаж автозапчастей";
                 statusStripUserStatus.Text = "Статус: Админ";
                 contextMenuStrip2.Enabled = true;
+                updateData.Visible = true;
                 dataGridProduct.Columns["columnIdUser"].Visible = true;
                 dataGridProduct.Columns["columnIdUser"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dataGridUsers.Columns["columnId"].Visible = true;
@@ -460,7 +462,7 @@ namespace DB_Autoparts_NVA
         private void menuExport_Click(object sender, EventArgs e)
         {
             toolStripProgressBar1.Value = 30;
-            new Thread(() =>
+            var thead = new Thread(() =>
             {
                 ExportUserForm exportForm = null;
                 if (statusUser == "User")
@@ -487,7 +489,9 @@ namespace DB_Autoparts_NVA
                     }));
                 }
 
-            }).Start();
+            });
+            thead.SetApartmentState(ApartmentState.STA);
+            thead.Start();
         }
 
         private void menuUpgradeStatus_Click(object sender, EventArgs e)
