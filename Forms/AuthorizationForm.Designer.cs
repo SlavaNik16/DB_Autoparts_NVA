@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthorizationForm));
             this.butEnter = new System.Windows.Forms.Button();
             this.butReg = new System.Windows.Forms.Button();
             this.butClose = new System.Windows.Forms.Button();
@@ -103,6 +104,7 @@
             this.Controls.Add(this.butReg);
             this.Controls.Add(this.butEnter);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AuthorizationForm";

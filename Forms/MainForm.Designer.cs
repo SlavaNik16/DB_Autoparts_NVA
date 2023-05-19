@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.ExportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUpgradeStatus = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +52,16 @@
             this.menuAboutProgram = new System.Windows.Forms.ToolStripMenuItem();
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridUsers = new System.Windows.Forms.DataGridView();
+            this.columnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnSurname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnBirthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.сolumnEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridProduct = new System.Windows.Forms.DataGridView();
             this.columnIdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnIdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,16 +77,6 @@
             this.toolStripDataProduct = new System.Windows.Forms.ToolStrip();
             this.toolAddProduct = new System.Windows.Forms.ToolStripButton();
             this.toolDeleteProduct = new System.Windows.Forms.ToolStripButton();
-            this.dataGridUsers = new System.Windows.Forms.DataGridView();
-            this.columnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnSurname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnBirthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.сolumnEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.countUsersStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.moneyUserStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
@@ -91,10 +91,10 @@
             this.helpProvider = new System.Windows.Forms.HelpProvider();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProduct)).BeginInit();
             this.toolStripDataUser.SuspendLayout();
             this.toolStripDataProduct.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -233,6 +233,130 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 383F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1082, 408);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // dataGridUsers
+            // 
+            this.dataGridUsers.AllowUserToAddRows = false;
+            this.dataGridUsers.AllowUserToDeleteRows = false;
+            this.dataGridUsers.AllowUserToResizeRows = false;
+            this.dataGridUsers.BackgroundColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.columnId,
+            this.columnSurname,
+            this.columnName,
+            this.columnGender,
+            this.columnBirthday,
+            this.сolumnEmail,
+            this.columnPhone,
+            this.columnStatus,
+            this.columnPassword});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridUsers.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridUsers.Location = new System.Drawing.Point(3, 28);
+            this.dataGridUsers.MultiSelect = false;
+            this.dataGridUsers.Name = "dataGridUsers";
+            this.dataGridUsers.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridUsers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridUsers.Size = new System.Drawing.Size(588, 377);
+            this.dataGridUsers.TabIndex = 2;
+            this.dataGridUsers.SelectionChanged += new System.EventHandler(this.dataGridUsers_SelectionChanged);
+            // 
+            // columnId
+            // 
+            this.columnId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.columnId.DataPropertyName = "user_id";
+            this.columnId.HeaderText = "Id";
+            this.columnId.Name = "columnId";
+            this.columnId.ReadOnly = true;
+            this.columnId.Width = 41;
+            // 
+            // columnSurname
+            // 
+            this.columnSurname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnSurname.DataPropertyName = "surname";
+            this.columnSurname.HeaderText = "Фамилия";
+            this.columnSurname.Name = "columnSurname";
+            this.columnSurname.ReadOnly = true;
+            // 
+            // columnName
+            // 
+            this.columnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnName.DataPropertyName = "name";
+            this.columnName.HeaderText = "Имя";
+            this.columnName.Name = "columnName";
+            this.columnName.ReadOnly = true;
+            // 
+            // columnGender
+            // 
+            this.columnGender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnGender.DataPropertyName = "gender";
+            this.columnGender.HeaderText = "Пол";
+            this.columnGender.Name = "columnGender";
+            this.columnGender.ReadOnly = true;
+            // 
+            // columnBirthday
+            // 
+            this.columnBirthday.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnBirthday.DataPropertyName = "birthday";
+            this.columnBirthday.HeaderText = "День рождение";
+            this.columnBirthday.Name = "columnBirthday";
+            this.columnBirthday.ReadOnly = true;
+            // 
+            // сolumnEmail
+            // 
+            this.сolumnEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.сolumnEmail.DataPropertyName = "email";
+            this.сolumnEmail.HeaderText = "Почта";
+            this.сolumnEmail.Name = "сolumnEmail";
+            this.сolumnEmail.ReadOnly = true;
+            // 
+            // columnPhone
+            // 
+            this.columnPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnPhone.DataPropertyName = "phone";
+            this.columnPhone.HeaderText = "Телефон";
+            this.columnPhone.Name = "columnPhone";
+            this.columnPhone.ReadOnly = true;
+            // 
+            // columnStatus
+            // 
+            this.columnStatus.DataPropertyName = "status";
+            this.columnStatus.HeaderText = "Статус";
+            this.columnStatus.Name = "columnStatus";
+            this.columnStatus.ReadOnly = true;
+            this.columnStatus.Visible = false;
+            // 
+            // columnPassword
+            // 
+            this.columnPassword.DataPropertyName = "password";
+            this.columnPassword.HeaderText = "Пароль";
+            this.columnPassword.Name = "columnPassword";
+            this.columnPassword.ReadOnly = true;
+            this.columnPassword.Visible = false;
             // 
             // dataGridProduct
             // 
@@ -426,130 +550,6 @@
             this.toolDeleteProduct.Text = "Удалить";
             this.toolDeleteProduct.Click += new System.EventHandler(this.toolDeleteProduct_Click);
             // 
-            // dataGridUsers
-            // 
-            this.dataGridUsers.AllowUserToAddRows = false;
-            this.dataGridUsers.AllowUserToDeleteRows = false;
-            this.dataGridUsers.AllowUserToResizeRows = false;
-            this.dataGridUsers.BackgroundColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.columnId,
-            this.columnSurname,
-            this.columnName,
-            this.columnGender,
-            this.columnBirthday,
-            this.сolumnEmail,
-            this.columnPhone,
-            this.columnStatus,
-            this.columnPassword});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridUsers.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridUsers.Location = new System.Drawing.Point(3, 28);
-            this.dataGridUsers.MultiSelect = false;
-            this.dataGridUsers.Name = "dataGridUsers";
-            this.dataGridUsers.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridUsers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridUsers.Size = new System.Drawing.Size(588, 377);
-            this.dataGridUsers.TabIndex = 2;
-            this.dataGridUsers.SelectionChanged += new System.EventHandler(this.dataGridUsers_SelectionChanged);
-            // 
-            // columnId
-            // 
-            this.columnId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.columnId.DataPropertyName = "user_id";
-            this.columnId.HeaderText = "Id";
-            this.columnId.Name = "columnId";
-            this.columnId.ReadOnly = true;
-            this.columnId.Width = 41;
-            // 
-            // columnSurname
-            // 
-            this.columnSurname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnSurname.DataPropertyName = "surname";
-            this.columnSurname.HeaderText = "Фамилия";
-            this.columnSurname.Name = "columnSurname";
-            this.columnSurname.ReadOnly = true;
-            // 
-            // columnName
-            // 
-            this.columnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnName.DataPropertyName = "name";
-            this.columnName.HeaderText = "Имя";
-            this.columnName.Name = "columnName";
-            this.columnName.ReadOnly = true;
-            // 
-            // columnGender
-            // 
-            this.columnGender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnGender.DataPropertyName = "gender";
-            this.columnGender.HeaderText = "Пол";
-            this.columnGender.Name = "columnGender";
-            this.columnGender.ReadOnly = true;
-            // 
-            // columnBirthday
-            // 
-            this.columnBirthday.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnBirthday.DataPropertyName = "birthday";
-            this.columnBirthday.HeaderText = "День рождение";
-            this.columnBirthday.Name = "columnBirthday";
-            this.columnBirthday.ReadOnly = true;
-            // 
-            // сolumnEmail
-            // 
-            this.сolumnEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.сolumnEmail.DataPropertyName = "email";
-            this.сolumnEmail.HeaderText = "Почта";
-            this.сolumnEmail.Name = "сolumnEmail";
-            this.сolumnEmail.ReadOnly = true;
-            // 
-            // columnPhone
-            // 
-            this.columnPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnPhone.DataPropertyName = "phone";
-            this.columnPhone.HeaderText = "Телефон";
-            this.columnPhone.Name = "columnPhone";
-            this.columnPhone.ReadOnly = true;
-            // 
-            // columnStatus
-            // 
-            this.columnStatus.DataPropertyName = "status";
-            this.columnStatus.HeaderText = "Статус";
-            this.columnStatus.Name = "columnStatus";
-            this.columnStatus.ReadOnly = true;
-            this.columnStatus.Visible = false;
-            // 
-            // columnPassword
-            // 
-            this.columnPassword.DataPropertyName = "password";
-            this.columnPassword.HeaderText = "Пароль";
-            this.columnPassword.Name = "columnPassword";
-            this.columnPassword.ReadOnly = true;
-            this.columnPassword.Visible = false;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
@@ -634,7 +634,7 @@
             // 
             this.addKeyAdmin.Image = global::DB_Autoparts_NVA.Properties.Resources.AddKeyIcon;
             this.addKeyAdmin.Name = "addKeyAdmin";
-            this.addKeyAdmin.Size = new System.Drawing.Size(180, 22);
+            this.addKeyAdmin.Size = new System.Drawing.Size(165, 22);
             this.addKeyAdmin.Text = "Ключ админа";
             this.addKeyAdmin.Click += new System.EventHandler(this.addKeyAdmin_Click);
             // 
@@ -642,7 +642,7 @@
             // 
             this.addProduct.Image = global::DB_Autoparts_NVA.Properties.Resources.addProductIcon;
             this.addProduct.Name = "addProduct";
-            this.addProduct.Size = new System.Drawing.Size(180, 22);
+            this.addProduct.Size = new System.Drawing.Size(165, 22);
             this.addProduct.Text = "Продукт";
             this.addProduct.Click += new System.EventHandler(this.addProduct_Click);
             // 
@@ -661,6 +661,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -673,12 +674,12 @@
             this.menuStrip.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProduct)).EndInit();
             this.toolStripDataUser.ResumeLayout(false);
             this.toolStripDataUser.PerformLayout();
             this.toolStripDataProduct.ResumeLayout(false);
             this.toolStripDataProduct.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);

@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExportUserForm));
             this.label1 = new System.Windows.Forms.Label();
             this.labelFIO = new System.Windows.Forms.Label();
             this.labelPhone = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
-            this.comboBoxTypeExport = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxTypeExport = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.butExport = new System.Windows.Forms.Button();
             this.listView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,12 +45,10 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panelHeader.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -67,12 +68,12 @@
             // 
             this.labelFIO.AutoSize = true;
             this.labelFIO.BackColor = System.Drawing.Color.Transparent;
-            this.labelFIO.Font = new System.Drawing.Font("Century Gothic", 27.75F);
-            this.labelFIO.Location = new System.Drawing.Point(55, 3);
+            this.labelFIO.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelFIO.Location = new System.Drawing.Point(4, 1);
             this.labelFIO.Name = "labelFIO";
-            this.labelFIO.Size = new System.Drawing.Size(278, 44);
+            this.labelFIO.Size = new System.Drawing.Size(99, 22);
             this.labelFIO.TabIndex = 2;
-            this.labelFIO.Text = "Фамилия Имя";
+            this.labelFIO.Text = "Фамилия";
             this.labelFIO.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelPhone
@@ -80,7 +81,7 @@
             this.labelPhone.AutoSize = true;
             this.labelPhone.BackColor = System.Drawing.Color.Transparent;
             this.labelPhone.Font = new System.Drawing.Font("Century Gothic", 27.75F);
-            this.labelPhone.Location = new System.Drawing.Point(106, 44);
+            this.labelPhone.Location = new System.Drawing.Point(9, 45);
             this.labelPhone.Name = "labelPhone";
             this.labelPhone.Size = new System.Drawing.Size(189, 44);
             this.labelPhone.TabIndex = 3;
@@ -98,16 +99,15 @@
             this.panelHeader.Size = new System.Drawing.Size(794, 92);
             this.panelHeader.TabIndex = 4;
             // 
-            // comboBoxTypeExport
+            // panel2
             // 
-            this.comboBoxTypeExport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxTypeExport.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxTypeExport.FormattingEnabled = true;
-            this.comboBoxTypeExport.Location = new System.Drawing.Point(48, 55);
-            this.comboBoxTypeExport.Name = "comboBoxTypeExport";
-            this.comboBoxTypeExport.Size = new System.Drawing.Size(313, 31);
-            this.comboBoxTypeExport.TabIndex = 5;
-            this.comboBoxTypeExport.SelectedIndexChanged += new System.EventHandler(this.comboBoxTypeExport_SelectedIndexChanged);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.comboBoxTypeExport);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(401, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(393, 92);
+            this.panel2.TabIndex = 7;
             // 
             // label2
             // 
@@ -120,6 +120,27 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Вид";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // comboBoxTypeExport
+            // 
+            this.comboBoxTypeExport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTypeExport.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxTypeExport.FormattingEnabled = true;
+            this.comboBoxTypeExport.Location = new System.Drawing.Point(48, 55);
+            this.comboBoxTypeExport.Name = "comboBoxTypeExport";
+            this.comboBoxTypeExport.Size = new System.Drawing.Size(313, 31);
+            this.comboBoxTypeExport.TabIndex = 5;
+            this.comboBoxTypeExport.SelectedIndexChanged += new System.EventHandler(this.comboBoxTypeExport_SelectedIndexChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.labelFIO);
+            this.panel1.Controls.Add(this.labelPhone);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(400, 92);
+            this.panel1.TabIndex = 6;
             // 
             // butExport
             // 
@@ -201,44 +222,25 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 395);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.labelFIO);
-            this.panel1.Controls.Add(this.labelPhone);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 92);
-            this.panel1.TabIndex = 6;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.comboBoxTypeExport);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(401, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(393, 92);
-            this.panel2.TabIndex = 7;
-            // 
             // ExportUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 395);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ExportUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Экспорт товаров пользователя";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ExportUserForm_FormClosed);
             this.Load += new System.EventHandler(this.ExportUserForm_Load);
             this.panelHeader.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -44,7 +44,7 @@ namespace DB_Autoparts_NVA.Forms
             
             priceAll =new MainForm(users).AllMoney();
             if (user.status == "Admin") priceAll = new MainForm().MoneyUser(user);
-            labelFIO.Text = $"{user.surname} {user.name}";
+            labelFIO.Text = $"{user.surname}";
             labelPhone.Text = user.phone.ToString(); 
             FullComboType();
         }
