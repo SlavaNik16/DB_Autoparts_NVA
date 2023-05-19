@@ -126,5 +126,11 @@ namespace DB_Autoparts_NVA.Forms
             ColorsHelp.ButtonCancel(butClose);
             Init();
         }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            butSearch.Enabled =
+                !string.IsNullOrWhiteSpace(searchBox.Text);
+        }
     }
 }

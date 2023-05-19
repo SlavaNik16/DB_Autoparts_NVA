@@ -158,6 +158,7 @@
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(252, 22);
             this.searchBox.TabIndex = 38;
+            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
             // 
             // label3
             // 
@@ -195,6 +196,7 @@
             // butSearch
             // 
             this.butSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.butSearch.Enabled = false;
             this.butSearch.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.butSearch.Location = new System.Drawing.Point(463, 337);
             this.butSearch.Name = "butSearch";
