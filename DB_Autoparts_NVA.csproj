@@ -510,6 +510,9 @@
   <ItemGroup>
     <None Include="Res\share.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\AddKeyIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

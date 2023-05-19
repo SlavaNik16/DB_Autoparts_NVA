@@ -48,8 +48,8 @@ namespace DB_Autoparts_NVA
                 toolEdit.Visible = false;
                 toolDelete.Visible = false;
                 toolDeleteProduct.Text = "Oтменить покупку";
-                CountUsersStatusStrip.Visible = false;
-                MoneyUserStatusStrip.Visible = false;
+                countUsersStatusStrip.Visible = false;
+                moneyUserStatusStrip.Visible = false;
                 dataGridProduct.Columns["columnIdUser"].Visible = false;
                 dataGridUsers.Columns["columnId"].Visible = false;
                 //Сдесь мы привязываем данные к нашим DataGridView
@@ -433,19 +433,19 @@ namespace DB_Autoparts_NVA
             if (!statusChange)
             {
                 var allMoney = AllMoney();
-                AllMoneyStatusStrip.Text = $"Общая сумма: {allMoney:C2}";
+                allMoneyStatusStrip.Text = $"Общая сумма: {allMoney:C2}";
                 if (statusUser == "Admin")
                 {
-                    CountUsersStatusStrip.Text = $"Кол-во пользователей: {dataGridUsers.RowCount}";
+                    countUsersStatusStrip.Text = $"Кол-во пользователей: {dataGridUsers.RowCount}";
                     if (dataGridUsers.SelectedRows.Count > 0)
                     {
                         userSelected = (Users)dataGridUsers.Rows[dataGridUsers.SelectedRows[0].Index].DataBoundItem;
 
-                        MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: {MoneyUser(userSelected)}";
+                        moneyUserStatusStrip.Text = $"Прибыль у данного пользователя: {MoneyUser(userSelected)}";
                     }
                     else
                     {
-                        MoneyUserStatusStrip.Text = $"Прибыль у данного пользователя: 0";
+                        moneyUserStatusStrip.Text = $"Прибыль у данного пользователя: 0";
                     }
                 }
                 statusChange = true;

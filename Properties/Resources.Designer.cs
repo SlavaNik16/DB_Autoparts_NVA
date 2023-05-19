@@ -63,6 +63,16 @@ namespace DB_Autoparts_NVA.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddKeyIcon {
+            get {
+                object obj = ResourceManager.GetObject("AddKeyIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap addProductIcon {
             get {
                 object obj = ResourceManager.GetObject("addProductIcon", resourceCulture);
