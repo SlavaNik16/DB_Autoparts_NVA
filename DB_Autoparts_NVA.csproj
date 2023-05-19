@@ -489,6 +489,27 @@
   <ItemGroup>
     <None Include="Res\refresh.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\status-bar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\DBAutopartsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\DBUsersIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\share.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
