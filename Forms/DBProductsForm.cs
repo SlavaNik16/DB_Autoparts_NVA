@@ -6,8 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Drawing;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApplicationContext = DB_Autoparts_NVA.DB.ApplicationContext;
 

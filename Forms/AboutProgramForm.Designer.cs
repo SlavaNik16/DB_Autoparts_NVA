@@ -79,6 +79,7 @@
             // 
             // labelProductName
             // 
+            this.labelProductName.BackColor = System.Drawing.Color.Transparent;
             this.labelProductName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelProductName.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.labelProductName.ForeColor = System.Drawing.Color.White;
@@ -93,6 +94,7 @@
             // 
             // labelVersion
             // 
+            this.labelVersion.BackColor = System.Drawing.Color.Transparent;
             this.labelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelVersion.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.labelVersion.ForeColor = System.Drawing.Color.White;
@@ -107,6 +109,7 @@
             // 
             // labelCopyright
             // 
+            this.labelCopyright.BackColor = System.Drawing.Color.Transparent;
             this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelCopyright.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.labelCopyright.ForeColor = System.Drawing.Color.White;
@@ -121,6 +124,7 @@
             // 
             // labelCompanyName
             // 
+            this.labelCompanyName.BackColor = System.Drawing.Color.Transparent;
             this.labelCompanyName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelCompanyName.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.labelCompanyName.ForeColor = System.Drawing.Color.White;

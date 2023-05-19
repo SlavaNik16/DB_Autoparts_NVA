@@ -1,11 +1,6 @@
 ﻿using DB_Autoparts_NVA.Colors;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DB_Autoparts_NVA.Forms

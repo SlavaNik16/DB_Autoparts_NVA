@@ -2,20 +2,14 @@
 using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IdentityModel.Protocols.WSTrust;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ApplicationContext = DB_Autoparts_NVA.DB.ApplicationContext;
 
 namespace DB_Autoparts_NVA.Forms

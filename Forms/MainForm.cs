@@ -3,48 +3,44 @@ using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Forms;
 using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.Win32;
-using Org.BouncyCastle.Math.EC.Rfc7748;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 using System.Windows.Forms;
 using ApplicationContext = DB_Autoparts_NVA.DB.ApplicationContext;
 namespace DB_Autoparts_NVA
 {
     public partial class MainForm : Form
     {
-        public DbContextOptions<ApplicationContext> options;
+        public DbContextOptions<ApplicationContext> options; // Подключение базы данных через строку подкючения
         public string statusUser = "";
         private static Users userMy = null;//Пользователь
         private static Users userSelected = null;//Выделенные пользователи
-        private bool exit = false;
-        private bool statusChange = false;
+        private bool exit = false;//разрешаем ли мы закрыть форму или нет
+        private bool statusChange = false; //обновляем статус только в том случае когда мы что-то меняем
+
+        //Конструктор по умолчанию
         public MainForm()
         {
             InitializeComponent();
-            options = DataBaseHelper.Option();
+            options = DataBaseHelper.Option();//Инициализирование через строку подключения, которая находится в appsetings.json
 
         }
-        public MainForm(Users users) : this()
+        //Конструктор, который принимает 1 параметр нашего пользователя
+        public MainForm(Users users) : this()//this() мы вызываем конструктор по умолчанию
         {
-            userMy = users;
-            statusUser = userMy.status;
-            contextMenuStrip2.Enabled = false;
+            userMy = users; //делаем статическую, глобальную переменную пользователя
+            statusUser = userMy.status; // для удобства запоминаем его статус (User - пользователь, Admin-Администратор)
+            contextMenuStrip2.Enabled = false; 
             updateData.Visible = false;
+            //Если статус - Пользователь
             if (statusUser == "User")
             {
+                //Убираем и выключаем ему ненужные функции из-за недостатка прав
                 this.Text = "Магазин автозапчастей";
                 statusStripUserStatus.Text = "Статус: Пользователь";
                 menuDB.Enabled = false;
@@ -56,6 +52,7 @@ namespace DB_Autoparts_NVA
                 MoneyUserStatusStrip.Visible = false;
                 dataGridProduct.Columns["columnIdUser"].Visible = false;
                 dataGridUsers.Columns["columnId"].Visible = false;
+                //Сдесь мы привязываем данные к нашим DataGridView
                 dataGridUsers.DataSource = ReadUser(options);
                 dataGridProduct.DataSource = FormatDataGridUser(options, userMy);
 
@@ -73,9 +70,29 @@ namespace DB_Autoparts_NVA
                 dataGridUsers.DataSource = ReadUserAll(options);
                 dataGridProduct.DataSource = FormatDataGridAdmin(options);
             }
+
+            //Обновляем статус
             Status();
         }
-
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //При загрузке формы подключаем все стили и цвета используя класс ColorsHelp в папке Colors
+            dataGridProduct.EnableHeadersVisualStyles = false;
+            dataGridUsers.EnableHeadersVisualStyles = false;
+            dataGridUsers.BackgroundColor = ColorsHelp.ColorBackground;
+            dataGridProduct.BackgroundColor = ColorsHelp.ColorBackground;
+            statusStrip1.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+            toolStripDataUser.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+            toolStripDataProduct.BackColor = ColorsHelp.ColorBackgroundPanelBack;
+            menuStrip.BackColor = ColorsHelp.ColorBackground;
+            //Подключаем событие для ToolStripMenuItem для смены ForeColor
+            EventHandlerMenu(ExportMenuItem);
+            EventHandlerMenu(menuDB);
+            EventHandlerMenu(helpMenuItem);
+            EventHandlerMenu(menuExit);
+            //ProgressBar - для отоброжение видимости что идет загрузка данных
+            toolStripProgressBar1.Value = 0;
+        }
         private void EventHandlerMenu(ToolStripMenuItem menuItem)
         {
             menuItem.DropDownOpened += MenuItem_DropDownOpened;
@@ -97,6 +114,7 @@ namespace DB_Autoparts_NVA
 
         #region DBRequests
 
+        //Формат для представление ифнормации для одного пользователя и его товаров
         public static List<AutopartsFormat> FormatDataGridUser(DbContextOptions<ApplicationContext> options, Users user)
         {
             using (var db = new ApplicationContext(options))
@@ -116,6 +134,7 @@ namespace DB_Autoparts_NVA
                 return format;
             }
         }
+        //Формат для представление ифнормации для всех пользователей и их товаров
         public static List<AutopartsFormat> FormatDataGridAdmin(DbContextOptions<ApplicationContext> options)
         {
             using (var db = new ApplicationContext(options))
@@ -135,6 +154,7 @@ namespace DB_Autoparts_NVA
                 return format;
             }
         }
+        //Фильтр для телефона и пола для пользователей
         public static List<Users> FiltrPhoneAndGender(DbContextOptions<ApplicationContext> options,
             DateTime birthday, String gender, bool birthdayIsEnabled, bool genderIsEnabled)
         {
@@ -156,6 +176,7 @@ namespace DB_Autoparts_NVA
                 return null;
             }
         }
+        //Фильтр для названий продукта
         public static List<AutopartsFormat> FiltrProductTitle(DbContextOptions<ApplicationContext> options, String productName)
         {
             using (var db = new ApplicationContext(options))
@@ -176,6 +197,7 @@ namespace DB_Autoparts_NVA
                 return format;
             }
         }
+        //Сортировка
         public static List<Users> SortUsersOrderBy(DbContextOptions<ApplicationContext> options, string columnName)
         {
             using (var db = new ApplicationContext(options))
@@ -271,6 +293,7 @@ namespace DB_Autoparts_NVA
                 return null;
             }
         }
+        //Запросы для взятие данных из базы данных
         private static List<Users> ReadUser(DbContextOptions<ApplicationContext> options)
         {
             using (var db = new ApplicationContext(options))
@@ -326,6 +349,7 @@ namespace DB_Autoparts_NVA
             }
 
         }
+        //При удаление пользователя мы также удаляем все его покупки(история)
         public static void RemoveUsersDB(DbContextOptions<ApplicationContext> options, int usersId)
         {
             using (var db = new ApplicationContext(options))
@@ -355,13 +379,12 @@ namespace DB_Autoparts_NVA
 
         private void menuExit_Click(object sender, EventArgs e)
         {
+            
             exit = true;
             Close();
             var authForm = new AuthorizationForm();
             authForm.Visible = true;
         }
-
-        
 
 
         private void toolAddProduct_Click(object sender, EventArgs e)
@@ -380,14 +403,11 @@ namespace DB_Autoparts_NVA
             }
         }
 
-        private void dataGridProduct_SelectionChanged(object sender, EventArgs e)
-        {
-            toolDeleteProduct.Enabled =
-            dataGridProduct.SelectedRows.Count > 0;
-        }
+       
 
         private void toolDeleteProduct_Click(object sender, EventArgs e)
         {
+            //Читаем выделенную строку  dataGridView и берем оттуда данных, в тип нашего Класса
             var autopart = (AutopartsFormat)dataGridProduct.Rows[dataGridProduct.SelectedRows[0].Index].DataBoundItem;
             if (autopart.Id_user != userMy.user_id)
             {
@@ -398,11 +418,11 @@ namespace DB_Autoparts_NVA
                "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 toolStripProgressBar1.Value = 0;
-                RemoveTovarDB(options, autopart.Parts_id);
+                RemoveTovarDB(options, autopart.Parts_id);//Удаляем из базы данных
                 toolStripProgressBar1.Value = 75;
-                dataGridProduct.DataSource = FormatDataGridUser(options, userMy);
+                dataGridProduct.DataSource = FormatDataGridUser(options, userMy);//обвновляем dataGridView
                 statusChange = false;
-                Status();
+                Status();//Обновляем статус
                 toolStripProgressBar1.Value = 0;
             }
 
@@ -463,6 +483,7 @@ namespace DB_Autoparts_NVA
         private void menuExport_Click(object sender, EventArgs e)
         {
             toolStripProgressBar1.Value = 30;
+            //Работа в отдельном потоке для визуальной простоты для пользователя
             var thead = new Thread(() =>
             {
                 ExportUserForm exportForm = null;
@@ -476,7 +497,7 @@ namespace DB_Autoparts_NVA
                     exportForm = new ExportUserForm(userSelected); 
                    
                 }
-                this.Invoke(new Action(() =>
+                this.Invoke(new Action(() =>//Invoke функция которая позволяет работать в основном потоке, в котором объект был создан
                 {
                     toolStripProgressBar1.Value = 50;
                     this.Visible = false;
@@ -491,7 +512,7 @@ namespace DB_Autoparts_NVA
                 }
 
             });
-            thead.SetApartmentState(ApartmentState.STA);
+            thead.SetApartmentState(ApartmentState.STA);//Подключаем STA для работы с SaveFileDialog() которая работает с PDf файлом
             thead.Start();
         }
 
@@ -547,6 +568,11 @@ namespace DB_Autoparts_NVA
             Status();
             toolStripProgressBar1.Value = 0;
 
+        }
+        private void dataGridProduct_SelectionChanged(object sender, EventArgs e)
+        {
+            toolDeleteProduct.Enabled =
+            dataGridProduct.SelectedRows.Count > 0;//Проверяем выделен ли заказ, если да то даем пользователю возможность отмены покупки
         }
 
         private void toolDelete_Click(object sender, EventArgs e)
@@ -653,26 +679,11 @@ namespace DB_Autoparts_NVA
             aboutProgram.ShowDialog();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            dataGridProduct.EnableHeadersVisualStyles = false;
-            dataGridUsers.EnableHeadersVisualStyles = false;
-            dataGridUsers.BackgroundColor = ColorsHelp.ColorBackground;
-            dataGridProduct.BackgroundColor = ColorsHelp.ColorBackground;
-            statusStrip1.BackColor = ColorsHelp.ColorBackgroundPanelBack;
-            toolStripDataUser.BackColor = ColorsHelp.ColorBackgroundPanelBack;
-            toolStripDataProduct.BackColor = ColorsHelp.ColorBackgroundPanelBack;
-            menuStrip.BackColor = ColorsHelp.ColorBackground;
-            EventHandlerMenu(ExportMenuItem);
-            EventHandlerMenu(menuDB);
-            EventHandlerMenu(helpMenuItem);
-            EventHandlerMenu(menuExit);
-            toolStripProgressBar1.Value = 0;
-        }
-
 
         private void updateData_Click(object sender, EventArgs e)
         {
+            //Обновление всех данных с использование дополнительной формой загрузки данных
+            //Для того чтобы пользователь
             var loadForm = new LoadForm();
             loadForm.Show();
             loadForm.EditTextProgress("Идет обновление данных", 45);

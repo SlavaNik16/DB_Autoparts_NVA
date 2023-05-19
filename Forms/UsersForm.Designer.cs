@@ -152,6 +152,7 @@
             this.txtBoxSurname.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.txtBoxSurname.Location = new System.Drawing.Point(16, 160);
             this.txtBoxSurname.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSurname.MaxLength = 48;
             this.txtBoxSurname.Name = "txtBoxSurname";
             this.txtBoxSurname.Size = new System.Drawing.Size(237, 26);
             this.txtBoxSurname.TabIndex = 0;
@@ -164,6 +165,7 @@
             this.txtBoxName.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.txtBoxName.Location = new System.Drawing.Point(301, 160);
             this.txtBoxName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxName.MaxLength = 28;
             this.txtBoxName.Name = "txtBoxName";
             this.txtBoxName.Size = new System.Drawing.Size(223, 26);
             this.txtBoxName.TabIndex = 1;
@@ -239,6 +241,7 @@
             this.txtBoxPhone.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.txtBoxPhone.Location = new System.Drawing.Point(146, 12);
             this.txtBoxPhone.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPhone.MaxLength = 14;
             this.txtBoxPhone.Name = "txtBoxPhone";
             this.txtBoxPhone.Size = new System.Drawing.Size(352, 26);
             this.txtBoxPhone.TabIndex = 3;
