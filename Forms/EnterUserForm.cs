@@ -14,6 +14,9 @@ namespace DB_Autoparts_NVA.Forms
             this.BackColor = ColorsHelp.ColorBackground;
             ColorsHelp.ButtonSubmit(butEnter);
             ColorsHelp.ButtonCancel(butCansel);
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(txtPhone, "Введите сюда телефон от 6 до 11 символов");
+            toolTip.SetToolTip(txtPassword, "Введите сюда пароль от 8 символов");
             user = new Users();
         }
 

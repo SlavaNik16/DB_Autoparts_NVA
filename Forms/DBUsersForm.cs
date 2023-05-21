@@ -25,6 +25,8 @@ namespace DB_Autoparts_NVA.Forms
             InitializeComponent();
             this.dataGridUsersDB.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             options = DataBaseHelper.Option();
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(searchBox,"Введите сюда критерий поиска товара по фамилии"); 
         }
         public DBUsersForm(Users user) : this()
         {

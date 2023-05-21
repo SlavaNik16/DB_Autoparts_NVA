@@ -29,6 +29,9 @@ namespace DB_Autoparts_NVA.Forms
             groupBoxBack.BackColor = ColorsHelp.ColorBackgroundPanelBack;
             ColorsHelp.ButtonSubmit(butAddProduct);
             ColorsHelp.ButtonCancel(butСancel);
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(txtBoxName, "Введите сюда название товара");
+            toolTip.SetToolTip(txtBoxPriceOne, "Введите сюда цену товара за 1 шт");
         }
 
         private void butAddProduct_Click(object sender, EventArgs e)
