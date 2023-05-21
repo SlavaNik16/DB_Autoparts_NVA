@@ -275,8 +275,8 @@
             this.butDelete.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.butDelete.ForeColor = System.Drawing.Color.White;
             this.butDelete.Name = "butDelete";
-            this.butDelete.Size = new System.Drawing.Size(71, 21);
-            this.butDelete.Text = "Удалить";
+            this.butDelete.Size = new System.Drawing.Size(102, 21);
+            this.butDelete.Text = "Блокировать";
             this.butDelete.Click += new System.EventHandler(this.butDelete_Click);
             // 
             // dataGridUsersDB
