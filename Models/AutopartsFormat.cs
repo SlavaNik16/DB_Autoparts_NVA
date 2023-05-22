@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DB_Autoparts_NVA.Models
 {
@@ -13,9 +8,6 @@ namespace DB_Autoparts_NVA.Models
         ///<summary>
         /// Id пользователя, которому принадлежит продукт
         /// </summary>
-        /// <summary>
-        /// Id пользователя, которому принадлежит продукт
-        /// </summary>  
         public int Id_user { get; set; }
         /// <summary>
         /// Фамилия пользователя
