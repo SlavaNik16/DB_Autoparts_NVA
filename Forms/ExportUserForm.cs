@@ -1,25 +1,17 @@
-﻿using DB_Autoparts_NVA.DB;
+﻿using DB_Autoparts_NVA.Colors;
+using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Models;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Linq;
+using System.IO;
 using System.Windows.Forms;
 using ApplicationContext = DB_Autoparts_NVA.DB.ApplicationContext;
 using Excel = Microsoft.Office.Interop.Excel;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 using Font = iTextSharp.text.Font;
-using System.Data.Common;
-using System.IO;
-using iTextSharp.text.html.simpleparser;
-using System.Xml.Linq;
-using Microsoft.Office.Interop.Excel;
-using System.Runtime.InteropServices;
-using DB_Autoparts_NVA.Colors;
-using System.Threading;
 
 namespace DB_Autoparts_NVA.Forms
 {
