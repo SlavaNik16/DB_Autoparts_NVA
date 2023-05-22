@@ -88,6 +88,11 @@ namespace DB_Autoparts_NVA.Forms
 
         private void butExport_Click(object sender, EventArgs e)
         {
+            if(listItem == null)
+            {
+                MessageBox.Show("Нечего экспортировать!","Ошибка!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
             switch (comboBoxTypeExport.SelectedIndex)
             {
                 case 0:

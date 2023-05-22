@@ -43,7 +43,7 @@ namespace DB_Autoparts_NVA.Forms
 
                     if (unic != null)
                     {
-                        MessageBox.Show("Номер уже существует. Регистрация не подтверждена!");
+                        MessageBox.Show("Номер уже существует. Регистрация не подтверждена!","Ошибка!",MessageBoxButtons.OK,MessageBoxIcon.Error);
                         progressBarLoad.Value = 0;
                         return;
                     }
@@ -84,7 +84,7 @@ namespace DB_Autoparts_NVA.Forms
                     if (unic == null)
                     {
 
-                        MessageBox.Show("Пользователь не найден!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Пользователь не найден!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     var loadForm = new LoadForm();
