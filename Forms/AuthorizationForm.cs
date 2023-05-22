@@ -43,7 +43,8 @@ namespace DB_Autoparts_NVA.Forms
 
                     if (unic != null)
                     {
-                        MessageBox.Show("Номер уже существует. Регистрация не подтверждена!","Ошибка!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        MessageBox.Show("Номер уже существует. Регистрация не подтверждена!","Ошибка!",
+                            MessageBoxButtons.OK,MessageBoxIcon.Error);
                         progressBarLoad.Value = 0;
                         return;
                     }
@@ -80,11 +81,13 @@ namespace DB_Autoparts_NVA.Forms
 
                     var hesh = getHashSha256(enterUser.Users.password);
 
-                    var unic = db.UserDB.Where(x => x.phone.StartsWith(enterUser.Users.phone)).FirstOrDefault(x => x.password == hesh);
+                    var unic = db.UserDB.Where(x => x.phone.StartsWith(enterUser.Users.phone)).
+                        FirstOrDefault(x => x.password == hesh);
                     if (unic == null)
                     {
 
-                        MessageBox.Show("Пользователь не найден!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Пользователь не найден!", "Ошибка!", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     var loadForm = new LoadForm();
