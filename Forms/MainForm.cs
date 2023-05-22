@@ -585,7 +585,7 @@ namespace DB_Autoparts_NVA
             }
             if (MessageBox.Show($"Вы действительно хотите заблокировать пользователя с \n\rId: {userSelected.user_id}" +
                 $"\n\rФамилия,Имя: {userSelected.surname},{userSelected.name}\n\rТелефон: {userSelected.phone}",
-               "Удаление записи", MessageBoxButtons.YesNo) == DialogResult.Yes)
+               "Блокировка пользователя!", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 toolStripProgressBar1.Value = 25;
                 RemoveUsersDB(options, userSelected.user_id);
