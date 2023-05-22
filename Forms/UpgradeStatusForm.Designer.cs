@@ -106,6 +106,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(416, 148);
+            this.ControlBox = false;
             this.Controls.Add(this.butCancel);
             this.Controls.Add(this.butConfirm);
             this.Controls.Add(this.panelHeader);
@@ -116,7 +117,6 @@
             this.Name = "UpgradeStatusForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Повышение статуса";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UpgradeStatusForm_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panelHeader.ResumeLayout(false);

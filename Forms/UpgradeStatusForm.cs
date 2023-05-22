@@ -83,12 +83,14 @@ namespace DB_Autoparts_NVA.Forms
 
         private void butCancel_Click(object sender, EventArgs e)
         {
-           Close();
-        }
-
-        private void UpgradeStatusForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (users != null) returnMain();
+            if (users != null)
+            {
+                returnMain();
+            }
+            else
+            {
+                Close();
+            }
         }
     }
 }
