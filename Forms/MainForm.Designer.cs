@@ -88,7 +88,6 @@
             this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addKeyAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.addProduct = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpProvider = new System.Windows.Forms.HelpProvider();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
@@ -191,7 +190,7 @@
             // 
             this.menuHelpProvider.Image = ((System.Drawing.Image)(resources.GetObject("menuHelpProvider.Image")));
             this.menuHelpProvider.Name = "menuHelpProvider";
-            this.menuHelpProvider.Size = new System.Drawing.Size(170, 22);
+            this.menuHelpProvider.Size = new System.Drawing.Size(180, 22);
             this.menuHelpProvider.Text = "Справка";
             this.menuHelpProvider.Click += new System.EventHandler(this.menuHelpProvider_Click);
             // 
@@ -199,7 +198,7 @@
             // 
             this.menuAboutProgram.Image = global::DB_Autoparts_NVA.Properties.Resources.help;
             this.menuAboutProgram.Name = "menuAboutProgram";
-            this.menuAboutProgram.Size = new System.Drawing.Size(170, 22);
+            this.menuAboutProgram.Size = new System.Drawing.Size(180, 22);
             this.menuAboutProgram.Text = "О программе";
             this.menuAboutProgram.Click += new System.EventHandler(this.menuAboutProgram_Click);
             // 
@@ -646,11 +645,6 @@
             this.addProduct.Text = "Продукт";
             this.addProduct.Click += new System.EventHandler(this.addProduct_Click);
             // 
-            // helpProvider
-            // 
-            this.helpProvider.HelpNamespace = "C:\\Users\\nikol\\OneDrive\\Рабочий стол\\Дополнение\\C#\\DB_Autoparts_NVA\\Пользовательс" +
-    "кое соглашение.txt";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -731,7 +725,6 @@
         private System.Windows.Forms.ToolStripMenuItem addKeyAdmin;
         private System.Windows.Forms.ToolStripMenuItem addProduct;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
-        private System.Windows.Forms.HelpProvider helpProvider;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnIdProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnIdUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnIdProducts;

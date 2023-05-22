@@ -670,7 +670,7 @@ namespace DB_Autoparts_NVA
 
         private void menuHelpProvider_Click(object sender, EventArgs e)
         {
-            Help.ShowHelp(this, helpProvider.HelpNamespace);
+            Help.ShowHelp(this, "https://docs.google.com/document/d/1p-RMQ5x8_Jc4d_AZ2lli-zJ2_QmENq4K/edit?usp=share_link&ouid=109532816752316015964&rtpof=true&sd=true");
         }
 
         private void menuAboutProgram_Click(object sender, EventArgs e)
