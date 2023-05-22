@@ -3,13 +3,7 @@ using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApplicationContext = DB_Autoparts_NVA.DB.ApplicationContext;
 using Keys = DB_Autoparts_NVA.Models.Keys;
@@ -20,7 +14,6 @@ namespace DB_Autoparts_NVA.Forms
     {
         public DbContextOptions<ApplicationContext> options = DataBaseHelper.Option();
         private Users users;
-        private String status;
         public UpgradeStatusForm()
         {
             InitializeComponent();
