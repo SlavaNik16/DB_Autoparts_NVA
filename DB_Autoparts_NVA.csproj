@@ -455,7 +455,9 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\AutopartsIconNoBacg.png" />
+    <Resource Include="Res\AutopartsIconNoBacg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -487,31 +489,49 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\refresh.png" />
+    <Resource Include="Res\refresh.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\status-bar.png" />
+    <Resource Include="Res\status-bar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\DBAutopartsIcon.png" />
+    <Resource Include="Res\DBAutopartsIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\DBUsersIcon.png" />
+    <Resource Include="Res\DBUsersIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\help.png" />
+    <Resource Include="Res\help.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\info.png" />
+    <Resource Include="Res\info.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\logout.png" />
+    <Resource Include="Res\logout.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\share.png" />
+    <Resource Include="Res\share.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\AddKeyIcon.png" />
+    <Resource Include="Res\AddKeyIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
