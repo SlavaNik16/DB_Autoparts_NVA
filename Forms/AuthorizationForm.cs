@@ -71,7 +71,7 @@ namespace DB_Autoparts_NVA.Forms
             }
         }
 
-        private async void butEnter_Click(object sender, EventArgs e)
+        private void butEnter_Click(object sender, EventArgs e)
         {
             using (var db = new ApplicationContext(options))
             {
