@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
 using ApplicationContext = DB_Autoparts_NVA.DB.ApplicationContext;
 namespace DB_Autoparts_NVA
 {
@@ -22,6 +23,8 @@ namespace DB_Autoparts_NVA
         private static Users userSelected = null;//Выделенные пользователи
         private bool exit = false;//разрешаем ли мы закрыть форму или нет
         private bool statusChange = false; //обновляем статус только в том случае когда мы что-то меняем
+
+        private const string uri = "https://docs.google.com/document/d/1DgWmFNYvHp-bHFIqcX-9lgDdJj7c-Eit/edit?usp=sharing&ouid=109532816752316015964&rtpof=true&sd=true";
 
         //Конструктор по умолчанию
         public MainForm()
@@ -670,7 +673,7 @@ namespace DB_Autoparts_NVA
 
         private void menuHelpProvider_Click(object sender, EventArgs e)
         {
-            Help.ShowHelp(this, "https://docs.google.com/document/d/1p-RMQ5x8_Jc4d_AZ2lli-zJ2_QmENq4K/edit?usp=share_link&ouid=109532816752316015964&rtpof=true&sd=true");
+            Help.ShowHelp(this, uri);
         }
 
         private void menuAboutProgram_Click(object sender, EventArgs e)
