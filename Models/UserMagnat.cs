@@ -2,6 +2,9 @@
 
 namespace DB_Autoparts_NVA.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class UserMagnat
     {
         public int Id { get; set; }
@@ -22,7 +25,6 @@ namespace DB_Autoparts_NVA.Models
         public decimal Price { get; set; }
         public int Counts { get; set; }
         public int CountsAll { get; set; }
-
         
     }
 }
