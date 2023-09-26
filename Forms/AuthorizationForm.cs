@@ -133,5 +133,13 @@ namespace DB_Autoparts_NVA.Forms
             }
 
         }
+
+        private void butTest_Click(object sender, EventArgs e)
+        {
+            var test = new TestSqlZapros();
+            this.Hide();
+            test.ShowDialog();
+            this.Show();
+        }
     }
 }

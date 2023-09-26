@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -95,6 +96,8 @@ namespace DB_Autoparts_NVA
             EventHandlerMenu(menuExit);
             //ProgressBar - для отоброжение видимости что идет загрузка данных
             toolStripProgressBar1.Value = 0;
+
+            
         }
         private void EventHandlerMenu(ToolStripMenuItem menuItem)
         {
@@ -459,8 +462,10 @@ namespace DB_Autoparts_NVA
         {
             using (var db = new ApplicationContext(options))
             {
+                
                 var tovar = db.AutopartDB.Where(x => x.id_user == userSelect.user_id).ToList();
-                return tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price);
+                var summa = tovar.Sum(f => f.count * db.ProductDB.Find(f.product).price);
+                return summa;
             }
         }
         public decimal AllMoney()
