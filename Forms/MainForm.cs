@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,7 +33,9 @@ namespace DB_Autoparts_NVA
         {
             InitializeComponent();
             options = DataBaseHelper.Option();//Инициализирование через строку подключения, которая находится в appsetings.json
-
+            CultureInfo cultureInfo = (CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            cultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
         }
         //Конструктор, который принимает 1 параметр нашего пользователя
         public MainForm(Users users) : this()//this() мы вызываем конструктор по умолчанию
@@ -672,13 +675,16 @@ namespace DB_Autoparts_NVA
                 }));
             }).Start();
             Task.Delay(1000).Wait();
+            
             toolStripProgressBar1.Value = 75;
             Task.Delay(1000).Wait();
         }
 
         private void menuHelpProvider_Click(object sender, EventArgs e)
         {
-            Help.ShowHelp(this, uri);
+          Help.ShowHelp(this, uri);
+
+          //Help.ShowHelp(this, "../../PosSogl.txt");
         }
 
         private void menuAboutProgram_Click(object sender, EventArgs e)

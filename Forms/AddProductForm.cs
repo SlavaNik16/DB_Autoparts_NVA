@@ -1,7 +1,7 @@
 ﻿using DB_Autoparts_NVA.Colors;
 using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Models;
-using iTextSharp.text.pdf.qrcode;
+//using iTextSharp.text.pdf.qrcode;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

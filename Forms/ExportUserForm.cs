@@ -1,8 +1,8 @@
 ﻿using DB_Autoparts_NVA.Colors;
 using DB_Autoparts_NVA.DB;
 using DB_Autoparts_NVA.Models;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
+//using iTextSharp.text;
+//using iTextSharp.text.pdf;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.IO;
 using System.Windows.Forms;
 using ApplicationContext = DB_Autoparts_NVA.DB.ApplicationContext;
 using Excel = Microsoft.Office.Interop.Excel;
-using Font = iTextSharp.text.Font;
+//using Font = iTextSharp.text.Font;
 
 namespace DB_Autoparts_NVA.Forms
 {
@@ -157,110 +157,110 @@ namespace DB_Autoparts_NVA.Forms
 
         private void ExportPDf()
         {
-            PdfPTable pdfTable = new PdfPTable(listItem.SubItems.Count);
-            pdfTable.DefaultCell.Padding = 3;
-            pdfTable.WidthPercentage = 100;
-            pdfTable.HorizontalAlignment = 3;
-            pdfTable.DefaultCell.BorderWidth = 1;
+            //PdfPTable pdfTable = new PdfPTable(listItem.SubItems.Count);
+            //pdfTable.DefaultCell.Padding = 3;
+            //pdfTable.WidthPercentage = 100;
+            //pdfTable.HorizontalAlignment = 3;
+            //pdfTable.DefaultCell.BorderWidth = 1;
 
-            var font = new Font(BaseFont
-                .CreateFont("c:/Windows/Fonts/arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED),
-                10,
-                iTextSharp.text.Font.NORMAL); 
+            //var font = new Font(BaseFont
+            //    .CreateFont("c:/Windows/Fonts/arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED),
+            //    10,
+            //    iTextSharp.text.Font.NORMAL); 
 
-            PdfPTable pdfTableUser = new PdfPTable(2);
-            pdfTableUser.DefaultCell.Padding = 3;    
-            pdfTableUser.WidthPercentage = 100;
-            pdfTableUser.HorizontalAlignment = 3;
-            pdfTableUser.DefaultCell.BorderWidth = 1;
+            //PdfPTable pdfTableUser = new PdfPTable(2);
+            //pdfTableUser.DefaultCell.Padding = 3;    
+            //pdfTableUser.WidthPercentage = 100;
+            //pdfTableUser.HorizontalAlignment = 3;
+            //pdfTableUser.DefaultCell.BorderWidth = 1;
 
-            var cell = new PdfPCell(
-                   new Phrase("Фамилия", font));
-            cell.BackgroundColor = new BaseColor(240, 240, 240);
-            pdfTableUser.AddCell(cell);
-            pdfTableUser.AddCell(new Phrase(users.surname, font));
+            //var cell = new PdfPCell(
+            //       new Phrase("Фамилия", font));
+            //cell.BackgroundColor = new BaseColor(240, 240, 240);
+            //pdfTableUser.AddCell(cell);
+            //pdfTableUser.AddCell(new Phrase(users.surname, font));
 
-            cell = new PdfPCell(
-                  new Phrase("Имя", font));
-            cell.BackgroundColor = new BaseColor(240, 240, 240);
-            pdfTableUser.AddCell(cell);
-            pdfTableUser.AddCell(new Phrase(users.name, font));
+            //cell = new PdfPCell(
+            //      new Phrase("Имя", font));
+            //cell.BackgroundColor = new BaseColor(240, 240, 240);
+            //pdfTableUser.AddCell(cell);
+            //pdfTableUser.AddCell(new Phrase(users.name, font));
 
-            cell = new PdfPCell(
-                 new Phrase("Пол", font));
-            cell.BackgroundColor = new BaseColor(240, 240, 240);
-            pdfTableUser.AddCell(cell);
-            pdfTableUser.AddCell(new Phrase(users.gender, font));
+            //cell = new PdfPCell(
+            //     new Phrase("Пол", font));
+            //cell.BackgroundColor = new BaseColor(240, 240, 240);
+            //pdfTableUser.AddCell(cell);
+            //pdfTableUser.AddCell(new Phrase(users.gender, font));
             
 
-            cell = new PdfPCell(
-                 new Phrase("День рождения", font));
-            cell.BackgroundColor = new BaseColor(240, 240, 240);
-            pdfTableUser.AddCell(cell); 
-            pdfTableUser.AddCell(new Phrase(users.birthday.ToString(), font));
+            //cell = new PdfPCell(
+            //     new Phrase("День рождения", font));
+            //cell.BackgroundColor = new BaseColor(240, 240, 240);
+            //pdfTableUser.AddCell(cell); 
+            //pdfTableUser.AddCell(new Phrase(users.birthday.ToString(), font));
           
 
-            cell = new PdfPCell(
-                new Phrase("Email", font));
-            cell.BackgroundColor = new BaseColor(240, 240, 240);
-            pdfTableUser.AddCell(cell);
-            pdfTableUser.AddCell(new Phrase(users.email, font));
+            //cell = new PdfPCell(
+            //    new Phrase("Email", font));
+            //cell.BackgroundColor = new BaseColor(240, 240, 240);
+            //pdfTableUser.AddCell(cell);
+            //pdfTableUser.AddCell(new Phrase(users.email, font));
            
 
-            cell = new PdfPCell(
-              new Phrase("Телефон", font));
-            cell.BackgroundColor = new BaseColor(240, 240, 240);
-            pdfTableUser.AddCell(cell);
-            pdfTableUser.AddCell(new Phrase(users.phone, font));
+            //cell = new PdfPCell(
+            //  new Phrase("Телефон", font));
+            //cell.BackgroundColor = new BaseColor(240, 240, 240);
+            //pdfTableUser.AddCell(cell);
+            //pdfTableUser.AddCell(new Phrase(users.phone, font));
            
-            //Добавление в pdf Header
-            for (int j = 0; j < listItem.SubItems.Count; j++)
-            {
-                cell = new PdfPCell(
-                    new Phrase(new Phrase(listView.Columns[j].Text.ToString(), font)));
-                cell.BackgroundColor = new BaseColor(240, 240, 240);
-                pdfTable.AddCell(cell);
-            }
+            ////Добавление в pdf Header
+            //for (int j = 0; j < listItem.SubItems.Count; j++)
+            //{
+            //    cell = new PdfPCell(
+            //        new Phrase(new Phrase(listView.Columns[j].Text.ToString(), font)));
+            //    cell.BackgroundColor = new BaseColor(240, 240, 240);
+            //    pdfTable.AddCell(cell);
+            //}
 
-            for (int k = 0; k < listView.Items.Count; k++)
-            {
-                for (int j = 0; j < listItem.SubItems.Count; j++)
-                {
-                    pdfTable.AddCell(
-                        new Phrase(listView.Items[k].SubItems[j].Text, font));
-                }
-            }
+            //for (int k = 0; k < listView.Items.Count; k++)
+            //{
+            //    for (int j = 0; j < listItem.SubItems.Count; j++)
+            //    {
+            //        pdfTable.AddCell(
+            //            new Phrase(listView.Items[k].SubItems[j].Text, font));
+            //    }
+            //}
 
 
-            PdfPTable pdfTableResult = new PdfPTable(2);
-            pdfTableUser.DefaultCell.Padding = 3;
-            pdfTableUser.WidthPercentage = 100;
-            pdfTableUser.HorizontalAlignment = 3;
-            pdfTableUser.DefaultCell.BorderWidth = 1;
+            //PdfPTable pdfTableResult = new PdfPTable(2);
+            //pdfTableUser.DefaultCell.Padding = 3;
+            //pdfTableUser.WidthPercentage = 100;
+            //pdfTableUser.HorizontalAlignment = 3;
+            //pdfTableUser.DefaultCell.BorderWidth = 1;
 
-            cell = new PdfPCell(
-            new Phrase("Всего", font));
-            cell.BackgroundColor = new BaseColor(240, 240, 240);
-            pdfTableUser.AddCell(cell);
-            pdfTableUser.AddCell(new Phrase($"{priceAll:C2}", font));
+            //cell = new PdfPCell(
+            //new Phrase("Всего", font));
+            //cell.BackgroundColor = new BaseColor(240, 240, 240);
+            //pdfTableUser.AddCell(cell);
+            //pdfTableUser.AddCell(new Phrase($"{priceAll:C2}", font));
 
-            var saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = "История покупок пользователя";
-            saveFileDialog.DefaultExt = ".pdf";
-            if(saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
-                {
-                    using (var pdfDoc = new Document(PageSize.A4, 10f, 10f, 40f, 10f))
-                    {
-                        PdfWriter.GetInstance(pdfDoc, stream);
-                        pdfDoc.Open();
-                        pdfDoc.Add(pdfTableUser);
-                        pdfDoc.Add(pdfTable);
-                        pdfDoc.Add(pdfTableResult);
-                    }
-                }
-            }
+            //var saveFileDialog = new SaveFileDialog();
+            //saveFileDialog.FileName = "История покупок пользователя";
+            //saveFileDialog.DefaultExt = ".pdf";
+            //if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
+            //    {
+            //        using (var pdfDoc = new Document(PageSize.A4, 10f, 10f, 40f, 10f))
+            //        {
+            //            PdfWriter.GetInstance(pdfDoc, stream);
+            //            pdfDoc.Open();
+            //            pdfDoc.Add(pdfTableUser);
+            //            pdfDoc.Add(pdfTable);
+            //            pdfDoc.Add(pdfTableResult);
+            //        }
+            //    }
+            //}
         }
 
         private void ExportUserForm_FormClosed(object sender, FormClosedEventArgs e)
